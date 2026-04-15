@@ -45,3 +45,8 @@ Thumbs.db
 
 # Claude Code
 CLAUDE.md
+
+
+# ENV
+
+src/environments/environment.ts
