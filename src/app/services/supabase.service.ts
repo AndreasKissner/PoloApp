@@ -7,5 +7,10 @@ import { environment } from '../../environments/environment';
 })
 export class Supabase {
 
-supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
+private SUPABASE = createClient(environment.supabaseUrl, environment.supabaseKey)
+
+async getSurveys(){
+  return await this.SUPABASE.from('surveys').select('*')
+}
+
 }
