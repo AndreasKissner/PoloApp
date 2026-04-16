@@ -12,5 +12,5 @@ private SUPABASE = createClient(environment.supabaseUrl, environment.supabaseKey
 async getSurveys(){
   return await this.SUPABASE.from('surveys').select('*')
 }
-
+ 
 }
