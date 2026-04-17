@@ -1,0 +1,30 @@
+// abstracts/_typography.scss
+
+@font-face {
+  font-family: 'Nerko';
+  src: url('/assets/fonts/nerko.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/assets/fonts/mulish.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nokora';
+  src: url('/assets/fonts/nokora.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Font Variablen
+$font-title: 'Nerko', sans-serif;
+$font-base:  'Mulish', sans-serif;
+$font-alt:   'Nokora', sans-serif;

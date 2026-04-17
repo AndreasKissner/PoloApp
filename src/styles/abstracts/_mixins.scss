@@ -1,0 +1,34 @@
+@use 'variables' as *;
+
+@mixin flex(
+  $direction: row,
+  $align: stretch,
+  $justify: flex-start,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+@mixin tablet {
+  @media (min-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $bp-desktop) {
+    @content;
+  }
+}
+
+// fontMixin
+@mixin font($family: $font-base, $size: 16px, $weight: 400, $color: $color-text) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
