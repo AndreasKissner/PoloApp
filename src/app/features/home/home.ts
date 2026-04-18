@@ -3,10 +3,11 @@ import { Supabase } from '../../services/supabase.service';
 import { Survey } from '../../models/survey.model';
 import { JsonPipe } from '@angular/common';
 import { SurveyCardSmall } from './survey-card-small/survey-card-small';
+import { UiButtonComponent } from '../../shared/ui-button/ui-button';
 
 @Component({
   selector: 'app-home',
-  imports: [JsonPipe, SurveyCardSmall],
+  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

@@ -25,50 +25,7 @@
     line-height: 1.6;
   }
 
-  &__btn {
-    @include flex(row, center, flex-start, 10px);
-    width: fit-content;
-    background-color: $color-bg-puplished-titel;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: gap 200ms ease, padding 200ms ease;
-    @include font($font-alt, 18px, 700, #35273A);
-
-    &-icon {
-      display: block; // immer sichtbar
-
-      img {
-        width: 20px;
-        height: 20px;
-        display: block;
-      }
-    }
-
-    @include desktop {
-      transition: background-color 200ms ease;
-
-      &-icon {
-        display: block;
-        opacity: 0;
-        width: 0;
-        /*  overflow: hidden; */
-        transition: opacity 500ms ease, width 500ms ease;
-      }
-
-      &:hover {
-        gap: 10px;
-        background: $color-text-one;
-        padding: 12px 24px 12px 16px;
-
-        .hero__btn-icon {
-          opacity: 1;
-          width: 20px;
-        }
-      }
-    }
-  }
+  
 
   &__illustration {
    /*  display: none;  */

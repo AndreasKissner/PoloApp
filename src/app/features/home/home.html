@@ -9,46 +9,41 @@
         </h1>
 
         <div class="hero__illustration" aria-hidden="true">
-        <img class="hero__img" src="assets/images/illustrations/handyImg.svg" alt="">
-      </div>
+          <img class="hero__img" src="assets/images/illustrations/handyImg.svg" alt="">
+        </div>
         <p class="hero__text">
           Create and share surveys in minutes – from team events to
           workplace culture. Collect opinions, engage your audience,
           and turn feedback into action.
         </p>
-        <button class="hero__btn" type="button">
-          <span class="hero__btn-text">New survey</span>
-          <span class="hero__btn-icon" aria-hidden="true">
-            <img src="assets/images/new-survey.svg" alt="">
-          </span>
-        </button>
+        <app-ui-button variant="primary" label="New survey" icon="assets/images/new-survey.svg" />
       </div>
     </section>
-    
+
     <!-- Your Surveys -->
-<section class="surveys" aria-labelledby="surveys-title">
-  
-  <div class="surveys__header">
-    <h2 class="surveys__title" id="surveys-title">Your surveys</h2>
-  </div>
+    <section class="surveys" aria-labelledby="surveys-title">
 
-  <!-- Ending Soon -->
-  <div class="surveys__ending">
-    <h3 class="surveys__ending-title">Ending soon surveys</h3>
-    
-    <div class="surveys__ending-list" role="list">
-      <div role="listitem">
-        <app-survey-card-small />
+      <div class="surveys__header">
+        <h2 class="surveys__title" id="surveys-title">Your surveys</h2>
       </div>
-      <div role="listitem">
-        <app-survey-card-small />
-      </div>
-      <div role="listitem">
-        <app-survey-card-small />
-      </div>
-    </div>
-  </div>
 
-</section>
+      <!-- Ending Soon -->
+      <div class="surveys__ending">
+        <h3 class="surveys__ending-title">Ending soon surveys</h3>
+
+        <div class="surveys__ending-list" role="list">
+          <div role="listitem">
+            <app-survey-card-small />
+          </div>
+          <div role="listitem">
+            <app-survey-card-small />
+          </div>
+          <div role="listitem">
+            <app-survey-card-small />
+          </div>
+        </div>
+      </div>
+
+    </section>
   </div>
 </main>

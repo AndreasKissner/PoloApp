@@ -1,0 +1,12 @@
+<button 
+  class="btn"
+  [class]="'btn btn--' + variant"
+  [class.btn--active]="active"
+  type="button">
+  <span class="btn__label">{{ label }}</span>
+  @if (icon) {
+    <span class="btn__icon" aria-hidden="true">
+      <img [src]="icon" alt="">
+    </span>
+  }
+</button>
