@@ -2,12 +2,16 @@
 
 .card-small {
     @include flex(column, stretch, flex-start, 8px);
-    background-color: #F0EBF4;
-    border: 2px solid #7B4FA6;
+    background-color: $color-bg-small-card;
+
     border-radius: 0 80px 0px 0px;
     padding: 16px;
     min-width: 220px;
     min-height: 200px;
+
+    &:hover {
+        background-color: $color-bg-small-card-hover;
+    }
 
     &__category {
         @include font($font-base, 14px, 600, #35273A);
@@ -19,12 +23,10 @@
     }
 
     &__badge {
-        @include font($font-base, 12px, 500,$color-result-live);
+        @include font($font-base, 12px, 500, $color-result-live);
         background-color: $color-bg-puplished-titel;
         padding: 3px 6px;
-      
-  border-radius: 0 14px 0 0;
-
+        border-radius: 0 14px 0 0;
         align-self: flex-start;
     }
 }

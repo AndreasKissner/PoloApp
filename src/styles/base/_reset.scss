@@ -6,11 +6,17 @@
   padding: 0;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -19,8 +25,12 @@ button {
   background: none;
   border: none;
   cursor: pointer;
+  outline: none; // Entfernt Blaue Müll bei HAndy Druck Btn
+  -webkit-tap-highlight-color: transparent;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   font: inherit;
 }

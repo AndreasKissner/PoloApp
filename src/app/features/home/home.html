@@ -2,12 +2,10 @@
   <div class="container">
 
     <section class="hero" aria-labelledby="hero-title">
-
       <div class="hero__content">
         <h1 class="hero__title" id="hero-title">
           Collect Feedback, Unlock Ideas
         </h1>
-
         <div class="hero__illustration" aria-hidden="true">
           <img class="hero__img" src="assets/images/illustrations/handyImg.svg" alt="">
         </div>
@@ -20,33 +18,34 @@
       </div>
     </section>
 
-    <!-- Your Surveys -->
     <section class="surveys" aria-labelledby="surveys-title">
 
-      <div class="surveys__header">
-        <h2 class="surveys__title" id="surveys-title">Your surveys</h2>
-      </div>
+      <h2 class="surveys__title" id="surveys-title">Your surveys</h2>
 
       <!-- Ending Soon -->
       <div class="surveys__ending">
         <h3 class="surveys__ending-title">Ending soon surveys</h3>
-
-        <app-survey-filter />
-        <app-survey-sort />
-
         <div class="surveys__ending-list" role="list">
-          <div role="listitem">
-            <app-survey-card-small />
-          </div>
-          <div role="listitem">
-            <app-survey-card-small />
-          </div>
-          <div role="listitem">
-            <app-survey-card-small />
-          </div>
+          <div role="listitem"><app-survey-card-small /></div>
+          <div role="listitem"><app-survey-card-small /></div>
+          <div role="listitem"><app-survey-card-small /></div>
         </div>
       </div>
 
+      <!-- Filter und Sort -->
+      <div class="surveys__controls">
+        <app-survey-filter />
+        <app-survey-sort />
+      </div>
+
+      <!-- Survey Liste -->
+      <div class="surveys__list" role="list">
+        <div role="listitem"><app-survey-card-large /></div>
+         <div role="listitem"><app-survey-card-large /></div>
+          <div role="listitem"><app-survey-card-large /></div>
+      </div>
+
     </section>
+
   </div>
 </main>

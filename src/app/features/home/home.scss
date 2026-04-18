@@ -46,9 +46,15 @@
   }
 
   &__ending-list {
-    margin-top: 24px;
+    margin-top: 20px;
     display: flex;
     gap: 16px;
     overflow-x: auto;
+  }
+
+
+
+  &__list {
+    @include flex(column, flex-start, flex-start, 16px);
   }
 }
