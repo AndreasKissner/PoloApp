@@ -6,44 +6,79 @@
   background-color: #35273A;
 }
 
-// Hero
 .hero {
   padding: 32px 0;
+  @include flex(column, flex-start, flex-start, 16px);
 
   &__content {
-    @include flex(column, center, flex-start, 16px);
+    @include flex(column, flex-start, flex-start, 16px);
   }
 
-  &__title {
-    @include font($font-title, 56px, 400, $color-text-one);
-    line-height: 1;
+  &__illustration {
+    width: 100%;
+
+    .hero__img--mobile {
+      display: block;
+      width: 100%;
+
+      @include laptop {
+        display: none;
+      }
+    }
+
+    .hero__img--desktop {
+      display: none;
+
+      @include laptop {
+        display: block;
+      }
+    }
   }
+
+&__title {
+  @include font($font-title, 56px, 400, $color-text-one);
+  line-height: 1;
+
+  @include laptop {
+    font-size: 100px;
+  }
+}
 
   &__text {
     @include font($font-base, 18px, 600, $color-white);
     line-height: 1.6;
+     @include laptop {
+    font-size: 24px;
+  }
   }
 
-&__illustration {
-  .hero__img--mobile {
-    display: block;
+  @include laptop {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
 
-    @include laptop {
-      display: none;
+    &__content {
+      flex: 1;
+      order: 1;
     }
-  }
 
-  .hero__img--desktop {
-    display: none;
-
-    @include laptop {
-      display: block;
+    &__illustration {
+      flex: 1;
+      order: 2;
     }
   }
 }
+
+app-ui-button {
+  display: flex;
+  justify-content: center;
+
+  @include laptop {
+    justify-content: flex-start;
+  }
 }
 
-// Surveys
 .surveys {
   padding: 32px 0;
 

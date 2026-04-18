@@ -7,16 +7,16 @@
   &__base {
     width: 100%;
     opacity: 1;
-    transition: opacity 300ms ease;
+    transition: opacity 500ms ease;
   }
 
   &__hover {
-    position: absolute;
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     opacity: 0;
-    transition: opacity 300ms ease;
+    transition: opacity 500ms ease;
   }
 
   @include laptop {

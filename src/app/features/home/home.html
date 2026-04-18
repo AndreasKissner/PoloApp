@@ -2,34 +2,32 @@
   <div class="container">
 
     <section class="hero" aria-labelledby="hero-title">
+
       <div class="hero__content">
         <h1 class="hero__title" id="hero-title">
           Collect Feedback, Unlock Ideas
         </h1>
-
-
-        <div class="hero__illustration" aria-hidden="true">
-          <img class="hero__img--mobile" src="assets/images/illustrations/handyImg.svg" alt="">
-
-          <div class="hero__img--desktop">
-            <app-hero-illustration />
-          </div>
-        </div>
-
         <p class="hero__text">
           Create and share surveys in minutes – from team events to
           workplace culture. Collect opinions, engage your audience,
           and turn feedback into action.
         </p>
-        <app-ui-button variant="primary" label="New survey" icon="assets/images/new-survey.svg" />
+        <app-ui-button class="hero__btn" variant="primary" label="New survey" icon="assets/images/new-survey.svg" />
       </div>
+
+      <div class="hero__illustration" aria-hidden="true">
+        <img class="hero__img--mobile" src="assets/images/illustrations/handyImg.svg" alt="">
+        <div class="hero__img--desktop">
+          <app-hero-illustration />
+        </div>
+      </div>
+
     </section>
 
     <section class="surveys" aria-labelledby="surveys-title">
 
       <h2 class="surveys__title" id="surveys-title">Your surveys</h2>
 
-      <!-- Ending Soon -->
       <div class="surveys__ending">
         <h3 class="surveys__ending-title">Ending soon surveys</h3>
         <div class="surveys__ending-list" role="list">
@@ -39,13 +37,11 @@
         </div>
       </div>
 
-      <!-- Filter und Sort -->
       <div class="surveys__controls">
         <app-survey-filter />
         <app-survey-sort />
       </div>
 
-      <!-- Survey Liste -->
       <div class="surveys__list" role="list">
         <div role="listitem"><app-survey-card-large /></div>
         <div role="listitem"><app-survey-card-large /></div>
