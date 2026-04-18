@@ -10,6 +10,7 @@ type ButtonVariant = 'primary' | 'filter' | 'complete' | 'cancel' | 'tertiary' |
   templateUrl: './ui-button.html',
   styleUrl: './ui-button.scss'
 })
+
 export class UiButtonComponent {
   @Input() variant: ButtonVariant = 'primary';
   @Input() label: string = '';

@@ -1,0 +1,6 @@
+@use '../../../../styles/abstracts' as *;
+
+.survey-filter {
+  @include flex(row, center, flex-start, 8px);
+  margin-bottom: 24px;
+}

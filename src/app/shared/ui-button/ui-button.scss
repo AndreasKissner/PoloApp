@@ -14,7 +14,6 @@
   .btn__icon {
     width: 0;
     opacity: 0;
-   
     transition: width 500ms ease, opacity 500ms ease;
   }
 
@@ -29,17 +28,20 @@
 }
 
   // Filter
-  &--filter {
-    background-color: transparent;
-    border: 2px solid $color-text-one;
-    @include font($font-alt, 16px, 700, $color-white);
+&--filter {
+  background-color: #FEE9D4;
+  border: none;
+  transition: background-color 200ms ease;
+  @include font($font-alt, 14px, 400, $color-primary);
 
-    &.btn--active {
-      background-color: $color-text-one;
-      color: $color-text-two;
-    }
+  &:hover {
+    background-color: #FEE9D4;
   }
 
+  &.btn--active {
+    background-color: #FFB770;
+  }
+}
   // Complete
   &--complete {
     background-color: $color-bg-puplished-titel;
