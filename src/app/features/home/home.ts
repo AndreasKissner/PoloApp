@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { Supabase } from '../../services/supabase.service';
 import { Survey } from '../../models/survey.model';
 import { JsonPipe } from '@angular/common';
+import { SurveyCardSmall } from './survey-card-small/survey-card-small';
 
 @Component({
   selector: 'app-home',
-  imports: [JsonPipe],
+  imports: [JsonPipe, SurveyCardSmall],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
