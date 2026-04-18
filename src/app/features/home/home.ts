@@ -5,10 +5,11 @@ import { JsonPipe } from '@angular/common';
 import { SurveyCardSmall } from './survey-card-small/survey-card-small';
 import { UiButtonComponent } from '../../shared/ui-button/ui-button';
 import { SurveyFilterComponent } from './survey-filter/survey-filter';
+import { SurveySortComponent } from './survey-sort/survey-sort';
 
 @Component({
   selector: 'app-home',
-  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent],
+  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

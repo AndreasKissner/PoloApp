@@ -1,0 +1,74 @@
+@use '../../../../styles/abstracts' as *;
+
+.sort {
+    position: relative;
+    width: 200px;
+
+    &__trigger {
+  @include flex(row, center, space-between, 8px);
+  width: 200px;
+  background-color: $color-primary;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  @include font($font-alt, 16px, 400, $color-white);
+
+  @include desktop {
+    &:hover {
+      background-color: $color-bg-btn-trigger-sort;
+
+      .sort__arrow--closed {
+        filter: brightness(0) saturate(100%) invert(78%) sepia(45%) saturate(600%) hue-rotate(330deg) brightness(103%);
+      }
+    }
+  }
+}
+        
+        &__arrow {
+            &--closed {
+                display: block;
+
+                .sort--open & {
+                    display: none;
+                }
+            }
+
+            &--open {
+                display: none;
+
+                .sort--open & {
+                    display: block;
+                }
+            }
+        }
+
+        &__selected {
+            @include font($font-alt, 14px, 400, $color-text-one);
+            display: block;
+            margin-top: 8px;
+            padding-left: 16px;
+        }
+
+        &__list {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background-color: $color-white;
+            border-radius: 10px;
+            padding: 8px 0;
+            list-style: none;
+            z-index: 10;
+        }
+
+        &__item {
+            @include font($font-alt, 14px, 400, $color-primary);
+            padding: 6px 12px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #c993d32d;
+                border-radius: 6px;
+            }
+        }
+    }
