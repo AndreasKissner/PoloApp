@@ -6,9 +6,16 @@
         <h1 class="hero__title" id="hero-title">
           Collect Feedback, Unlock Ideas
         </h1>
+
+
         <div class="hero__illustration" aria-hidden="true">
-          <img class="hero__img" src="assets/images/illustrations/handyImg.svg" alt="">
+          <img class="hero__img--mobile" src="assets/images/illustrations/handyImg.svg" alt="">
+
+          <div class="hero__img--desktop">
+            <app-hero-illustration />
+          </div>
         </div>
+
         <p class="hero__text">
           Create and share surveys in minutes – from team events to
           workplace culture. Collect opinions, engage your audience,
@@ -41,8 +48,8 @@
       <!-- Survey Liste -->
       <div class="surveys__list" role="list">
         <div role="listitem"><app-survey-card-large /></div>
-         <div role="listitem"><app-survey-card-large /></div>
-          <div role="listitem"><app-survey-card-large /></div>
+        <div role="listitem"><app-survey-card-large /></div>
+        <div role="listitem"><app-survey-card-large /></div>
       </div>
 
     </section>

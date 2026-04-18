@@ -1,4 +1,3 @@
-// home.scss
 @use '../../../styles/abstracts' as *;
 
 :host {
@@ -25,13 +24,26 @@
     line-height: 1.6;
   }
 
-  
+&__illustration {
+  .hero__img--mobile {
+    display: block;
 
-  &__illustration {
-   /*  display: none;  */
+    @include laptop {
+      display: none;
+    }
+  }
+
+  .hero__img--desktop {
+    display: none;
+
+    @include laptop {
+      display: block;
+    }
   }
 }
+}
 
+// Surveys
 .surveys {
   padding: 32px 0;
 
@@ -51,8 +63,6 @@
     gap: 16px;
     overflow-x: auto;
   }
-
-
 
   &__list {
     @include flex(column, flex-start, flex-start, 16px);

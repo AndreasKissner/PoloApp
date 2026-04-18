@@ -25,6 +25,12 @@
   }
 }
 
+@mixin laptop {
+  @media (min-width: $bp-laptop) {
+    @content;
+  }
+}
+
 // fontMixin
 @mixin font($family: $font-base, $size: 16px, $weight: 400, $color: $color-text) {
   font-family: $family;

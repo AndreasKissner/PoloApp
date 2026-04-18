@@ -7,10 +7,11 @@ import { UiButtonComponent } from '../../shared/ui-button/ui-button';
 import { SurveyFilterComponent } from './survey-filter/survey-filter';
 import { SurveySortComponent } from './survey-sort/survey-sort';
 import { SurveyCardLarge } from './survey-card-large/survey-card-large';
+import { HeroIllustration } from './hero-illustration/hero-illustration';
 
 @Component({
   selector: 'app-home',
-  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent, SurveyCardLarge],
+  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent, SurveyCardLarge, HeroIllustration],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
