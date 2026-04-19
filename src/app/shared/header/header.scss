@@ -1,0 +1,23 @@
+@use '../../../styles/abstracts' as *;
+
+:host {
+  display: block; // Macht die Komponente zu einem Block-Element und entfernt Whitespace-Gaps
+  width: 100%;
+  background-color: #35273A;
+}
+
+.header {
+  width: 100%;
+  max-width: 1440px;
+  padding: 16px 0;
+  background-color: #35273A;
+
+  .container {
+    @include flex(row, center, flex-start, 0);
+  }
+
+  &__logo-img {
+    width: 80px;
+    height: auto;
+  }
+}

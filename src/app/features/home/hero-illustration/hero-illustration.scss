@@ -2,10 +2,12 @@
 
 .hero-illustration {
   position: relative;
-  width: 100%;
+  width: 420px;
+  height: 420px;
 
   &__base {
-    width: 100%;
+    width: 420px;
+    height: 420px;
     opacity: 1;
     transition: opacity 500ms ease;
   }
@@ -14,7 +16,8 @@
     position: absolute; 
     top: 0;
     left: 0;
-    width: 100%;
+    width: 420px;
+    height: 420px;
     opacity: 0;
     transition: opacity 500ms ease;
   }

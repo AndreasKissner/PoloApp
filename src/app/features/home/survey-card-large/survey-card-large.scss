@@ -7,10 +7,20 @@
   padding: 16px;
   min-height: 120px;
   width: 100%;
-  
+
+  @include laptop {
+    min-width: 488px;
+    min-height: 127px;
+    transition: 500ms ease;
+
+    &:hover {
+      background-color:#4f4454;
+    }
+  }
+
 
   &__category {
-    @include font($font-base, 16px, 400,$color-bg-create-survey-titel);
+    @include font($font-base, 16px, 400, $color-bg-create-survey-titel);
   }
 
   &__title {
@@ -20,8 +30,8 @@
 
   &__badge {
     @include font($font-base, 12px, 500, $color-result-live);
-    background-color:$color-bg-create-survey-titel;
-    padding: 3px 6px ;
+    background-color: $color-bg-create-survey-titel;
+    padding: 3px 6px;
     border-radius: 0 14px 0 0;
     align-self: flex-end;
   }

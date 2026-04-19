@@ -1,9 +1,14 @@
-
 @use '../abstracts' as *;
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -13,8 +18,6 @@ html {
 
 body {
   font-family: $font-base;
- // color: $color-text;             // aus _colors.scss
- // background-color: $color-bg;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }

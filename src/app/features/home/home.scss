@@ -4,14 +4,22 @@
   display: block;
   min-height: 100vh;
   background-color: #35273A;
+  margin-top: -1px;
 }
 
 .hero {
-  padding: 32px 0;
+  padding: 0 0 32px 0;
   @include flex(column, flex-start, flex-start, 16px);
 
+  @include laptop {
+       padding: 32px 0;
+      }
+
   &__content {
-    @include flex(column, flex-start, flex-start, 16px);
+    @include flex(column, center, flex-start, 10px);
+     @include laptop {
+        align-items: flex-start;
+      }
   }
 
   &__illustration {
@@ -35,21 +43,22 @@
     }
   }
 
-&__title {
-  @include font($font-title, 56px, 400, $color-text-one);
-  line-height: 1;
+  &__title {
+    @include font($font-title, 52px, 400, $color-bg-puplished-titel);
+    line-height: 1;
 
-  @include laptop {
-    font-size: 100px;
+    @include laptop {
+      font-size: 85px;
+    }
   }
-}
 
   &__text {
     @include font($font-base, 18px, 600, $color-white);
     line-height: 1.6;
-     @include laptop {
-    font-size: 24px;
-  }
+
+    @include laptop {
+      font-size: 24px;
+    }
   }
 
   @include laptop {
@@ -59,13 +68,17 @@
     gap: 64px;
 
     &__content {
-      flex: 1;
+      // Der Content erhält hier den Wert 2
+      flex: 2;
       order: 1;
     }
 
     &__illustration {
+      // Die Illustration erhält den Wert 1 (schmaler)
       flex: 1;
       order: 2;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }
@@ -82,14 +95,30 @@ app-ui-button {
 .surveys {
   padding: 32px 0;
 
+  @include laptop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
   &__title {
-    @include font($font-title, 50px, 400, $color-text-one);
+    @include font($font-title, 50px, 400, $color-bg-puplished-titel);
     text-align: center;
+
+    @include laptop {
+      font-size: 72px;
+    }
   }
 
   &__ending-title {
     @include font($font-base, 24px, 500, $color-white);
     margin-bottom: 16px;
+
+    @include laptop {
+      font-size: 32px;
+    }
   }
 
   &__ending-list {
@@ -99,7 +128,24 @@ app-ui-button {
     overflow-x: auto;
   }
 
-  &__list {
-    @include flex(column, flex-start, flex-start, 16px);
+  &__controls{
+     @include laptop {
+      width: 100%;
+      max-width: 992px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
+
+&__list {
+  @include flex(column, flex-start, flex-start, 16px);
+
+  @include laptop {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 992px;
+  }
+}
 }

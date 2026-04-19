@@ -12,8 +12,11 @@
   padding: 12px 16px;
   cursor: pointer;
   @include font($font-alt, 16px, 400, $color-white);
+   @include laptop {
+    font-size:17px;
+  }
 
-  @include desktop {
+  @include laptop {
     &:hover {
       background-color: $color-bg-btn-trigger-sort;
 
