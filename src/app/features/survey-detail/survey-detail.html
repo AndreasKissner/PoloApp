@@ -1,2 +1,29 @@
-<p>survey-detail works!</p>
-<section class="container">Test</section>
+<app-header theme="light" />
+
+<main class="survey-detail" aria-labelledby="survey-title">
+  <div class="container">
+
+    <app-survey-form />
+
+    <div class="survey-detail__toggle">
+      <button
+        class="results-toggle"
+        [attr.aria-expanded]="resultsOpen()"
+        aria-controls="results-panel"
+        (click)="toggleResults()">
+        <span>{{ resultsOpen() ? 'Close results' : 'See results' }}</span>
+        <img
+          class="results-toggle__icon"
+          [class.results-toggle__icon--open]="resultsOpen()"
+          src="assets/images/sort-arrow-orange-down.svg"
+          alt="">
+      </button>
+    </div>
+
+    <app-survey-results
+      id="results-panel"
+      [class.survey-detail__results--visible]="resultsOpen()"
+      aria-live="polite" />
+
+  </div>
+</main>

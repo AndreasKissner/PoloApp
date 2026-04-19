@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './header.html',
-  styleUrl: './header.scss'
+  styleUrl: './header.scss',
+  host: {
+    '[class.header--dark]': 'theme === "dark"',
+    '[class.header--light]': 'theme === "light"'
+  }
 })
 export class Header {
   @Input() theme: 'dark' | 'light' = 'dark';

@@ -1,0 +1,111 @@
+@use '../../../../styles/abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.survey-form {
+  background-color:$color-bg-survey-form;
+  border-radius: 0 100px 0 0;
+  padding: 24px 8px;
+
+  &__header {
+    @include flex(row, center, space-between, 0);
+    margin-bottom: 8px;
+  }
+
+  &__badge {
+    @include font($font-base, 16px, 600, $color-result-live);
+    background-color:$color-bg-puplished-titel;
+    border-radius: 0 14px 0 0;
+    padding: 4px 12px;
+  }
+
+  &__close {
+    display: flex;
+    img {
+      width: 39px;
+      height: 32px;
+      margin-right: 32px;
+    }
+  }
+
+  &__meta {
+    @include flex(row, center, flex-start, 16px);
+    margin-bottom: 8px;
+  }
+
+  &__date,
+  &__category {
+    @include font($font-base, 12px, 500, $color-result-live);
+  }
+
+  &__title {
+    @include font($font-title, 44px, 400, $color-text-one);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  &__description {
+    @include font($font-base, 16px, 500, $color-text-two);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  &__questions {
+    @include flex(column, flex-start, flex-start, 24px);
+    margin-bottom: 32px;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.question {
+  &__text {
+    @include font($font-base, 16px, 700, $color-primary);
+    margin-bottom: 4px;
+  }
+
+  &__hint {
+    @include font($font-base, 12px, 400, $color-primary);
+    margin-bottom: 12px;
+  }
+
+  &__answers {
+    @include flex(column, flex-start, flex-start, 8px);
+  }
+}
+
+.answer {
+  @include flex(row, center, flex-start, 8px);
+  cursor: pointer;
+
+  &__input {
+    display: none;
+  }
+
+  &__custom {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 2px solid $color-text-two;
+    border-radius: 4px;
+    background-color: $color-white;
+  }
+
+  &__input:checked + &__custom {
+    background-color: $color-text-two;
+    border-color: $color-text-two;
+  }
+
+  &__label {
+    @include font($font-base, 16px, 400, $color-primary);
+  }
+
+  &__letter{
+      @include font($font-base, 16px, 700, $color-primary);
+  }
+}

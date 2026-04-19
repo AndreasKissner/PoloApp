@@ -1,0 +1,70 @@
+<section class="survey-form" aria-labelledby="survey-form-title">
+
+    <div class="survey-form__header">
+        <span class="survey-form__badge">Published</span>
+        <a class="survey-form__close" routerLink="/" aria-label="Zurück zur Startseite">
+            <img src="assets/images/xbtn-orange.svg" alt="">
+        </a>
+    </div>
+
+    <div class="survey-form__meta">
+        <span class="survey-form__date">Ends on 01.09.2025</span>
+        <span class="survey-form__category">Category: Team activities</span>
+    </div>
+
+    <h1 class="survey-form__title" id="survey-form-title">
+        Let's Plan the Next Team Event Together
+    </h1>
+
+    <p class="survey-form__description">
+        We want to create team activities that everyone will enjoy – share your
+        preferences and ideas in our survey to help us plan better experiences together.
+    </p>
+
+    <div class="survey-form__questions">
+
+        <article class="question" aria-labelledby="question-1">
+            <p class="question__text" id="question-1">
+                <span class="question__number">1.</span>
+                Which date would work best for you?
+            </p>
+            <p class="question__hint">More than one answer are possible.</p>
+            <div class="question__answers" role="group" aria-labelledby="question-1">
+                <label class="answer">
+                    <input class="answer__input" type="checkbox" name="q1" value="a">
+                    <span class="answer__custom" aria-hidden="true"></span>
+                    <span class="answer__label">
+                        <span class="answer__letter">A.</span> 19.09.2025, Friday
+                    </span>
+                </label>
+                <label class="answer">
+                    <input class="answer__input" type="checkbox" name="q1" value="b">
+                    <span class="answer__custom" aria-hidden="true"></span>
+                    <span class="answer__label">
+                        <span class="answer__letter">B.</span> 10.10.2025, Friday
+                    </span>
+                </label>
+                <label class="answer">
+                    <input class="answer__input" type="checkbox" name="q1" value="c">
+                    <span class="answer__custom" aria-hidden="true"></span>
+                    <span class="answer__label">
+                        <span class="answer__letter">C.</span> 11.10.2025, Saturday
+                    </span>
+                </label>
+                <label class="answer">
+                    <input class="answer__input" type="checkbox" name="q1" value="d">
+                    <span class="answer__custom" aria-hidden="true"></span>
+                    <span class="answer__label">
+                        <span class="answer__letter">D.</span> 31.10.2025, Friday
+                    </span>
+                </label>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="survey-form__action">
+        <app-ui-button variant="complete" label="Complete" icon="assets/images/checkmark.svg" />
+    </div>
+
+</section>

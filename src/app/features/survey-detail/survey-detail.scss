@@ -1,0 +1,8 @@
+@use '../../../styles/abstracts' as *;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $color-white;
+  margin-top: -1px;
+}
