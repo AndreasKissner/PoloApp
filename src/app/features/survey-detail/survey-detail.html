@@ -15,7 +15,10 @@
       </button>
     </div>
 
-    <app-survey-results id="results-panel" [class.survey-detail__results--visible]="resultsOpen()" aria-live="polite" />
+    <app-survey-results
+      id="results-panel"
+      [isOpen]="resultsOpen()"
+      aria-live="polite" />
 
   </div>
 </main>

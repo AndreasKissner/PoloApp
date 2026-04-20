@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-survey-results',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './survey-results.html',
   styleUrl: './survey-results.scss',
 })
-export class SurveyResults {}
+export class SurveyResults {
+  @Input() isOpen: boolean = false;
+}

@@ -1,1 +1,58 @@
-<p>survey-results works!</p>
+<section class="survey-results" aria-label="Survey results">
+
+  <h2 class="survey-results__title">
+    Survey results <span class="survey-results__live">LIVE</span>
+  </h2>
+
+  @if (isOpen) {
+    <div class="survey-results__questions">
+
+      <article class="result-question" aria-labelledby="result-q1">
+        <p class="result-question__text" id="result-q1">
+          1. Which date would work best for you?
+        </p>
+        <div class="result-question__bars">
+
+          <div class="result-bar" role="img" aria-label="A: 37%">
+            <span class="result-bar__letter">A</span>
+            <div class="result-bar__track" aria-hidden="true">
+              <div class="result-bar__fill" style="width: 37%"></div>
+            </div>
+            <span class="result-bar__percent">37%</span>
+          </div>
+
+          <div class="result-bar" role="img" aria-label="B: 44%">
+            <span class="result-bar__letter">B</span>
+            <div class="result-bar__track" aria-hidden="true">
+              <div class="result-bar__fill" style="width: 44%"></div>
+            </div>
+            <span class="result-bar__percent">44%</span>
+          </div>
+
+          <div class="result-bar" role="img" aria-label="C: 3%">
+            <span class="result-bar__letter">C</span>
+            <div class="result-bar__track" aria-hidden="true">
+              <div class="result-bar__fill" style="width: 3%"></div>
+            </div>
+            <span class="result-bar__percent">3%</span>
+          </div>
+
+          <div class="result-bar" role="img" aria-label="D: 20%">
+            <span class="result-bar__letter">D</span>
+            <div class="result-bar__track" aria-hidden="true">
+              <div class="result-bar__fill" style="width: 20%"></div>
+            </div>
+            <span class="result-bar__percent">20%</span>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+  } @else {
+    <p class="survey-results__empty">
+      Results will be shown here after participants complete the survey.
+    </p>
+  }
+
+</section>

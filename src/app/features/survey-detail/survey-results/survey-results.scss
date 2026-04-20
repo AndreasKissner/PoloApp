@@ -1,0 +1,67 @@
+@use '../../../../styles/abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.survey-results {
+  padding: 24px 16px;
+
+  &__title {
+    @include font($font-title, 32px, 400, $color-text-two);
+    margin-bottom: 24px;
+  }
+
+  &__live {
+    @include font($font-title, 36px, 400, $color-text-one);
+  }
+
+  &__questions {
+    @include flex(column, flex-start, flex-start, 32px);
+  }
+}
+
+.result-question {
+  width: 100%;
+
+  &__text {
+    @include font($font-base, 18px, 700, $color-text-two);
+    margin-bottom: 12px;
+  }
+
+  &__bars {
+    @include flex(column, flex-start, flex-start, 8px);
+  }
+}
+
+.result-bar {
+  @include flex(row, center, flex-start, 8px);
+  width: 100%;
+
+  &__letter {
+    @include font($font-base, 12px, 700, $color-text-two);
+    width: 16px;
+    min-width: 16px;
+  }
+
+  &__track {
+    flex: 1;
+    height: 12px;
+    background-color: #f0e6f6;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background-color: $color-bg-puplished-titel;
+    border-radius: 6px;
+    transition: width 600ms ease;
+  }
+
+  &__percent {
+    @include font($font-base, 12px, 400, $color-text-prozent);
+    min-width: 32px;
+    text-align: right;
+  }
+}
