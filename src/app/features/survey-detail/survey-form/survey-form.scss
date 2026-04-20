@@ -96,10 +96,11 @@
     background-color: $color-white;
   }
 
-  &__input:checked + &__custom {
-    background-color: $color-text-two;
-    border-color: $color-text-two;
-  }
+ &__input:checked + &__custom {
+  background-image: url('/assets/images/check-box/check-3.svg');
+  background-size: cover;
+  border: none;
+}
 
   &__label {
     @include font($font-base, 16px, 400, $color-primary);

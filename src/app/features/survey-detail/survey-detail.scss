@@ -6,3 +6,47 @@
   background-color: $color-white;
   margin-top: -1px;
 }
+
+.survey-detail__toggle {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.results-toggle {
+  @include flex(row, center, center, 8px);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &__label {
+    @include font($font-base, 16px, 700, $color-text-two);
+  }
+
+  &__arrow {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0);
+    transform: rotate(0deg);
+    /* transform-origin: right center; */
+    transition: transform 600ms ease, filter 600ms ease;
+
+   &--open {
+  transform: translateX(15px) rotate(180deg);
+}
+
+    &--orange {
+      filter: brightness(0) saturate(100%) invert(78%) sepia(45%) saturate(600%) hue-rotate(330deg) brightness(103%);
+    }
+
+    &--rotating {
+      filter: brightness(0); // schwarz während Drehung
+    }
+  }
+
+  @include laptop {
+    &:hover .results-toggle__arrow:not(.results-toggle__arrow--rotating) {
+      filter: brightness(0) saturate(100%) invert(78%) sepia(45%) saturate(600%) hue-rotate(330deg) brightness(103%);
+    }
+  }
+}

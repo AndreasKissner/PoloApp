@@ -6,24 +6,16 @@
     <app-survey-form />
 
     <div class="survey-detail__toggle">
-      <button
-        class="results-toggle"
-        [attr.aria-expanded]="resultsOpen()"
-        aria-controls="results-panel"
+      <button class="results-toggle" [attr.aria-expanded]="resultsOpen()" aria-controls="results-panel"
         (click)="toggleResults()">
-        <span>{{ resultsOpen() ? 'Close results' : 'See results' }}</span>
-        <img
-          class="results-toggle__icon"
-          [class.results-toggle__icon--open]="resultsOpen()"
-          src="assets/images/sort-arrow-orange-down.svg"
-          alt="">
+        <span class="results-toggle__label">{{ resultsOpen() ? 'Close results' : 'See results' }}</span>
+        <img class="results-toggle__arrow" [class.results-toggle__arrow--open]="resultsOpen()"
+          [class.results-toggle__arrow--orange]="arrowOrange()" [class.results-toggle__arrow--rotating]="isRotating()"
+          src="assets/images/sort-arrow-black.svg" alt="">
       </button>
     </div>
 
-    <app-survey-results
-      id="results-panel"
-      [class.survey-detail__results--visible]="resultsOpen()"
-      aria-live="polite" />
+    <app-survey-results id="results-panel" [class.survey-detail__results--visible]="resultsOpen()" aria-live="polite" />
 
   </div>
 </main>
