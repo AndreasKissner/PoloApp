@@ -12,6 +12,10 @@
   justify-content: flex-start;
   margin-left: 30px;
   padding: 24px 0;
+
+  @include laptop {
+    display: none;
+  }
 }
 
 .results-toggle {
@@ -45,16 +49,23 @@
       filter: brightness(0) saturate(100%) invert(78%) sepia(45%) saturate(600%) hue-rotate(330deg) brightness(103%);
     }
   }
-
-
 }
 
-/* app-survey-results {
-  display: none;
-
-  &.survey-detail__results--visible {
-    display: block;
-  } */
-  app-survey-results {
+app-survey-results {
   min-height: 300px;
+}
+
+.container {
+  @include laptop {
+    @include flex(row, flex-start, flex-start, 32px);
+
+    app-survey-form {
+      flex: 1;
+    }
+
+    app-survey-results {
+      flex: 1;
+      min-height: unset;
+    }
+  }
 }
