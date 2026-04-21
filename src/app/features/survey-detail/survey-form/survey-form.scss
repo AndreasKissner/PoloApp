@@ -5,7 +5,7 @@
 }
 
 .survey-form {
-  background-color:$color-bg-survey-form;
+  background-color: $color-bg-survey-form;
   border-radius: 0 100px 0 0;
   padding: 24px 8px;
 
@@ -16,23 +16,33 @@
 
   &__badge {
     @include font($font-base, 16px, 600, $color-result-live);
-    background-color:$color-bg-puplished-titel;
+    background-color: $color-bg-puplished-titel;
     border-radius: 0 14px 0 0;
     padding: 4px 12px;
   }
 
   &__close {
     display: flex;
+
     img {
       width: 39px;
       height: 32px;
       margin-right: 32px;
+    }
+
+    @include laptop {
+      display: none;
     }
   }
 
   &__meta {
     @include flex(row, center, flex-start, 16px);
     margin-bottom: 8px;
+
+    @include laptop {
+      justify-content: space-between;
+      margin-right: 20px;
+    }
   }
 
   &__date,
@@ -57,10 +67,24 @@
     margin-bottom: 32px;
   }
 
-  &__action {
-    display: flex;
-    justify-content: flex-end;
+ &__action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.survey-form__btn--mobile {
+  @include laptop {
+    display: none;
   }
+}
+
+.survey-form__btn--laptop {
+  display: none;
+
+  @include laptop {
+    display: flex;
+  }
+}
 }
 
 .question {
@@ -96,17 +120,17 @@
     background-color: $color-white;
   }
 
-&__input:checked + .answer__custom {
-  background-image: url('/assets/images/check-box/check-3.svg');
-  background-size: cover;
-  border: none;
-}
+  &__input:checked+.answer__custom {
+    background-image: url('/assets/images/check-box/check-3.svg');
+    background-size: cover;
+    border: none;
+  }
 
   &__label {
     @include font($font-base, 16px, 400, $color-primary);
   }
 
-  &__letter{
-      @include font($font-base, 16px, 700, $color-primary);
+  &__letter {
+    @include font($font-base, 16px, 700, $color-primary);
   }
 }
