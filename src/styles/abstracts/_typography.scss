@@ -3,7 +3,7 @@
 @font-face {
   font-family: 'Nerko';
   src: url('/assets/fonts/nerko.ttf') format('truetype');
-  /*  src: url('/angular-projects/polloApp/assets/fonts/nerko.ttf') format('truetype'); */
+  /*   src: url('/angular-projects/polloApp/assets/fonts/nerko.ttf') format('truetype');  */
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 @font-face {
   font-family: 'Mulish';
   src: url('/assets/fonts/mulish.ttf') format('truetype');
-  /*   src: url('/angular-projects/polloApp/assets/fonts/mulish.ttf') format('truetype'); */
+/*   src: url('/angular-projects/polloApp/assets/fonts/mulish.ttf') format('truetype'); */
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -20,8 +20,8 @@
 
 @font-face {
   font-family: 'Nokora';
-  src: url('/assets/fonts/nokora.ttf') format('truetype');
-  /*  src: url('/angular-projects/polloApp/assets/fonts/nokora.ttf') format('truetype'); */
+  /* src: url('/assets/fonts/nokora.ttf') format('truetype'); */
+   src: url('/angular-projects/polloApp/assets/fonts/nokora.ttf') format('truetype'); 
   font-weight: normal;
   font-style: normal;
   font-display: swap;

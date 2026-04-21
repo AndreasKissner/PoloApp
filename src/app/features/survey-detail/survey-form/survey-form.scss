@@ -96,7 +96,7 @@
     background-color: $color-white;
   }
 
- &__input:checked + &__custom {
+&__input:checked + .answer__custom {
   background-image: url('/assets/images/check-box/check-3.svg');
   background-size: cover;
   border: none;

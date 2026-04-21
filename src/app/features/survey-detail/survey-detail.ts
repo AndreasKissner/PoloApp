@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { Header } from '../../shared/header/header';
 import { SurveyForm } from './survey-form/survey-form';
 import { SurveyResults } from './survey-results/survey-results';
@@ -14,14 +14,17 @@ export class SurveyDetail {
   arrowOrange = signal(false);
   isRotating = signal(false);
 
-  toggleResults(): void {
-  this.isRotating.set(true);
-  this.arrowOrange.set(false);
+  isDesktop = signal(window.innerWidth >= 1024);
 
-  setTimeout(() => {
-    this.isRotating.set(false);
-    this.resultsOpen.update(value => !value);
-    // arrowOrange bleibt immer false — Hover macht das CSS
-  }, 600);
-}
+  resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());
+
+  toggleResults(): void {
+    this.isRotating.set(true);
+    this.arrowOrange.set(false);
+
+    setTimeout(() => {
+      this.isRotating.set(false);
+      this.resultsOpen.update(value => !value);
+    }, 600);
+  }
 }
