@@ -1,12 +1,13 @@
-
-
 <header class="header">
   <div class="container">
     <a class="header__logo" href="/" aria-label="PollApp Home">
-      <img 
+      <img
         class="header__logo-img"
         [src]="logoSrc"
         alt="PollApp Logo">
     </a>
+    @if (showCreateBtn) {
+     <app-ui-button variant="header" label="Create survey" />
+    }
   </div>
 </header>

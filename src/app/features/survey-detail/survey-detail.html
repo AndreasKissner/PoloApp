@@ -1,4 +1,4 @@
-<app-header theme="light" />
+<app-header theme="light" [showCreateBtn]="true" />
 
 <main class="survey-detail" aria-labelledby="survey-title">
   <div class="container">
@@ -15,10 +15,11 @@
       </button>
     </div>
 
-    <app-survey-results
-      id="results-panel"
-      [isOpen]="resultsOpen()"
-      aria-live="polite" />
+ <!--    Blendet results ein -->
+    <app-survey-results id="results-panel" [isOpen]="resultsOpen()" aria-live="polite" />
+
+  <!--   //Zeigt Results an -->
+  <!--   <app-survey-results id="results-panel" [isOpen]="resultsVisible()" aria-live="polite" /> -->
 
   </div>
 </main>

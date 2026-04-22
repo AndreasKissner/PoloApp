@@ -62,10 +62,16 @@
     margin-bottom: 24px;
   }
 
-  &__questions {
-    @include flex(column, flex-start, flex-start, 24px);
-    margin-bottom: 32px;
+ &__questions {
+  @include flex(column, flex-start, flex-start, 24px);
+  margin-bottom: 32px;
+
+  @include laptop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
+}
 
  &__action {
   display: flex;

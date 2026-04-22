@@ -14,7 +14,8 @@ export class SurveyDetail {
   arrowOrange = signal(false);
   isRotating = signal(false);
 
-  isDesktop = signal(window.innerWidth >= 1024);
+ /*  isDesktop = signal(window.innerWidth >= 1024); */
+  isDesktop = signal(true);
 
   resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());
 
