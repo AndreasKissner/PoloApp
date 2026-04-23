@@ -1,0 +1,30 @@
+<article class="question" aria-labelledby="question-label-{{ questionIndex() }}">
+
+  <div class="question__header">
+    <label class="question__label" [id]="'question-label-' + questionIndex">
+      {{ questionIndex() + 1 }}. Question
+    </label>
+    <button
+      class="question__delete"
+      type="button"
+      [attr.aria-label]="'Delete question ' + (questionIndex() + 1)"
+      (click)="onDelete()">
+      <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+
+  <input
+    class="question__input"
+    type="text"
+    [id]="'question-' + questionIndex"
+    placeholder="Which date would work best for you?"
+    [attr.aria-labelledby]="'question-label-' + questionIndex">
+
+  <div class="question__answers-header">
+    <span class="question__answers-label">Answers</span>
+    <label class="question__multiple">
+      <input
+        class="question__multiple-input"
+        type="checkbox"
+        [attr.aria-label]="'Allow multiple answers for question ' + (questionIndex() + 1)">
+      <span class="question__multiple-label">Allow multiple answer
