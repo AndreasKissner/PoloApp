@@ -1,7 +1,7 @@
 <article class="question" aria-labelledby="question-label-{{ questionIndex() }}">
 
   <div class="question__header">
-    <label class="question__label" [id]="'question-label-' + questionIndex">
+    <label class="question__label" [id]="'question-label-' + questionIndex()">
       {{ questionIndex() + 1 }}. Question
     </label>
     <button
@@ -16,9 +16,9 @@
   <input
     class="question__input"
     type="text"
-    [id]="'question-' + questionIndex"
+    [id]="'question-' + questionIndex()"
     placeholder="Which date would work best for you?"
-    [attr.aria-labelledby]="'question-label-' + questionIndex">
+    [attr.aria-labelledby]="'question-label-' + questionIndex()">
 
   <div class="question__answers-header">
     <span class="question__answers-label">Answers</span>
@@ -27,4 +27,42 @@
         class="question__multiple-input"
         type="checkbox"
         [attr.aria-label]="'Allow multiple answers for question ' + (questionIndex() + 1)">
-      <span class="question__multiple-label">Allow multiple answer
+      <span class="question__multiple-label">Allow multiple answers</span>
+    </label>
+  </div>
+
+  <div class="question__answers" aria-label="Answers">
+    <div class="question__answer">
+      <div class="question__answer-top">
+        <span class="question__answer-letter">A.</span>
+        <button class="question__answer-delete" type="button" aria-label="Delete answer A">
+          <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+      <input
+        class="question__answer-input"
+        type="text"
+        placeholder="Answer A"
+        aria-label="Answer A">
+    </div>
+    <div class="question__answer">
+      <div class="question__answer-top">
+        <span class="question__answer-letter">B.</span>
+        <button class="question__answer-delete" type="button" aria-label="Delete answer B">
+          <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+      <input
+        class="question__answer-input"
+        type="text"
+        placeholder="Answer B"
+        aria-label="Answer B">
+    </div>
+  </div>
+
+  <button class="question__add-answer" type="button" aria-label="Add answer">
+    Add answer
+    <img src="assets/images/add-circle-white.svg" alt="" aria-hidden="true">
+  </button>
+
+</article>

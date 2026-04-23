@@ -30,11 +30,11 @@
 
   &__input {
     width: 100%;
-    background-color: transparent;
+    background-color: $color-white;
     border: none;
-    border-bottom: 1px solid $color-white;
-    padding: 8px 0;
-    @include font($font-base, 14px, 400, $color-white);
+    border-radius: 4px;
+    padding: 8px;
+    @include font($font-base, 14px, 400, $color-text-two);
     outline: none;
     margin-bottom: 16px;
   }
@@ -69,7 +69,13 @@
   }
 
   &__answer {
-    @include flex(row, center, flex-start, 8px);
+    @include flex(column, flex-start, flex-start, 4px);
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  &__answer-top {
+    @include flex(row, center, space-between, 0);
     width: 100%;
   }
 
@@ -79,12 +85,12 @@
   }
 
   &__answer-input {
-    flex: 1;
-    background-color: transparent;
+    width: 100%;
+    background-color: $color-white;
     border: none;
-    border-bottom: 1px solid $color-white;
-    padding: 6px 0;
-    @include font($font-base, 14px, 400, $color-white);
+    border-radius: 4px;
+    padding: 6px 8px;
+    @include font($font-base, 14px, 400, $color-text-two);
     outline: none;
   }
 
