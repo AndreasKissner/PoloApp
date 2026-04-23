@@ -9,10 +9,11 @@ import { SurveySortComponent } from './survey-sort/survey-sort';
 import { SurveyCardLarge } from './survey-card-large/survey-card-large';
 import { HeroIllustration } from './hero-illustration/hero-illustration';
 import { Header } from '../../shared/header/header';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent, SurveyCardLarge, HeroIllustration,Header],
+  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent, SurveyCardLarge, HeroIllustration,Header, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

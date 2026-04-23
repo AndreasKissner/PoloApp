@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { UiButtonComponent } from '../ui-button/ui-button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [UiButtonComponent],
+  imports: [UiButtonComponent, RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   host: {

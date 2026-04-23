@@ -1,13 +1,12 @@
 <header class="header">
   <div class="container">
     <a class="header__logo" href="/" aria-label="PollApp Home">
-      <img
-        class="header__logo-img"
-        [src]="logoSrc"
-        alt="PollApp Logo">
+      <img class="header__logo-img" [src]="logoSrc" alt="PollApp Logo">
     </a>
     @if (showCreateBtn) {
-     <app-ui-button variant="header" label="Create survey" />
+    <a routerLink="/new-survey" aria-label="Create new survey">
+      <app-ui-button variant="header" label="Create survey" />
+    </a>
     }
   </div>
 </header>
