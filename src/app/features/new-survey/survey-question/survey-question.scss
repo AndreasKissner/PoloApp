@@ -28,16 +28,17 @@
     }
   }
 
-  &__input {
-    width: 100%;
-    background-color: $color-white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px;
-    @include font($font-base, 14px, 400, $color-text-two);
-    outline: none;
-    margin-bottom: 16px;
-  }
+&__input {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $color-white;
+  border: none;
+border-radius: 5px 20px 5px 5px;
+  padding: 8px;
+  @include font($font-base, 14px, 400, $color-text-two);
+  outline: none;
+  margin-bottom: 16px;
+}
 
   &__answers-header {
     @include flex(row, center, space-between, 0);
@@ -63,16 +64,16 @@
     @include font($font-base, 12px, 400, $color-white);
   }
 
-  &__answers {
-    @include flex(column, flex-start, flex-start, 8px);
-    margin-bottom: 12px;
-  }
+ &__answers {
+  @include flex(column, stretch, flex-start, 8px);
+  margin-bottom: 12px;
+}
 
-  &__answer {
-    @include flex(column, flex-start, flex-start, 4px);
-    width: 100%;
-    margin-bottom: 8px;
-  }
+&__answer {
+  @include flex(column, stretch, flex-start, 4px);
+  width: 100%;
+  margin-bottom: 8px;
+}
 
   &__answer-top {
     @include flex(row, center, space-between, 0);
@@ -85,14 +86,15 @@
   }
 
   &__answer-input {
-    width: 100%;
-    background-color: $color-white;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 8px;
-    @include font($font-base, 14px, 400, $color-text-two);
-    outline: none;
-  }
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $color-white;
+  border: none;
+  border-radius: 5px 20px 5px 5px;
+  padding: 6px 8px;
+  @include font($font-base, 14px, 400, $color-text-two);
+  outline: none;
+}
 
   &__answer-delete {
     background: none;
@@ -111,6 +113,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    border-bottom: 1px solid white;
     @include font($font-base, 13px, 600, $color-white);
 
     img {
