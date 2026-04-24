@@ -16,44 +16,48 @@
                 Create new survey
             </h1>
 
-            <div class="new-survey__fields">
+            <section class="new-survey__form" aria-label="Survey form">
 
-                <div class="new-survey__field">
-                    <label class="new-survey__label" for="survey-name">
-                        Survey name
-                        <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                    </label>
-                    <input class="new-survey__input" id="survey-name" type="text" placeholder="Survey name"
-                        aria-required="true">
+                <div class="new-survey__fields">
+
+                    <div class="new-survey__field">
+                        <label class="new-survey__label" for="survey-name">
+                            Survey name
+                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+                        </label>
+                        <input class="new-survey__input" id="survey-name" type="text" placeholder="Survey name"
+                            aria-required="true">
+                    </div>
+
+                    <div class="new-survey__field">
+                        <label class="new-survey__label" for="survey-date">
+                            Set end date <span class="new-survey__optional">(optional)</span>
+                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+                        </label>
+                        <input class="new-survey__input" id="survey-date" type="date">
+                    </div>
+
+                    <div class="new-survey__field">
+                        <label class="new-survey__label" for="survey-description">
+                            Describing text <span class="new-survey__optional">(optional)</span>
+                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+                        </label>
+                        <textarea class="new-survey__input new-survey__input--textarea" id="survey-description" rows="4">
+                        </textarea>
+                    </div>
+
                 </div>
 
-                <div class="new-survey__field">
-                    <label class="new-survey__label" for="survey-date">
-                        Set end date <span class="new-survey__optional">(optional)</span>
-                        <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                    </label>
-                    <input class="new-survey__input" id="survey-date" type="date">
+                <div class="new-survey__questions" aria-label="Survey questions">
+                    <app-survey-question [questionIndex]="0" />
                 </div>
 
-                <div class="new-survey__field">
-                    <label class="new-survey__label" for="survey-description">
-                        Describing text <span class="new-survey__optional">(optional)</span>
-                        <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                    </label>
-                    <textarea class="new-survey__input new-survey__input--textarea" id="survey-description" rows="4">
-          </textarea>
-                </div>
+                <button class="new-survey__add-question" type="button" aria-label="Add next question">
+                    Add next question
+                    <img src="assets/images/add-circle-white.svg" alt="" aria-hidden="true">
+                </button>
 
-            </div>
-
-            <div class="new-survey__questions" aria-label="Survey questions">
-                <app-survey-question [questionIndex]="0" />
-            </div>
-
-            <button class="new-survey__add-question" type="button" aria-label="Add next question">
-                Add next question
-                <img src="assets/images/add-circle-white.svg" alt="" aria-hidden="true">
-            </button>
+            </section>
 
             <div class="new-survey__actions">
                 <app-ui-button variant="publish" label="Publish" icon="assets/images/checkmark.svg" />

@@ -33,7 +33,7 @@
   box-sizing: border-box;
   background-color: $color-white;
   border: none;
-border-radius: 5px 20px 5px 5px;
+  border-radius: 5px 20px 5px 5px;
   padding: 8px;
   @include font($font-base, 14px, 400, $color-text-two);
   outline: none;
@@ -54,11 +54,22 @@ border-radius: 5px 20px 5px 5px;
     cursor: pointer;
   }
 
-  &__multiple-input {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-  }
+&__multiple-input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  border-radius: 1.5px;
+  background-color: #8E709929;
+  appearance: none;
+  border: 1px solid $color-white;
+
+ &:checked {
+  background-image: url('/assets/images/check-box/check-3.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: #8E709929;
+}
+}
 
   &__multiple-label {
     @include font($font-base, 12px, 400, $color-white);

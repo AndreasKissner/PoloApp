@@ -7,6 +7,11 @@
     margin-top: -1px;
 }
 
+.container {
+    padding: 0;
+}
+
+
 .new-survey {
     padding: 24px 0;
     background-color: #f5f5f5;
@@ -20,6 +25,13 @@
     &__header {
         @include flex(row, center, space-between, 0);
         margin-bottom: 16px;
+    }
+
+    &__form {
+        background-color: #8E709929;
+        border-radius: 5px 80px 5px 5px;
+        padding: 32px 24px;
+        margin-bottom: 24px;
     }
 
     &__badge {
@@ -40,7 +52,7 @@
     }
 
     &__title {
-        @include font($font-title, 44px, 400, $color-bg-create-survey-titel);
+        @include font($font-title, 44px, 400, $color-text-one);
         line-height: 1;
         margin-bottom: 24px;
     }
@@ -56,8 +68,10 @@
 
     &__label {
         @include flex(row, center, space-between, 8px);
-        @include font($font-base, 14px, 500, $color-white);
+        @include font($font-base, 18px, 700, $color-white);
         margin-bottom: 6px;
+        /* $color-bg-survey-questions: #99977029; */
+
 
         img {
             width: 18px;
@@ -67,8 +81,8 @@
     }
 
     &__optional {
-        @include font($font-base, 12px, 400, $color-white);
-        opacity: 0.7;
+        @include font($font-base, 16px, 400, $color-white);
+
         margin-left: 4px;
     }
 
@@ -102,9 +116,13 @@
         border-radius: 10px;
         cursor: pointer;
         width: 100%;
-        padding: 12px 16px;
-        @include font($font-base, 14px, 600, $color-white);
+        padding: 8px 12px;
+        @include font($font-alt, 16px, 600, $color-white);
         margin-bottom: 32px;
+        max-width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+
 
         img {
             width: 20px;
