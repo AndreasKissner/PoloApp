@@ -8,7 +8,7 @@
 }
 
 .container {
-    padding:0px;
+    padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,6 +90,10 @@
         @include font($font-base, 18px, 700, $color-white);
         margin-bottom: 6px;
 
+        @include laptop{
+            justify-content: flex-start;
+        }
+
         img {
             width: 18px;
             height: 18px;
@@ -97,33 +101,89 @@
         }
     }
 
+    &__label--wide {
+        @include laptop {
+            max-width: 450px;
+            width: 450px;
+        }
+    }
+
     &__optional {
         @include font($font-base, 16px, 400, $color-white);
-
         margin-left: 4px;
     }
 
-    &__input {
-        width: 100%;
-        max-width: 320px;
-        background-color: $color-white;
+    &__delete {
+        background: none;
         border: none;
-        border-bottom: 1px solid $color-white;
-        padding: 8px;
-        @include font($font-base, 14px, 400, $color-text-two);
-        outline: none;
-        border-radius: 5px 20px 5px 5px;
+        cursor: pointer;
+        display: flex;
+        padding: 0;
 
-        &--textarea {
-            resize: none;
-            border: 1px solid $color-white;
-            border-radius: 5px 20px 5px 5px;
-            padding: 8px;
-            @include laptop{
-                max-width: 432px;
-            }
+        img {
+            width: 18px;
+            height: 18px;
         }
     }
+
+    &__textarea-wrapper {
+        @include flex(row, flex-start, flex-start, 8px);
+        width: 100%;
+    }
+
+    &__input-wrapper {
+        @include flex(row, center, flex-start, 8px);
+        width: 100%;
+    }
+
+    &__delete--mobile {
+        @include laptop {
+            display: none;
+        }
+    }
+
+    &__delete--laptop {
+        display: none;
+
+        @include laptop {
+            display: flex;
+        }
+    }
+
+    &__input {
+    width: 100%;
+    max-width: 320px;
+    background-color: $color-white;
+    border: none;
+    border-bottom: 1px solid $color-white;
+    padding: 8px;
+    @include font($font-base, 14px, 400, $color-text-two);
+    outline: none;
+    border-radius: 5px 20px 5px 5px;
+}
+
+&__input--wide {
+    @include laptop {
+        max-width: 450px;
+    }
+}
+
+&__input--narrow {
+    @include laptop {
+        max-width: 250px;
+    }
+}
+
+&__input--textarea {
+    resize: none;
+    border: 1px solid $color-white;
+    border-radius: 5px 20px 5px 5px;
+    padding: 8px;
+
+    @include laptop {
+        max-width: 432px;
+    }
+}
 
     &__questions {
         @include flex(column, stretch, flex-start, 24px);
