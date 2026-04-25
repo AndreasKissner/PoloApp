@@ -8,9 +8,12 @@
 }
 
 .container {
-    padding: 0;
+    padding:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
-
 
 .new-survey {
     padding: 0 0 24px 0;
@@ -20,6 +23,12 @@
         background-color: $color-primary;
         border-radius: 0 60px 0 0;
         padding: 24px 16px;
+        width: 100%;
+
+        @include laptop {
+            max-width: 1218px;
+            padding: 24px 64px;
+        }
     }
 
     &__header {
@@ -32,6 +41,7 @@
         border-radius: 5px 80px 5px 5px;
         padding: 32px 24px;
         margin-bottom: 24px;
+
     }
 
     &__badge {
@@ -60,6 +70,14 @@
     &__fields {
         @include flex(column, flex-start, flex-start, 16px);
         margin-bottom: 24px;
+
+        @include laptop {
+            flex-direction: row;
+        }
+    }
+
+    &__fields-top {
+        width: 100%;
     }
 
     &__field {
@@ -67,11 +85,10 @@
     }
 
     &__label {
+        max-width: 320px;
         @include flex(row, center, space-between, 8px);
         @include font($font-base, 18px, 700, $color-white);
         margin-bottom: 6px;
-        /* $color-bg-survey-questions: #99977029; */
-
 
         img {
             width: 18px;
@@ -88,19 +105,23 @@
 
     &__input {
         width: 100%;
+        max-width: 320px;
         background-color: $color-white;
         border: none;
         border-bottom: 1px solid $color-white;
         padding: 8px;
         @include font($font-base, 14px, 400, $color-text-two);
         outline: none;
-        border-radius: 4px;
+        border-radius: 5px 20px 5px 5px;
 
         &--textarea {
             resize: none;
             border: 1px solid $color-white;
-            border-radius: 4px;
+            border-radius: 5px 20px 5px 5px;
             padding: 8px;
+            @include laptop{
+                max-width: 432px;
+            }
         }
     }
 
@@ -123,6 +144,9 @@
         margin-left: auto;
         margin-right: auto;
 
+        @include laptop {
+            display: none;
+        }
 
         img {
             width: 20px;
@@ -130,8 +154,47 @@
         }
     }
 
+    &__add-question,
+    &__add-question-two {
+        @include flex(row, center, center, 8px);
+        background-color: #FFB7704D;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 8px 12px;
+        @include font($font-alt, 16px, 600, $color-white);
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__add-question {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 32px;
+
+        @include laptop {
+            display: none;
+        }
+    }
+
+    &__add-question-two {
+        display: none;
+        margin-top: 12px;
+
+        @include laptop {
+            display: flex;
+        }
+    }
+
     &__actions {
         display: flex;
         justify-content: center;
+
+        @include laptop {
+            justify-content: flex-end;
+        }
     }
 }

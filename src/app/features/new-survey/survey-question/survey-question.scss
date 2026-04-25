@@ -10,6 +10,7 @@
   &__header {
     @include flex(row, center, space-between, 0);
     margin-bottom: 8px;
+    max-width: 320px;
   }
 
   &__label {
@@ -30,6 +31,7 @@
 
 &__input {
   width: 100%;
+  max-width: 320px;
   box-sizing: border-box;
   background-color: $color-white;
   border: none;
@@ -43,6 +45,7 @@
   &__answers-header {
     @include flex(row, center, space-between, 0);
     margin-bottom: 12px;
+    max-width:320px;
   }
 
   &__answers-label {
@@ -89,6 +92,7 @@
   &__answer-top {
     @include flex(row, center, space-between, 0);
     width: 100%;
+    max-width: 320px;
   }
 
   &__answer-letter {
@@ -97,7 +101,8 @@
   }
 
   &__answer-input {
-  width: 100%;
+ 
+  max-width: 320px;
   box-sizing: border-box;
   background-color: $color-white;
   border: none;

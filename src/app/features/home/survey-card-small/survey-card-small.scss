@@ -19,7 +19,7 @@
     }
 
     &__category {
-        @include font($font-base, 14px, 600, #35273A);
+        @include font($font-base, 14px, 600,$color-text-two);
     }
 
     &__title {
