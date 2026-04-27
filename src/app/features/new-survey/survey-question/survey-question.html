@@ -32,32 +32,44 @@
   </div>
 
   <div class="question__answers" aria-label="Answers">
-    <div class="question__answer">
-      <div class="question__answer-top">
-        <span class="question__answer-letter">A.</span>
-        <button class="question__answer-delete" type="button" aria-label="Delete answer A">
-          <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-        </button>
-      </div>
-      <input
-        class="question__answer-input"
-        type="text"
-        placeholder="Answer A"
-        aria-label="Answer A">
-    </div>
-    <div class="question__answer">
-      <div class="question__answer-top">
-        <span class="question__answer-letter">B.</span>
-        <button class="question__answer-delete" type="button" aria-label="Delete answer B">
-          <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-        </button>
-      </div>
-      <input
-        class="question__answer-input"
-        type="text"
-        placeholder="Answer B"
-        aria-label="Answer B">
-    </div>
+    <!-- Hier müssen ab 1024px Das A. vordem Input field sein und der Mülleimer hinter dem Inputfield- -->
+   <div class="question__answer">
+  <div class="question__answer-top">
+    <span class="question__answer-letter">A.</span>
+    <button class="question__answer-delete question__answer-delete--mobile" type="button" aria-label="Delete answer A">
+      <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+  <div class="question__answer-row">
+    <input
+      class="question__answer-input"
+      type="text"
+      placeholder="Answer A"
+      aria-label="Answer A">
+    <button class="question__answer-delete question__answer-delete--laptop" type="button" aria-label="Delete answer A">
+      <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+</div>
+    <!-- Hier Auch so bei jeder Antwort -->
+  <div class="question__answer">
+  <div class="question__answer-top">
+    <span class="question__answer-letter">B.</span>
+    <button class="question__answer-delete question__answer-delete--mobile" type="button" aria-label="Delete answer A">
+      <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+  <div class="question__answer-row">
+    <input
+      class="question__answer-input"
+      type="text"
+      placeholder="Answer B"
+      aria-label="Answer B">
+    <button class="question__answer-delete question__answer-delete--laptop" type="button" aria-label="Delete answer B">
+      <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+</div>
   </div>
 
   <button class="question__add-answer" type="button" aria-label="Add answer">

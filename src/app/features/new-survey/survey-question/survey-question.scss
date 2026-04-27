@@ -29,23 +29,23 @@
     }
   }
 
-&__input {
-  width: 100%;
-  max-width: 320px;
-  box-sizing: border-box;
-  background-color: $color-white;
-  border: none;
-  border-radius: 5px 20px 5px 5px;
-  padding: 8px;
-  @include font($font-base, 14px, 400, $color-text-two);
-  outline: none;
-  margin-bottom: 16px;
-}
+  &__input {
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+    background-color: $color-white;
+    border: none;
+    border-radius: 5px 20px 5px 5px;
+    padding: 8px;
+    @include font($font-base, 14px, 400, $color-text-two);
+    outline: none;
+    margin-bottom: 16px;
+  }
 
   &__answers-header {
     @include flex(row, center, space-between, 0);
     margin-bottom: 12px;
-    max-width:320px;
+    max-width: 320px;
   }
 
   &__answers-label {
@@ -57,73 +57,102 @@
     cursor: pointer;
   }
 
-&__multiple-input {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  border-radius: 1.5px;
-  background-color: #8E709929;
-  appearance: none;
-  border: 1px solid $color-white;
+  &__multiple-input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    border-radius: 1.5px;
+    background-color: #8E709929;
+    appearance: none;
+    border: 1px solid $color-white;
 
- &:checked {
-  background-image: url('/assets/images/check-box/check-3.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-color: #8E709929;
-}
-}
+    &:checked {
+      background-image: url('/assets/images/check-box/check-3.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-color: #8E709929;
+    }
+  }
 
   &__multiple-label {
     @include font($font-base, 12px, 400, $color-white);
   }
 
- &__answers {
-  @include flex(column, stretch, flex-start, 8px);
-  margin-bottom: 12px;
-}
+  &__answers {
+    @include flex(column, stretch, flex-start, 8px );
+    margin-bottom: 12px;
+  }
 
-&__answer {
-  @include flex(column, stretch, flex-start, 4px);
-  width: 100%;
-  margin-bottom: 8px;
-}
+  &__answer {
+    @include flex(column, stretch, flex-start, 4px);
+    width: 100%;
+    margin-bottom: 8px;
+
+    @include laptop {
+      @include flex(row, center, flex-start, 0px);
+    }
+  }
 
   &__answer-top {
     @include flex(row, center, space-between, 0);
     width: 100%;
-    max-width: 320px;
+max-width: 320px;
+    @include laptop {
+      width: auto;
+    }
+  }
+
+  &__answer-row {
+    @include flex(row, center, flex-start, 8px);
+    width: 100%;
+  }
+
+  &__answer-delete--mobile {
+    @include laptop {
+      display: none;
+    }
+  }
+
+  &__answer-delete--laptop {
+    display: none;
+
+    @include laptop {
+      display: flex;
+    }
   }
 
   &__answer-letter {
     @include font($font-base, 14px, 600, $color-white);
     min-width: 20px;
+   
   }
 
   &__answer-input {
- 
-  max-width: 320px;
-  box-sizing: border-box;
-  background-color: $color-white;
-  border: none;
-  border-radius: 5px 20px 5px 5px;
-  padding: 6px 8px;
-  @include font($font-base, 14px, 400, $color-text-two);
-  outline: none;
-}
-
-  &__answer-delete {
-    background: none;
+width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+    background-color: $color-white;
     border: none;
-    cursor: pointer;
-    display: flex;
+    border-radius: 5px 20px 5px 5px;
+    padding: 6px 8px;
+    @include font($font-base, 14px, 400, $color-text-two);
+    outline: none;
 
-    img {
-      width: 16px;
-      height: 16px;
+      @include laptop {
+      width: 270px;
     }
   }
 
+&__answer-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
   &__add-answer {
     @include flex(row, center, flex-start, 6px);
     background: none;
