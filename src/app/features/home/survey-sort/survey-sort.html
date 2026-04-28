@@ -5,7 +5,7 @@
   [attr.aria-expanded]="isOpen()"
   aria-haspopup="listbox"
   (click)="toggle()">
-  <span class="sort__label">Sort by categories</span>
+  <span class="sort__label">{{ label() }}</span>
   <span class="sort__arrow" aria-hidden="true">
     <img class="sort__arrow--closed" src="assets/images/sort-arrow-white.svg" alt="">
     <img class="sort__arrow--open" src="assets/images/sort-arrow-orange.svg" alt="">

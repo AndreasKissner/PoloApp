@@ -82,6 +82,7 @@
 
     &__field {
         width: 100%;
+        margin-top: 10px;
     }
 
     &__label {
@@ -135,6 +136,18 @@
         @include flex(row, center, flex-start, 8px);
         width: 100%;
     }
+
+    &__date-category {
+    @include flex(column, flex-start, flex-start, 16px);
+
+    @include laptop {
+        @include flex(row, flex-start, flex-start, 24px);
+    }
+}
+
+&__date-category-top {
+    @include flex(column, flex-start, flex-start, 6px);
+}
 
     &__delete--mobile {
         @include laptop {

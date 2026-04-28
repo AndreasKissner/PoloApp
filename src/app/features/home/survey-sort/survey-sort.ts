@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './survey-sort.scss'
 })
 export class SurveySortComponent {
+  label = input<string>('Sort by categories');
+
   isOpen = signal(false);
   selected = signal<string | null>(null);
 
@@ -25,8 +27,11 @@ export class SurveySortComponent {
     this.isOpen.update(v => !v);
   }
 
+  categorySelected = output<string>();
+
   select(category: string) {
     this.selected.set(category);
     this.isOpen.set(false);
+    this.categorySelected.emit(category);
   }
 }
