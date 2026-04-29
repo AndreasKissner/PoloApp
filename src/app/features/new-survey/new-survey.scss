@@ -61,6 +61,21 @@
         }
     }
 
+    &__close--mobile {
+        @include laptop {
+            display: none;
+        }
+    }
+
+    &__close--laptop {
+        display: none;
+
+        @include laptop {
+            display: flex;
+            margin-right:30px;
+        }
+    }
+
     &__title {
         @include font($font-title, 44px, 400, $color-text-one);
         line-height: 1;
@@ -91,7 +106,7 @@
         @include font($font-base, 18px, 700, $color-white);
         margin-bottom: 6px;
 
-        @include laptop{
+        @include laptop {
             justify-content: flex-start;
         }
 
@@ -138,16 +153,16 @@
     }
 
     &__date-category {
-    @include flex(column, flex-start, flex-start, 16px);
+        @include flex(column, flex-start, flex-start, 16px);
 
-    @include laptop {
-        @include flex(row, flex-start, flex-start, 24px);
+        @include laptop {
+            @include flex(row, flex-start, flex-start, 24px);
+        }
     }
-}
 
-&__date-category-top {
-    @include flex(column, flex-start, flex-start, 6px);
-}
+    &__date-category-top {
+        @include flex(column, flex-start, flex-start, 6px);
+    }
 
     &__delete--mobile {
         @include laptop {
@@ -164,39 +179,39 @@
     }
 
     &__input {
-    width: 100%;
-    max-width: 320px;
-    background-color: $color-white;
-    border: none;
-    border-bottom: 1px solid $color-white;
-    padding: 8px;
-    @include font($font-base, 14px, 400, $color-text-two);
-    outline: none;
-    border-radius: 5px 20px 5px 5px;
-}
-
-&__input--wide {
-    @include laptop {
-        max-width: 450px;
+        width: 100%;
+        max-width: 320px;
+        background-color: $color-white;
+        border: none;
+        border-bottom: 1px solid $color-white;
+        padding: 8px;
+        @include font($font-base, 14px, 400, $color-text-two);
+        outline: none;
+        border-radius: 5px 20px 5px 5px;
     }
-}
 
-&__input--narrow {
-    @include laptop {
-        max-width: 250px;
+    &__input--wide {
+        @include laptop {
+            max-width: 450px;
+        }
     }
-}
 
-&__input--textarea {
-    resize: none;
-    border: 1px solid $color-white;
-    border-radius: 5px 20px 5px 5px;
-    padding: 8px;
-
-    @include laptop {
-        max-width: 432px;
+    &__input--narrow {
+        @include laptop {
+            max-width: 250px;
+        }
     }
-}
+
+    &__input--textarea {
+        resize: none;
+        border: 1px solid $color-white;
+        border-radius: 5px 20px 5px 5px;
+        padding: 8px;
+
+        @include laptop {
+            max-width: 432px;
+        }
+    }
 
     &__questions {
         @include flex(column, stretch, flex-start, 24px);
@@ -230,14 +245,14 @@
     &__add-question,
     &__add-question-two {
         @include flex(row, center, center, 8px);
-        background-color: #FFB7704D;
+        background-color: $color-brown;
         border: none;
         border-radius: 10px;
         cursor: pointer;
         padding: 8px 12px;
         @include font($font-alt, 16px, 600, $color-white);
 
-       
+
 
         img {
             width: 20px;

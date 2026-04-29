@@ -7,14 +7,19 @@
 
             <div class="new-survey__header">
                 <span class="new-survey__badge">Draft</span>
-                <a class="new-survey__close" routerLink="/" aria-label="Zurück zur Startseite">
+                <a class="new-survey__close new-survey__close--mobile" routerLink="/"
+                    aria-label="Zurück zur Startseite">
                     <img src="assets/images/xbtn-brown.svg" alt="">
+                </a>
+                <a class="new-survey__close new-survey__close--laptop" routerLink="/">
+                    <app-ui-button variant="cancel" label="Cancel" icon="assets/images/x.svg" />
                 </a>
             </div>
 
             <h1 class="new-survey__title" id="new-survey-title">
                 Create new survey
             </h1>
+
 
             <section class="new-survey__form" aria-label="Survey form">
 
@@ -30,7 +35,7 @@
                                     <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
                                 </button>
                             </label>
-                         
+
                             <div class="new-survey__input-wrapper">
                                 <input class="new-survey__input new-survey__input--wide" id="survey-name" type="text"
                                     placeholder="Survey name" aria-required="true">
@@ -41,30 +46,32 @@
                             </div>
                         </div>
 
-                      <div class="new-survey__field">
-    <div class="new-survey__date-category">
+                        <div class="new-survey__field">
+                            <div class="new-survey__date-category">
 
-        <div class="new-survey__date-category-top">
-            <label class="new-survey__label" for="survey-date">
-                Set end date <span class="new-survey__optional">(optional)</span>
-                <button class="new-survey__delete new-survey__delete--mobile" type="button"
-                    aria-label="Delete end date">
-                    <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                </button>
-            </label>
-            <div class="new-survey__input-wrapper">
-                <input class="new-survey__input new-survey__input--narrow" id="survey-date" type="date">
-                <button class="new-survey__delete new-survey__delete--laptop" type="button"
-                    aria-label="Delete end date">
-                    <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                </button>
-            </div>
-        </div>
+                                <div class="new-survey__date-category-top">
+                                    <label class="new-survey__label" for="survey-date">
+                                        Set end date <span class="new-survey__optional">(optional)</span>
+                                        <button class="new-survey__delete new-survey__delete--mobile" type="button"
+                                            aria-label="Delete end date">
+                                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+                                        </button>
+                                    </label>
+                                    <div class="new-survey__input-wrapper">
+                                        <input class="new-survey__input new-survey__input--narrow" id="survey-date"
+                                            type="date">
+                                        <button class="new-survey__delete new-survey__delete--laptop" type="button"
+                                            aria-label="Delete end date">
+                                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
+                                        </button>
+                                    </div>
+                                </div>
 
-        <app-survey-sort label="Choose category" (categorySelected)="onCategorySelected($event)" />
+                                <app-survey-sort label="Choose category"
+                                    (categorySelected)="onCategorySelected($event)" />
 
-    </div>
-</div>
+                            </div>
+                        </div>
 
                     </div>
 
