@@ -30,19 +30,13 @@
                         <div class="new-survey__field">
                             <label class="new-survey__label new-survey__label--wide" for="survey-name">
                                 Survey name
-                                <button class="new-survey__delete new-survey__delete--mobile" type="button"
-                                    aria-label="Delete survey name">
-                                    <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                                </button>
+                                <app-delete-btn />
                             </label>
 
                             <div class="new-survey__input-wrapper">
                                 <input class="new-survey__input new-survey__input--wide" id="survey-name" type="text"
                                     placeholder="Survey name" aria-required="true">
-                                <button class="new-survey__delete new-survey__delete--laptop" type="button"
-                                    aria-label="Delete survey name">
-                                    <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                                </button>
+                                <app-delete-btn />
                             </div>
                         </div>
 
@@ -52,18 +46,12 @@
                                 <div class="new-survey__date-category-top">
                                     <label class="new-survey__label" for="survey-date">
                                         Set end date <span class="new-survey__optional">(optional)</span>
-                                        <button class="new-survey__delete new-survey__delete--mobile" type="button"
-                                            aria-label="Delete end date">
-                                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                                        </button>
+                                        <app-delete-btn />
                                     </label>
                                     <div class="new-survey__input-wrapper">
                                         <input class="new-survey__input new-survey__input--narrow" id="survey-date"
                                             type="date">
-                                        <button class="new-survey__delete new-survey__delete--laptop" type="button"
-                                            aria-label="Delete end date">
-                                            <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                                        </button>
+                                        <app-delete-btn />
                                     </div>
                                 </div>
 
@@ -78,39 +66,28 @@
                     <div class="new-survey__field">
                         <label class="new-survey__label" for="survey-description">
                             Describing text <span class="new-survey__optional">(optional)</span>
-                            <button class="new-survey__delete new-survey__delete--mobile" type="button"
-                                aria-label="Delete describing text">
-                                <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                            </button>
+                            <app-delete-btn />
                         </label>
 
                         <div class="new-survey__textarea-wrapper">
                             <textarea class="new-survey__input new-survey__input--textarea" id="survey-description"
                                 rows="4"></textarea>
-                            <button class="new-survey__delete new-survey__delete--laptop" type="button"
-                                aria-label="Delete describing text">
-                                <img src="assets/images/trash-white.svg" alt="" aria-hidden="true">
-                            </button>
+                            <app-delete-btn />
                         </div>
 
-                        <button class="new-survey__add-question-two" type="button" aria-label="Add next question">
-                            Add next question
-                            <img src="assets/images/add-circle-white.svg" alt="" aria-hidden="true">
-                        </button>
+                        <app-ui-button class="new-survey__add-question-two" variant="add-question"
+                            label="Add next question" icon="assets/images/add-circle-white.svg" />
                     </div>
 
                 </div>
-
-
 
                 <div class="new-survey__questions" aria-label="Survey questions">
                     <app-survey-question [questionIndex]="0" />
                 </div>
 
-                <button class="new-survey__add-question" type="button" aria-label="Add next question">
-                    Add next question
-                    <img src="assets/images/add-circle-white.svg" alt="" aria-hidden="true">
-                </button>
+                <app-ui-button class="new-survey__add-question" variant="add-question" label="Add next question"
+                    icon="assets/images/add-circle-white.svg" />
+
 
             </section>
 

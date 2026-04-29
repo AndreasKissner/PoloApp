@@ -242,49 +242,31 @@
         }
     }
 
-    &__add-question,
-    &__add-question-two {
-        @include flex(row, center, center, 8px);
-        background-color: $color-brown;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        padding: 8px 12px;
-        @include font($font-alt, 16px, 600, $color-white);
-
-
-
-        img {
-            width: 20px;
-            height: 20px;
-        }
-    }
-
     &__add-question {
-        width: 100%;
-        max-width: 200px;
-        margin: 0 auto 32px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 32px;
 
-        @include laptop {
-            display: none;
-        }
-    }
-
-    &__add-question-two {
+    @include laptop {
         display: none;
-        margin-top: 12px;
-
-        @include laptop {
-            display: flex;
-        }
     }
+}
 
-    &__actions {
+&__add-question-two {
+    display: none;
+    margin-top: 12px;
+
+    @include laptop {
         display: flex;
-        justify-content: center;
-
-        @include laptop {
-            justify-content: flex-end;
-        }
     }
+}
+
+&__actions {
+    display: flex;
+    justify-content: center;
+
+    @include laptop {
+        justify-content: flex-end;
+    }
+}
 }

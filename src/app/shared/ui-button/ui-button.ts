@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-type ButtonVariant = 'primary' | 'filter' | 'complete' | 'cancel' | 'tertiary' | 'publish' | 'header';
+type ButtonVariant = 'primary' | 'filter' | 'complete' | 'cancel' | 'tertiary' | 'publish' | 'header' | 'add-answer' | 'add-question';
 
 @Component({
   selector: 'app-ui-button',
