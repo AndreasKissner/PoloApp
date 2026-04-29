@@ -10,7 +10,7 @@
   &__header {
     @include flex(row, center, space-between, 0);
     margin-bottom: 8px;
-    max-width: 320px;
+    max-width: 400px;
   }
 
   &__label {
@@ -31,7 +31,7 @@
 
   &__input {
     width: 100%;
-    max-width: 320px;
+    max-width: 400px;
     box-sizing: border-box;
     background-color: $color-white;
     border: none;
@@ -45,7 +45,7 @@
   &__answers-header {
     @include flex(row, center, space-between, 0);
     margin-bottom: 12px;
-    max-width: 320px;
+    max-width: 400px;
   }
 
   &__answers-label {
@@ -139,7 +139,7 @@ width: 100%;
     outline: none;
 
       @include laptop {
-      width: 270px;
+      width: 320px;
     }
   }
 
@@ -160,6 +160,9 @@ width: 100%;
     cursor: pointer;
     border-bottom: 1px solid white;
     @include font($font-base, 13px, 600, $color-white);
+    @include laptop{
+    margin-left: 20px;
+    }
 
     img {
       width: 18px;

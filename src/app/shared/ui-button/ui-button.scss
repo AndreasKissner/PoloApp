@@ -103,9 +103,24 @@
   }
 
   // Publish
-  &--publish {
-    background-color: $color-bg-puplished-titel;
-    border: 2px solid $color-text-one;
-    @include font($font-alt, 18px, 700, $color-text-two);
+ &--publish {
+  background-color: $color-bg-puplished-titel;
+  border: 2px solid $color-text-one;
+  @include font($font-alt, 18px, 700, $color-text-two);
+
+  .btn__icon {
+    width: 0;
+    opacity: 0;
+    transition: width 500ms ease, opacity 500ms ease;
   }
+
+  @include laptop {
+    &:hover {
+      .btn__icon {
+        width: 20px;
+        opacity: 1;
+      }
+    }
+  }
+}
 }
