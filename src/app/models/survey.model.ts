@@ -27,3 +27,5 @@ export interface Answer {
     text:string;
     vote_count: number;
 }
+
+export type AnswerInput = Omit<Answer, 'id' | 'created_at'>;
