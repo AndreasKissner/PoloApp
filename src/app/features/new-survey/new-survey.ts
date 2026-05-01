@@ -79,10 +79,16 @@ export class NewSurvey implements OnInit {
   }
 
   /** Saves the survey to the DB and returns the generated ID. */
-private async saveSurvey(): Promise<string> {
-  const surveyInput = this.buildSurveyInput();
-  return await this.supabase.createSurvey(surveyInput);
-}
+  private async saveSurvey(): Promise<string> {
+    const surveyInput = this.buildSurveyInput();
+    return await this.supaBase.createSurvey(surveyInput);
+  }
+
+  /** Saves all questions linked to the survey and returns their IDs. */
+  private async saveQuestions(surveyId: string): Promise<string[]> {
+    const questionsInput = this.buildQuestionsInput(surveyId);
+    return await this.supaBase.createQuestions(questionsInput);
+  }
 
   /** Builds a FormGroup for a single answer. */
   private buildAnswer(): FormGroup {
@@ -154,14 +160,14 @@ private async saveSurvey(): Promise<string> {
  *     { question_id: 'id-1', text: 'X', vote_count: 0 }
  *   ]
  */
-private buildAnswersInput(questionIds: string[]): AnswerInput[] {
-  return this.questions.value.flatMap((question: { answers: { text: string }[] }, index: number) =>
-    question.answers.map(answer => ({
-      question_id: questionIds[index],
-      text: answer.text,
-      vote_count: 0
-    }))
-  );
-}
+  private buildAnswersInput(questionIds: string[]): AnswerInput[] {
+    return this.questions.value.flatMap((question: { answers: { text: string }[] }, index: number) =>
+      question.answers.map(answer => ({
+        question_id: questionIds[index],
+        text: answer.text,
+        vote_count: 0
+      }))
+    );
+  }
 
 }
