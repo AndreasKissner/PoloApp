@@ -125,4 +125,15 @@ export class NewSurvey implements OnInit {
     }));
   }
 
+  /** Builds answer objects with question_id and vote_count for DB insert. */
+  private buildAnswersInput(questionIds: string[]): AnswerInput[] {
+    return this.questions.value.flatMap((question: { answers: { text: string }[] }, index: number) =>
+      question.answers.map(answer => ({
+        question_id: questionIds[index],
+        text: answer.text,
+        vote_count: 0
+      }))
+    );
+  }
+
 }
