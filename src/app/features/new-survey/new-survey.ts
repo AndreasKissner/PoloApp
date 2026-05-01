@@ -1,4 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Supabase } from '../../services/supabase.service';
 import { Header } from '../../shared/header/header';
 import { RouterLink } from '@angular/router';
 import { UiButtonComponent } from '../../shared/ui-button/ui-button';
@@ -22,6 +24,8 @@ export class NewSurvey implements OnInit {
   private readonly ANSWER_MAX_LENGTH = 100;
 
   private formBuilder = inject(FormBuilder);
+  private supaBase = inject(Supabase);
+  private router = inject(Router);
 
   surveyForm: FormGroup = this.formBuilder.group({
     title: ['', [Validators.required, Validators.maxLength(this.TITLE_MAX_LENGTH)]],
@@ -92,12 +96,33 @@ export class NewSurvey implements OnInit {
     });
   }
 
-   /** Resets all values of the first question without removing it. */
+  /** Resets all values of the first question without removing it. */
   private clearFirstQuestion(): void {
     this.questions.at(0).reset({
       text: '',
       allow_multiple: false
     });
   }
-  
+
+  /** Extracts survey data from the form and converts empty strings to null. */
+  private buildSurveyInput(): SurveyInput {
+    const formValue = this.surveyForm.value;     // ← lokal, nur in dieser Methode
+    return {
+      title: formValue.title,
+      description: formValue.description || null,
+      category: formValue.category || null,
+      deadline: formValue.deadline || null
+    };
+  }
+
+  /** Builds question objects with survey_id and order_index for DB insert. */
+  private buildQuestionsInput(surveyId: string): QuestionInput[] {
+    return this.questions.value.map((question: { text: string; allow_multiple: boolean }, index: number) => ({
+      survey_id: surveyId,
+      text: question.text,
+      allow_multiple: question.allow_multiple,
+      order_index: index
+    }));
+  }
+
 }
