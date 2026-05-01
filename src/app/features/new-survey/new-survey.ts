@@ -78,6 +78,23 @@ export class NewSurvey implements OnInit {
     this.getAnswers(questionIndex).removeAt(answerIndex);
   }
 
+  /** Submits the survey: validates, saves to DB, navigates to detail view. */
+  async onSubmit(): Promise<void> {
+    if (this.surveyForm.invalid) {
+      this.surveyForm.markAllAsTouched();
+      return;
+    }
+
+    try {
+      const surveyId = await this.saveSurvey();
+      const questionIds = await this.saveQuestions(surveyId);
+      await this.saveAnswers(questionIds);
+      this.router.navigate(['/survey', surveyId]);
+    } catch (error) {
+      console.error('Failed to save survey:', error);
+    }
+  }
+
   /** Saves the survey to the DB and returns the generated ID. */
   private async saveSurvey(): Promise<string> {
     const surveyInput = this.buildSurveyInput();
