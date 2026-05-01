@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Header } from '../../shared/header/header';
 import { RouterLink } from '@angular/router';
 import { UiButtonComponent } from '../../shared/ui-button/ui-button';
@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } fr
   templateUrl: './new-survey.html',
   styleUrl: './new-survey.scss',
 })
-export class NewSurvey {
+export class NewSurvey implements OnInit {
 
   private formBuilder = inject(FormBuilder);
 
@@ -25,6 +25,15 @@ export class NewSurvey {
     deadline: [''],
     questions: this.formBuilder.array([])
   });
+
+  get questions(): FormArray {
+    return this.surveyForm.get('questions') as FormArray;
+  }
+
+
+  ngOnInit(): void {
+    this.questions.push(this.buildQuestion());
+  }
 
   onCategorySelected(category: string) {
     // survey.category = category
