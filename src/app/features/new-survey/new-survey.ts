@@ -44,6 +44,35 @@ export class NewSurvey implements OnInit {
     // survey.category = category
   }
 
+  /** Returns the answers FormArray of a specific question. */
+  getAnswers(questionIndex: number): FormArray {
+    return this.questions.at(questionIndex).get('answers') as FormArray;
+  }
+
+  /** Adds a new empty question to the survey. */
+  addQuestion(): void {
+    this.questions.push(this.buildQuestion());
+  }
+
+  /** Removes a question. Question at index 0 is only cleared, not removed. */
+  removeQuestion(questionIndex: number): void {
+    if (questionIndex === 0) {
+      this.clearFirstQuestion();
+      return;
+    }
+    this.questions.removeAt(questionIndex);
+  }
+
+  /** Adds a new empty answer to a specific question. */
+  addAnswer(questionIndex: number): void {
+    this.getAnswers(questionIndex).push(this.buildAnswer());
+  }
+
+  /** Removes an answer from a specific question. */
+  removeAnswer(questionIndex: number, answerIndex: number): void {
+    this.getAnswers(questionIndex).removeAt(answerIndex);
+  }
+
   /** Builds a FormGroup for a single answer. */
   private buildAnswer(): FormGroup {
     return this.formBuilder.group({
@@ -62,4 +91,13 @@ export class NewSurvey implements OnInit {
       ])
     });
   }
+
+   /** Resets all values of the first question without removing it. */
+  private clearFirstQuestion(): void {
+    this.questions.at(0).reset({
+      text: '',
+      allow_multiple: false
+    });
+  }
+  
 }
