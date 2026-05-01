@@ -16,11 +16,16 @@ import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } fr
 })
 export class NewSurvey implements OnInit {
 
+  private readonly TITLE_MAX_LENGTH = 100;
+  private readonly DESCRIPTION_MAX_LENGTH = 500;
+  private readonly QUESTION_MAX_LENGTH = 200;
+  private readonly ANSWER_MAX_LENGTH = 100;
+
   private formBuilder = inject(FormBuilder);
 
   surveyForm: FormGroup = this.formBuilder.group({
-    title: [''],
-    description: [''],
+    title: ['', [Validators.required, Validators.maxLength(this.TITLE_MAX_LENGTH)]],
+    description: ['', [Validators.maxLength(this.DESCRIPTION_MAX_LENGTH)]],
     category: [''],
     deadline: [''],
     questions: this.formBuilder.array([])
@@ -42,14 +47,14 @@ export class NewSurvey implements OnInit {
   /** Builds a FormGroup for a single answer. */
   private buildAnswer(): FormGroup {
     return this.formBuilder.group({
-      text: ['']
+      text: ['', [Validators.required, Validators.maxLength(this.ANSWER_MAX_LENGTH)]]
     });
   }
 
   /** Builds a FormGroup for a single question with two empty answers. */
   private buildQuestion(): FormGroup {
     return this.formBuilder.group({
-      text: [''],
+      text: ['', [Validators.required, Validators.maxLength(this.QUESTION_MAX_LENGTH)]],
       allow_multiple: [false],
       answers: this.formBuilder.array([
         this.buildAnswer(),
