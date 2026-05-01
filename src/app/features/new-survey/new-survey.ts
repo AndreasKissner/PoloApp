@@ -90,6 +90,12 @@ export class NewSurvey implements OnInit {
     return await this.supaBase.createQuestions(questionsInput);
   }
 
+  /** Saves all answers linked to their questions. */
+  private async saveAnswers(questionIds: string[]): Promise<void> {
+    const answersInput = this.buildAnswersInput(questionIds);
+    await this.supaBase.createAnswers(answersInput);
+  }
+
   /** Builds a FormGroup for a single answer. */
   private buildAnswer(): FormGroup {
     return this.formBuilder.group({
