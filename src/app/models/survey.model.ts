@@ -18,6 +18,8 @@ export interface Question {
     order_index: number;
 }
 
+export type QuestionInput = Omit<Question, 'id' | 'created_at'>;
+
 export interface Answer {
     id: string;
     created_at: string;
