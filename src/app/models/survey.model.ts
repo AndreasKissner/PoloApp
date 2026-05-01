@@ -7,6 +7,8 @@ export interface Survey {
     deadline: string | null;
 }
 
+export type SurveyInput = Omit<Survey, 'id' | 'created_at'>;
+
 export interface Question {
     id: string;
     created_at: string;
