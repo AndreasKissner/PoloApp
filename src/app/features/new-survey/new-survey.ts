@@ -9,6 +9,7 @@ import { SurveySortComponent } from '../home/survey-sort/survey-sort';
 import { DeleteBtn } from '../../shared/delete-btn/delete-btn';
 
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AnswerInput, QuestionInput, SurveyInput } from '../../models/survey.model';
 
 @Component({
   selector: 'app-new-survey',
@@ -77,6 +78,12 @@ export class NewSurvey implements OnInit {
     this.getAnswers(questionIndex).removeAt(answerIndex);
   }
 
+  /** Saves the survey to the DB and returns the generated ID. */
+private async saveSurvey(): Promise<string> {
+  const surveyInput = this.buildSurveyInput();
+  return await this.supabase.createSurvey(surveyInput);
+}
+
   /** Builds a FormGroup for a single answer. */
   private buildAnswer(): FormGroup {
     return this.formBuilder.group({
@@ -125,15 +132,36 @@ export class NewSurvey implements OnInit {
     }));
   }
 
-  /** Builds answer objects with question_id and vote_count for DB insert. */
-  private buildAnswersInput(questionIds: string[]): AnswerInput[] {
-    return this.questions.value.flatMap((question: { answers: { text: string }[] }, index: number) =>
-      question.answers.map(answer => ({
-        question_id: questionIds[index],
-        text: answer.text,
-        vote_count: 0
-      }))
-    );
-  }
+  /**
+ * Builds a flat array of answer objects for DB insert.
+ *
+ * Uses flatMap to flatten the nested structure:
+ * - Input: questions[].answers[] (nested)
+ * - Output: answers[] (flat)
+ *
+ * Each answer is linked to its question via questionIds[index],
+ * where index matches the question's position in the form array.
+ *
+ * Example:
+ *   questions[0].answers = [{ text: 'A' }, { text: 'B' }]
+ *   questions[1].answers = [{ text: 'X' }]
+ *   questionIds = ['id-0', 'id-1']
+ *
+ *   Result:
+ *   [
+ *     { question_id: 'id-0', text: 'A', vote_count: 0 },
+ *     { question_id: 'id-0', text: 'B', vote_count: 0 },
+ *     { question_id: 'id-1', text: 'X', vote_count: 0 }
+ *   ]
+ */
+private buildAnswersInput(questionIds: string[]): AnswerInput[] {
+  return this.questions.value.flatMap((question: { answers: { text: string }[] }, index: number) =>
+    question.answers.map(answer => ({
+      question_id: questionIds[index],
+      text: answer.text,
+      vote_count: 0
+    }))
+  );
+}
 
 }
