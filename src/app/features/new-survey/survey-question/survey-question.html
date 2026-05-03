@@ -1,4 +1,4 @@
-<article class="question" aria-labelledby="question-label-{{ questionIndex() }}">
+<article class="question" [formGroup]="questionForm()" aria-labelledby="question-label-{{ questionIndex() }}">
 
   <div class="question__header">
     <label class="question__label" [id]="'question-label-' + questionIndex()">
@@ -10,6 +10,7 @@
   <input
     class="question__input"
     type="text"
+    formControlName="text"
     [id]="'question-' + questionIndex()"
     placeholder="Which date would work best for you?"
     [attr.aria-labelledby]="'question-label-' + questionIndex()">
@@ -20,43 +21,42 @@
       <input
         class="question__multiple-input"
         type="checkbox"
+        formControlName="allow_multiple"
         [attr.aria-label]="'Allow multiple answers for question ' + (questionIndex() + 1)">
       <span class="question__multiple-label">Allow multiple answers</span>
     </label>
   </div>
 
-  <div class="question__answers" aria-label="Answers">
-    <div class="question__answer">
-      <div class="question__answer-top">
-        <span class="question__answer-letter">A.</span>
-        <app-delete-btn class="question__answer-delete--mobile" aria-label="Delete answer A" />
+  <div class="question__answers" formArrayName="answers" aria-label="Answers">
+    @for (answer of answers.controls; track $index; let i = $index) {
+      <div class="question__answer" [formGroupName]="i">
+        <div class="question__answer-top">
+          <span class="question__answer-letter">{{ getAnswerLetter(i) }}.</span>
+          <app-delete-btn
+            class="question__answer-delete--mobile"
+            (click)="onRemoveAnswer(i)"
+            [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
+        </div>
+        <div class="question__answer-row">
+          <input
+            class="question__answer-input"
+            type="text"
+            formControlName="text"
+            [placeholder]="'Answer ' + getAnswerLetter(i)"
+            [attr.aria-label]="'Answer ' + getAnswerLetter(i)">
+          <app-delete-btn
+            class="question__answer-delete--laptop"
+            (click)="onRemoveAnswer(i)"
+            [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
+        </div>
       </div>
-      <div class="question__answer-row">
-        <input
-          class="question__answer-input"
-          type="text"
-          placeholder="Answer A"
-          aria-label="Answer A">
-        <app-delete-btn class="question__answer-delete--laptop" aria-label="Delete answer A" />
-      </div>
-    </div>
-
-    <div class="question__answer">
-      <div class="question__answer-top">
-        <span class="question__answer-letter">B.</span>
-        <app-delete-btn class="question__answer-delete--mobile" aria-label="Delete answer B" />
-      </div>
-      <div class="question__answer-row">
-        <input
-          class="question__answer-input"
-          type="text"
-          placeholder="Answer B"
-          aria-label="Answer B">
-        <app-delete-btn class="question__answer-delete--laptop" aria-label="Delete answer B" />
-      </div>
-    </div>
+    }
   </div>
 
-  <app-ui-button variant="add-answer" label="Add answer" icon="assets/images/add-circle-white.svg" />
+  <app-ui-button
+    variant="add-answer"
+    label="Add answer"
+    icon="assets/images/add-circle-white.svg"
+    (click)="onAddAnswer()" />
 
 </article>

@@ -78,6 +78,11 @@ export class NewSurvey implements OnInit {
     this.getAnswers(questionIndex).removeAt(answerIndex);
   }
 
+  /** Resets a single survey field to empty. */
+clearField(controlName: string): void {
+  this.surveyForm.get(controlName)?.reset('');
+}
+
   /** Submits the survey: validates, saves to DB, navigates to detail view. */
   async onSubmit(): Promise<void> {
     if (this.surveyForm.invalid) {
