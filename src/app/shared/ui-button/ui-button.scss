@@ -119,7 +119,7 @@
   }
 
   // Publish
-  &--publish {
+ &--publish {
     background-color: $color-bg-puplished-titel;
     border: 2px solid $color-text-one;
     @include font($font-alt, 18px, 700, $color-text-two);
@@ -138,8 +138,12 @@
         }
       }
     }
-  }
 
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
 
   &--add-question {
   background-color: $color-brown;

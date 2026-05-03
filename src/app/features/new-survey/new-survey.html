@@ -82,7 +82,7 @@
 
                 </div>
 
-                <div class="new-survey__questions" formArrayName="questions" aria-label="Survey questions">
+                <div class="new-survey__questions"  aria-label="Survey questions">
                     @for (question of questions.controls; track $index; let i = $index) {
                         <app-survey-question
                             [questionForm]="$any(question)"

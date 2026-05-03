@@ -55,9 +55,9 @@ export class NewSurvey implements OnInit {
   }
 
   /** Adds a new empty question to the survey. */
-  addQuestion(): void {
-    this.questions.push(this.buildQuestion());
-  }
+addQuestion(): void {
+  this.questions.push(this.buildQuestion());
+}
 
   /** Removes a question. Question at index 0 is only cleared, not removed. */
   removeQuestion(questionIndex: number): void {
