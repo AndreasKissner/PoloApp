@@ -2,6 +2,7 @@
   class="btn"
   [class]="'btn btn--' + variant"
   [class.btn--active]="active"
+  [disabled]="disabled"
   type="button">
   <span class="btn__label">{{ label }}</span>
   @if (icon) {

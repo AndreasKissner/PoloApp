@@ -16,4 +16,5 @@ export class UiButtonComponent {
   @Input() label: string = '';
   @Input() icon: string = '';
   @Input() active: boolean = false;
+  @Input() disabled: boolean = false;
 }

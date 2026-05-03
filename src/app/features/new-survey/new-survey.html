@@ -21,7 +21,7 @@
             </h1>
 
 
-            <section class="new-survey__form" aria-label="Survey form">
+            <form class="new-survey__form" [formGroup]="surveyForm" aria-label="Survey form">
 
                 <div class="new-survey__fields">
 
@@ -30,13 +30,13 @@
                         <div class="new-survey__field">
                             <label class="new-survey__label new-survey__label--wide" for="survey-name">
                                 Survey name
-                                <app-delete-btn />
+                                <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
                             </label>
 
                             <div class="new-survey__input-wrapper">
                                 <input class="new-survey__input new-survey__input--wide" id="survey-name" type="text"
-                                    placeholder="Survey name" aria-required="true">
-                                <app-delete-btn />
+                                    formControlName="title" placeholder="Survey name" aria-required="true">
+                                <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
                             </div>
                         </div>
 
@@ -46,12 +46,12 @@
                                 <div class="new-survey__date-category-top">
                                     <label class="new-survey__label" for="survey-date">
                                         Set end date <span class="new-survey__optional">(optional)</span>
-                                        <app-delete-btn />
+                                        <app-delete-btn (click)="clearField('deadline')" aria-label="Clear end date" />
                                     </label>
                                     <div class="new-survey__input-wrapper">
                                         <input class="new-survey__input new-survey__input--narrow" id="survey-date"
-                                            type="date">
-                                        <app-delete-btn />
+                                            type="date" formControlName="deadline">
+                                        <app-delete-btn (click)="clearField('deadline')" aria-label="Clear end date" />
                                     </div>
                                 </div>
 
@@ -66,33 +66,42 @@
                     <div class="new-survey__field">
                         <label class="new-survey__label" for="survey-description">
                             Describing text <span class="new-survey__optional">(optional)</span>
-                            <app-delete-btn />
+                            <app-delete-btn (click)="clearField('description')" aria-label="Clear description" />
                         </label>
 
                         <div class="new-survey__textarea-wrapper">
                             <textarea class="new-survey__input new-survey__input--textarea" id="survey-description"
-                                rows="4"></textarea>
-                            <app-delete-btn />
+                                formControlName="description" rows="4"></textarea>
+                            <app-delete-btn (click)="clearField('description')" aria-label="Clear description" />
                         </div>
 
                         <app-ui-button class="new-survey__add-question-two" variant="add-question"
-                            label="Add next question" icon="assets/images/add-circle-white.svg" />
+                            label="Add next question" icon="assets/images/add-circle-white.svg"
+                            (click)="addQuestion()" />
                     </div>
 
                 </div>
 
-                <div class="new-survey__questions" aria-label="Survey questions">
-                    <app-survey-question [questionIndex]="0" />
+                <div class="new-survey__questions" formArrayName="questions" aria-label="Survey questions">
+                    @for (question of questions.controls; track $index; let i = $index) {
+                        <app-survey-question
+                            [questionForm]="$any(question)"
+                            [questionIndex]="i"
+                            (delete)="removeQuestion(i)"
+                            (addAnswer)="addAnswer(i)"
+                            (removeAnswer)="removeAnswer(i, $event)" />
+                    }
                 </div>
 
                 <app-ui-button class="new-survey__add-question" variant="add-question" label="Add next question"
-                    icon="assets/images/add-circle-white.svg" />
+                    icon="assets/images/add-circle-white.svg" (click)="addQuestion()" />
 
 
-            </section>
+            </form>
 
             <div class="new-survey__actions">
-                <app-ui-button variant="publish" label="Publish" icon="assets/images/checkmark.svg" />
+                <app-ui-button variant="publish" label="Publish" icon="assets/images/checkmark.svg"
+                    [disabled]="surveyForm.invalid" (click)="onSubmit()" />
             </div>
 
         </div>
