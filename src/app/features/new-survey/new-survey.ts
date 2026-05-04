@@ -19,11 +19,15 @@ import { AnswerInput, QuestionInput, SurveyInput } from '../../models/survey.mod
 })
 export class NewSurvey implements OnInit {
 
+  showConfirmation: boolean = false;
+  createdSurveyId: string | null = null;
+
   private readonly TITLE_MAX_LENGTH = 100;
   private readonly DESCRIPTION_MAX_LENGTH = 500;
   private readonly QUESTION_MAX_LENGTH = 200;
   private readonly ANSWER_MAX_LENGTH = 100;
   private readonly MAX_QUESTIONS = 4;
+  private readonly LAPTOP_BREAKPOINT = 1024;
 
   private formBuilder = inject(FormBuilder);
   private supaBase = inject(Supabase);
@@ -90,18 +94,38 @@ export class NewSurvey implements OnInit {
 
   /** Submits the survey: validates, saves to DB, navigates to detail view. */
   async onSubmit(): Promise<void> {
+    if (this.showConfirmation) {
+      return;
+    }
     if (this.surveyForm.invalid) {
       this.surveyForm.markAllAsTouched();
       return;
     }
-
     try {
       const surveyId = await this.saveSurvey();
       const questionIds = await this.saveQuestions(surveyId);
       await this.saveAnswers(questionIds);
-      this.router.navigate(['/survey', surveyId]);
+      this.handleSuccess(surveyId);
     } catch (error) {
       console.error('Failed to save survey:', error);
+    }
+  }
+
+  /** Shows confirmation overlay on laptop, navigates directly on mobile. */
+  private handleSuccess(surveyId: string): void {
+    if (window.innerWidth >= this.LAPTOP_BREAKPOINT) {
+      this.createdSurveyId = surveyId;
+      this.showConfirmation = true;
+      return;
+    }
+    this.router.navigate(['/survey', surveyId]);
+  }
+
+  /** Closes the confirmation overlay and navigates to the new survey. */
+  closeConfirmation(): void {
+    this.showConfirmation = false;
+    if (this.createdSurveyId) {
+      this.router.navigate(['/survey', this.createdSurveyId]);
     }
   }
 

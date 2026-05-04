@@ -21,7 +21,7 @@
             </h1>
 
 
-            <form class="new-survey__form" [formGroup]="surveyForm" aria-label="Survey form">
+           <form class="new-survey__form" [class.new-survey__form--locked]="showConfirmation" [formGroup]="surveyForm" aria-label="Survey form">
 
                 <div class="new-survey__fields">
 
@@ -104,10 +104,22 @@
 
             </form>
 
-            <div class="new-survey__actions">
+           <div class="new-survey__actions" [class.new-survey__actions--locked]="showConfirmation">
                 <app-ui-button variant="publish" label="Publish" icon="assets/images/checkmark.svg"
                     [disabled]="surveyForm.invalid" (click)="onSubmit()" />
             </div>
+
+            @if (showConfirmation) {
+            <div class="new-survey__confirmation" role="dialog" aria-labelledby="confirmation-title">
+                <p class="new-survey__confirmation-text" id="confirmation-title">
+                    Your survey is now published
+                </p>
+                <button class="new-survey__confirmation-close" (click)="closeConfirmation()"
+                    aria-label="Close confirmation">
+                    <img src="assets/images/x.svg" alt="">
+                </button>
+            </div>
+            }
 
         </div>
 

@@ -16,7 +16,7 @@
 }
 
 .new-survey {
-    padding: 0 0 24px 0;
+   /*  padding: 0 0 24px 0; */
     background-color: #f5f5f5;
 
     &__card {
@@ -24,6 +24,7 @@
         border-radius: 0 60px 0 0;
         padding: 24px 16px;
         width: 100%;
+        position: relative;
 
         @include laptop {
             max-width: 1218px;
@@ -292,5 +293,60 @@
         @include laptop {
             display: block;
         }
+    }
+
+    &__form--locked {
+        pointer-events: none;
+    }
+
+    &__actions--locked {
+        pointer-events: none;
+    }
+
+    &__confirmation {
+        display: none;
+
+        @include laptop {
+            @include flex(row, center, space-between, 16px);
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background-color: $color-bg-puplished-titel;
+            border-radius: 5px 20px 5px 5px;
+            padding: 16px 24px;
+            min-width: 320px;
+            animation: slide-in-right 400ms ease-out;
+        }
+    }
+
+    &__confirmation-text {
+        @include font($font-base, 16px, 700, $color-text-two);
+        margin: 0;
+    }
+
+    &__confirmation-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+
+        img {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
