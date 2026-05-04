@@ -23,6 +23,7 @@ export class NewSurvey implements OnInit {
   private readonly DESCRIPTION_MAX_LENGTH = 500;
   private readonly QUESTION_MAX_LENGTH = 200;
   private readonly ANSWER_MAX_LENGTH = 100;
+  private readonly MAX_QUESTIONS = 4;
 
   private formBuilder = inject(FormBuilder);
   private supaBase = inject(Supabase);
@@ -40,6 +41,10 @@ export class NewSurvey implements OnInit {
     return this.surveyForm.get('questions') as FormArray;
   }
 
+  get canAddQuestion(): boolean {
+    return this.questions.length < this.MAX_QUESTIONS;
+  }
+
 
   ngOnInit(): void {
     this.questions.push(this.buildQuestion());
@@ -55,9 +60,9 @@ export class NewSurvey implements OnInit {
   }
 
   /** Adds a new empty question to the survey. */
-addQuestion(): void {
-  this.questions.push(this.buildQuestion());
-}
+  addQuestion(): void {
+    this.questions.push(this.buildQuestion());
+  }
 
   /** Removes a question. Question at index 0 is only cleared, not removed. */
   removeQuestion(questionIndex: number): void {

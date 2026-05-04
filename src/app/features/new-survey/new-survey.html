@@ -77,24 +77,29 @@
 
                         <app-ui-button class="new-survey__add-question-two" variant="add-question"
                             label="Add next question" icon="assets/images/add-circle-white.svg"
-                            (click)="addQuestion()" />
+                            [disabled]="!canAddQuestion" (click)="addQuestion()" />
+                        @if (!canAddQuestion) {
+                        <span class="new-survey__add-question-hint new-survey__add-question-hint--laptop">Maximum 4
+                            questions</span>
+                        }
                     </div>
 
                 </div>
 
-                <div class="new-survey__questions"  aria-label="Survey questions">
+                <div class="new-survey__questions" aria-label="Survey questions">
                     @for (question of questions.controls; track $index; let i = $index) {
-                        <app-survey-question
-                            [questionForm]="$any(question)"
-                            [questionIndex]="i"
-                            (delete)="removeQuestion(i)"
-                            (addAnswer)="addAnswer(i)"
-                            (removeAnswer)="removeAnswer(i, $event)" />
+                    <app-survey-question [questionForm]="$any(question)" [questionIndex]="i"
+                        (delete)="removeQuestion(i)" (addAnswer)="addAnswer(i)"
+                        (removeAnswer)="removeAnswer(i, $event)" />
                     }
                 </div>
 
                 <app-ui-button class="new-survey__add-question" variant="add-question" label="Add next question"
-                    icon="assets/images/add-circle-white.svg" (click)="addQuestion()" />
+                    icon="assets/images/add-circle-white.svg" [disabled]="!canAddQuestion" (click)="addQuestion()" />
+                @if (!canAddQuestion) {
+                <span class="new-survey__add-question-hint new-survey__add-question-hint--mobile">Maximum 4
+                    questions</span>
+                }
 
 
             </form>
