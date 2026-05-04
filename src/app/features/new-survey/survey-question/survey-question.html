@@ -53,10 +53,15 @@
     }
   </div>
 
+  <div class="question__add-answer">
   <app-ui-button
     variant="add-answer"
     label="Add answer"
     icon="assets/images/add-circle-white.svg"
+    [disabled]="!canAddAnswer"
     (click)="onAddAnswer()" />
-
+  @if (!canAddAnswer) {
+    <span class="question__add-answer-hint">Maximum 4 answers</span>
+  }
+</div>
 </article>

@@ -79,7 +79,7 @@
   }
 
   &__answers {
-    @include flex(column, stretch, flex-start, 8px );
+    @include flex(column, stretch, flex-start, 8px);
     margin-bottom: 12px;
   }
 
@@ -96,7 +96,8 @@
   &__answer-top {
     @include flex(row, center, space-between, 0);
     width: 100%;
-max-width: 320px;
+    max-width: 320px;
+
     @include laptop {
       width: auto;
     }
@@ -124,11 +125,11 @@ max-width: 320px;
   &__answer-letter {
     @include font($font-base, 14px, 600, $color-white);
     min-width: 20px;
-   
+
   }
 
   &__answer-input {
-width: 100%;
+    width: 100%;
     max-width: 320px;
     box-sizing: border-box;
     background-color: $color-white;
@@ -138,35 +139,33 @@ width: 100%;
     @include font($font-base, 14px, 400, $color-text-two);
     outline: none;
 
-      @include laptop {
+    @include laptop {
       width: 320px;
     }
   }
 
-&__answer-delete {
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  img {
-    width: 16px;
-    height: 16px;
-  }
-}
-  &__add-answer {
-    @include flex(row, center, flex-start, 6px);
+  &__answer-delete {
     background: none;
     border: none;
     cursor: pointer;
-    border-bottom: 1px solid white;
-    @include font($font-base, 13px, 600, $color-white);
-    @include laptop{
-    margin-left: 20px;
-    }
 
     img {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
     }
   }
+
+&__add-answer {
+  @include flex(column, flex-start, flex-start, 4px);
+  width: fit-content;
+
+  @include laptop {
+    margin-left: 20px;
+  }
+}
+
+&__add-answer-hint {
+  @include font($font-base, 12px, 400, $color-white);
+  opacity: 0.7;
+}
 }

@@ -12,6 +12,7 @@ import { UiButtonComponent } from '../../../shared/ui-button/ui-button';
 export class SurveyQuestion {
 
   private readonly LETTER_A_CHAR_CODE = 65;
+  private readonly MAX_ANSWERS = 4;
 
   questionForm = input.required<FormGroup>();
   questionIndex = input<number>(0);
@@ -23,6 +24,10 @@ export class SurveyQuestion {
   get answers(): FormArray {
     return this.questionForm().get('answers') as FormArray;
   }
+
+  get canAddAnswer(): boolean {
+  return this.answers.length < this.MAX_ANSWERS;
+}
 
   /** Returns the letter (A, B, C...) for an answer based on its index. */
   getAnswerLetter(index: number): string {
