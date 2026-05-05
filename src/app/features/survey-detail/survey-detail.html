@@ -3,7 +3,7 @@
 <main class="survey-detail" aria-labelledby="survey-title">
   <div class="container">
 
-    <app-survey-form [survey]="survey()" [questions]="questions()" [answers]="answers()" />
+   <app-survey-form [survey]="survey()" [questions]="questions()" [answers]="answers()" (voted)="onVoted()" />
 
     <div class="survey-detail__toggle">
       <button class="results-toggle" [attr.aria-expanded]="resultsOpen()" aria-controls="results-panel"

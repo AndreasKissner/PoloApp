@@ -68,4 +68,9 @@ export class SurveyDetail implements OnInit {
     this.questions.set(questions);
     this.answers.set(answers);
   }
+
+  /** Reloads survey data after a vote was submitted. */
+  onVoted(): void {
+    this.loadSurveyData();
+  }
 }

@@ -56,47 +56,74 @@ export class Supabase {
   }
 
   /** Loads a single survey by its ID. */
-async getSurveyById(id: string): Promise<Survey> {
-  const { data, error } = await this.SUPABASE
-    .from('surveys')
-    .select('*')
-    .eq('id', id)
-    .single();
+  async getSurveyById(id: string): Promise<Survey> {
+    const { data, error } = await this.SUPABASE
+      .from('surveys')
+      .select('*')
+      .eq('id', id)
+      .single();
 
-  if (error) {
-    throw new Error(error.message);
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
   }
 
-  return data;
-}
+  /** Loads all questions of a survey, sorted by order_index. */
+  async getQuestionsBySurveyId(surveyId: string): Promise<Question[]> {
+    const { data, error } = await this.SUPABASE
+      .from('questions')
+      .select('*')
+      .eq('survey_id', surveyId)
+      .order('order_index', { ascending: true });
 
-/** Loads all questions of a survey, sorted by order_index. */
-async getQuestionsBySurveyId(surveyId: string): Promise<Question[]> {
-  const { data, error } = await this.SUPABASE
-    .from('questions')
-    .select('*')
-    .eq('survey_id', surveyId)
-    .order('order_index', { ascending: true });
+    if (error) {
+      throw new Error(error.message);
+    }
 
-  if (error) {
-    throw new Error(error.message);
+    return data;
   }
 
-  return data;
-}
+  /** Loads all answers belonging to the given question IDs. */
+  async getAnswersByQuestionIds(questionIds: string[]): Promise<Answer[]> {
+    const { data, error } = await this.SUPABASE
+      .from('answers')
+      .select('*')
+      .in('question_id', questionIds);
 
-/** Loads all answers belonging to the given question IDs. */
-async getAnswersByQuestionIds(questionIds: string[]): Promise<Answer[]> {
-  const { data, error } = await this.SUPABASE
-    .from('answers')
-    .select('*')
-    .in('question_id', questionIds);
+    if (error) {
+      throw new Error(error.message);
+    }
 
-  if (error) {
-    throw new Error(error.message);
+    return data;
   }
 
-  return data;
-}
+  /** Increments vote_count of an answer by 1. */
+  async incrementVote(answerId: string): Promise<void> {
+    const current = await this.SUPABASE
+      .from('answers')
+      .select('vote_count')
+      .eq('id', answerId)
+      .single();
+
+    if (current.error) {
+      throw new Error(current.error.message);
+    }
+
+    await this.updateVoteCount(answerId, current.data.vote_count + 1);
+  }
+
+  /** Updates the vote_count of an answer to a specific value. */
+  private async updateVoteCount(answerId: string, newCount: number): Promise<void> {
+    const { error } = await this.SUPABASE
+      .from('answers')
+      .update({ vote_count: newCount })
+      .eq('id', answerId);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+  }
 
 }

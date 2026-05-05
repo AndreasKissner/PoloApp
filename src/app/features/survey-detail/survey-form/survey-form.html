@@ -1,66 +1,64 @@
 <section class="survey-form" aria-labelledby="survey-form-title">
 
-    <div class="survey-form__header">
-        <span class="survey-form__badge">Published</span>
-        <a class="survey-form__close" routerLink="/" aria-label="Zurück zur Startseite">
-            <img src="assets/images/xbtn-orange.svg" alt="">
-        </a>
-    </div>
+  <div class="survey-form__header">
+    <span class="survey-form__badge">Published</span>
+    <a class="survey-form__close" routerLink="/" aria-label="Zurück zur Startseite">
+      <img src="assets/images/xbtn-orange.svg" alt="">
+    </a>
+  </div>
 
-    <div class="survey-form__meta">
-        @if (survey()?.deadline) {
-            <span class="survey-form__date">Ends on {{ survey()?.deadline | date:'dd.MM.yyyy' }}</span>
+  <div class="survey-form__meta">
+    @if (survey()?.deadline) {
+    <span class="survey-form__date">Ends on {{ survey()?.deadline | date:'dd.MM.yyyy' }}</span>
+    }
+    @if (survey()?.category) {
+    <span class="survey-form__category">Category: {{ survey()?.category }}</span>
+    }
+  </div>
+
+  <h1 class="survey-form__title" id="survey-form-title">
+    {{ survey()?.title }}
+  </h1>
+
+  @if (survey()?.description) {
+  <p class="survey-form__description">
+    {{ survey()?.description }}
+  </p>
+  }
+
+  <div class="survey-form__questions">
+
+    @for (question of questions(); track question.id; let qi = $index) {
+    <article class="question" [attr.aria-labelledby]="'question-' + (qi + 1)">
+      <p class="question__text" [id]="'question-' + (qi + 1)">
+        <span class="question__number">{{ qi + 1 }}.</span>
+        {{ question.text }}
+      </p>
+      <p class="question__hint">
+        {{ question.allow_multiple ? 'More than one answer are possible.' : 'One answer possible.' }}
+      </p>
+      <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
+        @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
+        <label class="answer">
+          <input class="answer__input" [type]="question.allow_multiple ? 'checkbox' : 'radio'" [name]="'q' + (qi + 1)"
+            [value]="answer.id" [checked]="isSelected(question.id, answer.id)"
+            (change)="toggleAnswer(question.id, answer.id, question.allow_multiple)">
+          <span class="answer__custom" aria-hidden="true"></span>
+          <span class="answer__label">
+            <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
+          </span>
+        </label>
         }
-        @if (survey()?.category) {
-            <span class="survey-form__category">Category: {{ survey()?.category }}</span>
-        }
-    </div>
-
-    <h1 class="survey-form__title" id="survey-form-title">
-        {{ survey()?.title }}
-    </h1>
-
-    @if (survey()?.description) {
-        <p class="survey-form__description">
-            {{ survey()?.description }}
-        </p>
+      </div>
+    </article>
     }
 
-    <div class="survey-form__questions">
+  </div>
 
-        @for (question of questions(); track question.id; let qi = $index) {
-            <article class="question" [attr.aria-labelledby]="'question-' + (qi + 1)">
-                <p class="question__text" [id]="'question-' + (qi + 1)">
-                    <span class="question__number">{{ qi + 1 }}.</span>
-                    {{ question.text }}
-                </p>
-                <p class="question__hint">
-                    {{ question.allow_multiple ? 'More than one answer are possible.' : 'One answer possible.' }}
-                </p>
-                <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
-                    @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
-                        <label class="answer">
-                            <input
-                                class="answer__input"
-                                [type]="question.allow_multiple ? 'checkbox' : 'radio'"
-                                [name]="'q' + (qi + 1)"
-                                [value]="answer.id">
-                            <span class="answer__custom" aria-hidden="true"></span>
-                            <span class="answer__label">
-                                <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
-                            </span>
-                        </label>
-                    }
-                </div>
-            </article>
-        }
-
-    </div>
-
-    <div class="survey-form__action">
-        <app-ui-button class="survey-form__btn--mobile" variant="complete" label="Complete"
-            icon="assets/images/checkmark.svg" />
-        <app-ui-button class="survey-form__btn--laptop" variant="complete" label="Complete survey" />
-    </div>
+  <div class="survey-form__action">
+    <app-ui-button class="survey-form__btn--mobile" variant="complete" label="Complete"
+      icon="assets/images/checkmark.svg" (click)="onComplete()" />
+    <app-ui-button class="survey-form__btn--laptop" variant="complete" label="Complete survey" (click)="onComplete()" />
+  </div>
 
 </section>
