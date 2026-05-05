@@ -67,6 +67,5 @@ export class SurveyDetail implements OnInit {
     this.survey.set(survey);
     this.questions.set(questions);
     this.answers.set(answers);
-    console.log('Loaded:', survey, questions, answers);
   }
 }

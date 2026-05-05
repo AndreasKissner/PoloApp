@@ -8,147 +8,52 @@
     </div>
 
     <div class="survey-form__meta">
-        <span class="survey-form__date">Ends on 01.09.2025</span>
-        <span class="survey-form__category">Category: Team activities</span>
+        @if (survey()?.deadline) {
+            <span class="survey-form__date">Ends on {{ survey()?.deadline | date:'dd.MM.yyyy' }}</span>
+        }
+        @if (survey()?.category) {
+            <span class="survey-form__category">Category: {{ survey()?.category }}</span>
+        }
     </div>
 
     <h1 class="survey-form__title" id="survey-form-title">
-        Let's Plan the Next Team Event Together
+        {{ survey()?.title }}
     </h1>
 
-    <p class="survey-form__description">
-        We want to create team activities that everyone will enjoy – share your
-        preferences and ideas in our survey to help us plan better experiences together.
-    </p>
+    @if (survey()?.description) {
+        <p class="survey-form__description">
+            {{ survey()?.description }}
+        </p>
+    }
 
     <div class="survey-form__questions">
 
-        <article class="question" aria-labelledby="question-1">
-            <p class="question__text" id="question-1">
-                <span class="question__number">1.</span>
-                Which date would work best for you?
-            </p>
-            <p class="question__hint">More than one answer are possible.</p>
-            <div class="question__answers" role="group" aria-labelledby="question-1">
-                <label class="answer">
-                    <input class="answer__input" type="checkbox" name="q1" value="a">
-                    <span class="answer__custom" aria-hidden="true"></span>
-                    <span class="answer__label">
-                        <span class="answer__letter">A.</span> 19.09.2025, Friday
-                    </span>
-                </label>
-                <label class="answer">
-                    <input class="answer__input" type="checkbox" name="q1" value="b">
-                    <span class="answer__custom" aria-hidden="true"></span>
-                    <span class="answer__label">
-                        <span class="answer__letter">B.</span> 10.10.2025, Friday
-                    </span>
-                </label>
-                <label class="answer">
-                    <input class="answer__input" type="checkbox" name="q1" value="c">
-                    <span class="answer__custom" aria-hidden="true"></span>
-                    <span class="answer__label">
-                        <span class="answer__letter">C.</span> 11.10.2025, Saturday
-                    </span>
-                </label>
-                <label class="answer">
-                    <input class="answer__input" type="checkbox" name="q1" value="d">
-                    <span class="answer__custom" aria-hidden="true"></span>
-                    <span class="answer__label">
-                        <span class="answer__letter">D.</span> 31.10.2025, Friday
-                    </span>
-                </label>
-            </div>
-        </article>
-        <article class="question" aria-labelledby="question-2">
-  <p class="question__text" id="question-2">
-    <span class="question__number">2.</span>
-    Choose the activities you prefer
-  </p>
-  <p class="question__hint">More than one answers are possible.</p>
-  <div class="question__answers" role="group" aria-labelledby="question-2">
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q2" value="a">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">A.</span> Outdoor adventure like kayaking</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q2" value="b">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">B.</span> Office Costume Party</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q2" value="c">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">C.</span> Bowling, mini-golf, volleyball</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q2" value="d">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">D.</span> Beach party, Music & cocktails</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q2" value="e">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">E.</span> Escape room</span>
-    </label>
-  </div>
-</article>
-
-<article class="question" aria-labelledby="question-3">
-  <p class="question__text" id="question-3">
-    <span class="question__number">3.</span>
-    What's most important to you in a team event?
-  </p>
-  <p class="question__hint">More than one answers are possible.</p>
-  <div class="question__answers" role="group" aria-labelledby="question-3">
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q3" value="a">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">A.</span> Team bonding</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q3" value="b">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">B.</span> Food and drinks</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q3" value="c">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">C.</span> Trying something new</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="checkbox" name="q3" value="d">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">D.</span> Keeping it low-key and stress-free</span>
-    </label>
-  </div>
-</article>
-
-<article class="question" aria-labelledby="question-4">
-  <p class="question__text" id="question-4">
-    <span class="question__number">4.</span>
-    How long would you prefer the event to last?
-  </p>
-  <p class="question__hint">One answer possible.</p>
-  <div class="question__answers" role="group" aria-labelledby="question-4">
-    <label class="answer">
-      <input class="answer__input" type="radio" name="q4" value="a">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">A.</span> Half a day</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="radio" name="q4" value="b">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">B.</span> Full day</span>
-    </label>
-    <label class="answer">
-      <input class="answer__input" type="radio" name="q4" value="c">
-      <span class="answer__custom" aria-hidden="true"></span>
-      <span class="answer__label"><span class="answer__letter">C.</span> Evening only</span>
-    </label>
-  </div>
-</article>
+        @for (question of questions(); track question.id; let qi = $index) {
+            <article class="question" [attr.aria-labelledby]="'question-' + (qi + 1)">
+                <p class="question__text" [id]="'question-' + (qi + 1)">
+                    <span class="question__number">{{ qi + 1 }}.</span>
+                    {{ question.text }}
+                </p>
+                <p class="question__hint">
+                    {{ question.allow_multiple ? 'More than one answer are possible.' : 'One answer possible.' }}
+                </p>
+                <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
+                    @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
+                        <label class="answer">
+                            <input
+                                class="answer__input"
+                                [type]="question.allow_multiple ? 'checkbox' : 'radio'"
+                                [name]="'q' + (qi + 1)"
+                                [value]="answer.id">
+                            <span class="answer__custom" aria-hidden="true"></span>
+                            <span class="answer__label">
+                                <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
+                            </span>
+                        </label>
+                    }
+                </div>
+            </article>
+        }
 
     </div>
 
