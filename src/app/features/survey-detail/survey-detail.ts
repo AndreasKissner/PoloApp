@@ -16,7 +16,9 @@ export class SurveyDetail implements OnInit {
 
   private route = inject(ActivatedRoute);
   private supabase = inject(Supabase);
+  private readonly LAPTOP_BREAKPOINT = 1024;
 
+  isDesktop = signal(window.innerWidth >= this.LAPTOP_BREAKPOINT);
   survey = signal<Survey | null>(null);
   questions = signal<Question[]>([]);
   answers = signal<Answer[]>([]);
@@ -24,8 +26,7 @@ export class SurveyDetail implements OnInit {
   arrowOrange = signal(false);
   isRotating = signal(false);
 
-  /*  isDesktop = signal(window.innerWidth >= 1024); */
-  isDesktop = signal(true);
+
 
   resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());
 
