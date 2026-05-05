@@ -95,7 +95,7 @@
     padding: 10px 14px;
     @include font($font-alt, 16px, 700, $color-white);
 
- 
+
     &:hover {
       background-color: #FFB770;
     }
@@ -119,7 +119,7 @@
   }
 
   // Publish
- &--publish {
+  &--publish {
     background-color: $color-bg-puplished-titel;
     border: 2px solid $color-text-one;
     @include font($font-alt, 18px, 700, $color-text-two);
@@ -128,6 +128,11 @@
       width: 0;
       opacity: 0;
       transition: width 500ms ease, opacity 500ms ease;
+     /*  pointer-events: none; */
+    }
+
+    img {
+      pointer-events: none;
     }
 
     @include laptop {
@@ -146,40 +151,42 @@
   }
 
   &--add-question {
-  background-color: $color-brown;
-  border: none;
-  border-radius: 10px;
-  @include font($font-alt, 16px, 600, $color-white);
-  &:hover{
-    background-color:$color-text-one;
-  }
-  .btn__icon {
-    width: 20px;
-    height: 20px;
+    background-color: $color-brown;
+    border: none;
+    border-radius: 10px;
+    @include font($font-alt, 16px, 600, $color-white);
 
-    img {
-      width: 100%;
-      height: 100%;
+    &:hover {
+      background-color: $color-text-one;
+    }
+
+    .btn__icon {
+      width: 20px;
+      height: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
-}
 
-&--add-answer {
-  background: none;
-  border: none;
-  border-bottom: 1px solid $color-white;
-  border-radius: 0;
-  padding: 4px 0;
-  @include font($font-base, 13px, 600, $color-white);
+  &--add-answer {
+    background: none;
+    border: none;
+    border-bottom: 1px solid $color-white;
+    border-radius: 0;
+    padding: 4px 0;
+    @include font($font-base, 13px, 600, $color-white);
 
-  .btn__icon {
-    width: 18px;
-    height: 18px;
+    .btn__icon {
+      width: 18px;
+      height: 18px;
 
-    img {
-      width: 100%;
-      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
-}
 }

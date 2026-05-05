@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js'
 import { environment } from '../../environments/environment';
-import { SurveyInput, QuestionInput, AnswerInput } from '../models/survey.model';
+import { Survey, Question, Answer, SurveyInput, QuestionInput, AnswerInput } from '../models/survey.model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,5 +54,49 @@ export class Supabase {
       throw new Error(error.message);
     }
   }
+
+  /** Loads a single survey by its ID. */
+async getSurveyById(id: string): Promise<Survey> {
+  const { data, error } = await this.SUPABASE
+    .from('surveys')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+/** Loads all questions of a survey, sorted by order_index. */
+async getQuestionsBySurveyId(surveyId: string): Promise<Question[]> {
+  const { data, error } = await this.SUPABASE
+    .from('questions')
+    .select('*')
+    .eq('survey_id', surveyId)
+    .order('order_index', { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+/** Loads all answers belonging to the given question IDs. */
+async getAnswersByQuestionIds(questionIds: string[]): Promise<Answer[]> {
+  const { data, error } = await this.SUPABASE
+    .from('answers')
+    .select('*')
+    .in('question_id', questionIds);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
 
 }
