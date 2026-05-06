@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Supabase } from '../../services/supabase.service';
 import { Survey } from '../../models/survey.model';
-import { JsonPipe } from '@angular/common';
 import { SurveyCardSmall } from './survey-card-small/survey-card-small';
 import { UiButtonComponent } from '../../shared/ui-button/ui-button';
 import { SurveyFilterComponent } from './survey-filter/survey-filter';
@@ -10,25 +9,52 @@ import { SurveyCardLarge } from './survey-card-large/survey-card-large';
 import { HeroIllustration } from './hero-illustration/hero-illustration';
 import { Header } from '../../shared/header/header';
 import { RouterLink } from '@angular/router';
+import { isPast, daysUntilDeadline } from '../../utils/survey-utils';
 
 @Component({
   selector: 'app-home',
-  imports: [JsonPipe, SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent, SurveyCardLarge, HeroIllustration,Header, RouterLink],
+  imports: [SurveyCardSmall, UiButtonComponent, SurveyFilterComponent, SurveySortComponent, SurveyCardLarge, HeroIllustration, Header, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
 
-  private dbSupabase = inject(Supabase);
-  surveys = signal<Survey[]>([]);
+  private readonly ENDING_SOON_LIMIT = 3;
 
+  private dbSupabase = inject(Supabase);
+
+  surveys = signal<Survey[]>([]);
+  activeTab = signal<'active' | 'past'>('active');
+
+  activeSurveys = computed(() => this.surveys().filter(s => !isPast(s)));
+  pastSurveys = computed(() => this.surveys().filter(s => isPast(s)));
+
+  endingSoonSurveys = computed(() => this.getEndingSoon());
+
+  currentSurveys = computed(() =>
+    this.activeTab() === 'active' ? this.activeSurveys() : this.pastSurveys()
+  );
+
+  async ngOnInit(): Promise<void> {
+    await this.getSurveys();
+  }
+
+  /** Loads all surveys from the database. */
   async getSurveys(): Promise<void> {
     const { data } = await this.dbSupabase.getSurveys();
     this.surveys.set(data ?? []);
-
   }
 
-  async ngOnInit() {
-    await this.getSurveys();
+  /** Switches between active and past tab. */
+  setTab(tab: 'active' | 'past'): void {
+    this.activeTab.set(tab);
+  }
+
+  /** Returns top N active surveys with the closest deadline. */
+  private getEndingSoon(): Survey[] {
+    return this.activeSurveys()
+      .filter(s => s.deadline !== null)
+      .sort((a, b) => (daysUntilDeadline(a) ?? 0) - (daysUntilDeadline(b) ?? 0))
+      .slice(0, this.ENDING_SOON_LIMIT);
   }
 }

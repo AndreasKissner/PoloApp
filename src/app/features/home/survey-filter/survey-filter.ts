@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, output } from '@angular/core';
 import { UiButtonComponent } from '../../../shared/ui-button/ui-button';
-
 
 type FilterType = 'active' | 'past';
 
@@ -12,9 +11,12 @@ type FilterType = 'active' | 'past';
   styleUrl: './survey-filter.scss'
 })
 export class SurveyFilterComponent {
-  activeFilter = signal<FilterType>('active');
 
-  setFilter(filter: FilterType) {
+  activeFilter = signal<FilterType>('active');
+  filterChanged = output<FilterType>();
+
+  setFilter(filter: FilterType): void {
     this.activeFilter.set(filter);
+    this.filterChanged.emit(filter);
   }
 }
