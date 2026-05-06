@@ -18,7 +18,7 @@
 
   @if (isOpen()) {
     <ul class="sort__list" role="listbox" aria-label="Categories">
-      @for (cat of categories; track cat) {
+      @for (cat of getDisplayCategories(); track cat) {
         <li 
           class="sort__item"
           role="option"

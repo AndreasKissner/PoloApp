@@ -25,15 +25,27 @@ export class Home {
 
   surveys = signal<Survey[]>([]);
   activeTab = signal<'active' | 'past'>('active');
+  selectedCategory = signal<string | null>(null);
 
   activeSurveys = computed(() => this.surveys().filter(s => !isPast(s)));
   pastSurveys = computed(() => this.surveys().filter(s => isPast(s)));
-
   endingSoonSurveys = computed(() => this.getEndingSoon());
 
-  currentSurveys = computed(() =>
-    this.activeTab() === 'active' ? this.activeSurveys() : this.pastSurveys()
-  );
+  currentSurveys = computed(() => {
+    const base = this.activeTab() === 'active' ? this.activeSurveys() : this.pastSurveys();
+    const category = this.selectedCategory();
+    if (!category) {
+      return base;
+    }
+    return base.filter(s => s.category === category);
+  });
+
+  availableCategories = computed(() => {
+    const cats = this.surveys()
+      .map(s => s.category)
+      .filter((c): c is string => c !== null);
+    return [...new Set(cats)];
+  });
 
   async ngOnInit(): Promise<void> {
     await this.getSurveys();
@@ -56,5 +68,10 @@ export class Home {
       .filter(s => s.deadline !== null)
       .sort((a, b) => (daysUntilDeadline(a) ?? 0) - (daysUntilDeadline(b) ?? 0))
       .slice(0, this.ENDING_SOON_LIMIT);
+  }
+
+  /** Sets the selected category filter. Null means show all. */
+  onCategorySelected(category: string | null): void {
+    this.selectedCategory.set(category);
   }
 }

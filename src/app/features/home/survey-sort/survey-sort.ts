@@ -9,29 +9,30 @@ import { CommonModule } from '@angular/common';
   styleUrl: './survey-sort.scss'
 })
 export class SurveySortComponent {
+
+  private readonly ALL_CATEGORIES_LABEL = 'All categories';
+
   label = input<string>('Sort by categories');
+  categories = input<string[]>([]);
 
   isOpen = signal(false);
   selected = signal<string | null>(null);
 
-  categories = [
-    'Team Activities',
-    'Health & Wellness',
-    'Gaming & Entertainment',
-    'Education & Learning',
-    'Lifestyle & Preferences',
-    'Technology & Innovation'
-  ];
+  categorySelected = output<string | null>();
 
-  toggle() {
-    this.isOpen.update(v => !v);
+  toggle(): void {
+    this.isOpen.update(value => !value);
   }
 
-  categorySelected = output<string>();
-
-  select(category: string) {
-    this.selected.set(category);
+  select(category: string): void {
+    const isAllOption = category === this.ALL_CATEGORIES_LABEL;
+    this.selected.set(isAllOption ? null : category);
     this.isOpen.set(false);
-    this.categorySelected.emit(category);
+    this.categorySelected.emit(isAllOption ? null : category);
+  }
+
+  /** Returns the list with "All categories" option prepended. */
+  getDisplayCategories(): string[] {
+    return [this.ALL_CATEGORIES_LABEL, ...this.categories()];
   }
 }

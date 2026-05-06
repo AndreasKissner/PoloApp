@@ -54,9 +54,9 @@ export class NewSurvey implements OnInit {
     this.questions.push(this.buildQuestion());
   }
 
-  onCategorySelected(category: string): void {
-    this.surveyForm.get('category')?.setValue(category);
-  }
+  onCategorySelected(category: string | null): void {
+  this.surveyForm.get('category')?.setValue(category);
+}
 
   /** Returns the answers FormArray of a specific question. */
   getAnswers(questionIndex: number): FormArray {

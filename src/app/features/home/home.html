@@ -53,7 +53,7 @@
 
       <div class="surveys__controls">
   <app-survey-filter (filterChanged)="setTab($event)" />
-  <app-survey-sort />
+ <app-survey-sort [categories]="availableCategories()" (categorySelected)="onCategorySelected($event)" />
 </div>
 
       <div class="surveys__list" role="list">
