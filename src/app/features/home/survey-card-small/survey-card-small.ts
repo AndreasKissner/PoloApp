@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Survey } from '../../../models/survey.model';
+import { formatDeadline } from '../../../utils/survey-utils';
 
 @Component({
   selector: 'app-survey-card-small',
@@ -7,4 +9,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './survey-card-small.html',
   styleUrl: './survey-card-small.scss',
 })
-export class SurveyCardSmall {}
+export class SurveyCardSmall {
+
+  survey = input.required<Survey>();
+
+  /** Returns formatted deadline text. */
+  getDeadlineText(): string {
+    return formatDeadline(this.survey());
+  }
+}
