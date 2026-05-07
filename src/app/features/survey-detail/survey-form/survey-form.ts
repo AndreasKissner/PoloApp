@@ -1,5 +1,5 @@
 import { Component, input, output, signal, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { UiButtonComponent } from '../../../shared/ui-button/ui-button';
 import { Survey, Question, Answer } from '../../../models/survey.model';
@@ -13,6 +13,7 @@ import { Supabase } from '../../../services/supabase.service';
 })
 export class SurveyForm {
 
+  private router = inject(Router);
   private readonly LETTER_A_CHAR_CODE = 65;
   private supabase = inject(Supabase);
 
@@ -21,6 +22,7 @@ export class SurveyForm {
   answers = input<Answer[]>([]);
 
   voted = output<void>();
+  selectionChanged = output<Set<string>>();
 
   selectedAnswers = signal<Map<string, Set<string>>>(new Map());
 
@@ -46,6 +48,7 @@ export class SurveyForm {
     this.applyToggle(set, answerId, allowMultiple);
     current.set(questionId, set);
     this.selectedAnswers.set(current);
+    this.emitAllSelections();
   }
 
   /** Applies the toggle logic to a Set of selected IDs. */
@@ -63,6 +66,7 @@ export class SurveyForm {
       await this.submitVotes();
       this.selectedAnswers.set(new Map());
       this.voted.emit();
+      this.router.navigate(['/']);
     } catch (error) {
       console.error('Failed to submit votes:', error);
     }
@@ -75,5 +79,16 @@ export class SurveyForm {
         await this.supabase.incrementVote(answerId);
       }
     }
+  }
+
+  /** Emits a flat Set of all currently selected answer IDs. */
+  private emitAllSelections(): void {
+    const allIds = new Set<string>();
+    for (const set of this.selectedAnswers().values()) {
+      for (const id of set) {
+        allIds.add(id);
+      }
+    }
+    this.selectionChanged.emit(allIds);
   }
 }

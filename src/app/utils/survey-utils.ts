@@ -33,3 +33,12 @@ export function formatDeadline(survey: Survey): string {
   }
   return `Ends in ${days} ${days === 1 ? 'Day' : 'Days'}`;
 }
+
+export const SURVEY_CATEGORIES: string[] = [
+  'Team Activities',
+  'Health & Wellness',
+  'Gaming & Entertainment',
+  'Education & Learning',
+  'Lifestyle & Preferences',
+  'Technology & Innovation'
+];

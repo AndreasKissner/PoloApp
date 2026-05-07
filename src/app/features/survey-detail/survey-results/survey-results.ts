@@ -12,6 +12,7 @@ export class SurveyResults {
   isOpen = input<boolean>(false);
   questions = input<Question[]>([]);
   answers = input<Answer[]>([]);
+  pendingSelections = input<Set<string>>(new Set());
 
   private readonly LETTER_A_CHAR_CODE = 65;
 
@@ -27,10 +28,20 @@ export class SurveyResults {
 
   /** Calculates percentage of votes for an answer within a question. */
   getPercentage(answer: Answer, questionAnswers: Answer[]): number {
-    const total = questionAnswers.reduce((sum, a) => sum + a.vote_count, 0);
+    const total = this.getTotalVotes(questionAnswers);
     if (total === 0) {
       return 0;
     }
-    return Math.round((answer.vote_count / total) * 100);
+    return Math.round((this.getEffectiveVotes(answer) / total) * 100);
+  }
+
+  /** Returns vote_count plus 1 if currently selected. */
+  private getEffectiveVotes(answer: Answer): number {
+    return answer.vote_count + (this.pendingSelections().has(answer.id) ? 1 : 0);
+  }
+
+  /** Returns total votes for a question including pending selections. */
+  private getTotalVotes(questionAnswers: Answer[]): number {
+    return questionAnswers.reduce((sum, a) => sum + this.getEffectiveVotes(a), 0);
   }
 }

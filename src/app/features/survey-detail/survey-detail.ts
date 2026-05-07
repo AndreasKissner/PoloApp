@@ -25,8 +25,7 @@ export class SurveyDetail implements OnInit {
   resultsOpen = signal(false);
   arrowOrange = signal(false);
   isRotating = signal(false);
-
-
+  pendingSelections = signal<Set<string>>(new Set());
 
   resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());
 
@@ -73,5 +72,10 @@ export class SurveyDetail implements OnInit {
   /** Reloads survey data after a vote was submitted. */
   onVoted(): void {
     this.loadSurveyData();
+  }
+  
+  /** Receives current selections from survey-form. */
+  onSelectionChanged(selections: Set<string>): void {
+    this.pendingSelections.set(selections);
   }
 }

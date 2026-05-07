@@ -55,8 +55,7 @@
                                     </div>
                                 </div>
 
-                                <app-survey-sort label="Choose category"
-                                    (categorySelected)="onCategorySelected($event)" />
+                               <app-survey-sort label="Choose category" [categories]="availableCategories" (categorySelected)="onCategorySelected($event)" />
 
                             </div>
                         </div>
