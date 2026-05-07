@@ -10,6 +10,7 @@ import { DeleteBtn } from '../../shared/delete-btn/delete-btn';
 
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AnswerInput, QuestionInput, SurveyInput } from '../../models/survey.model';
+import { SURVEY_CATEGORIES } from '../../utils/survey-utils';
 
 @Component({
   selector: 'app-new-survey',
@@ -28,6 +29,7 @@ export class NewSurvey implements OnInit {
   private readonly ANSWER_MAX_LENGTH = 100;
   private readonly MAX_QUESTIONS = 4;
   private readonly LAPTOP_BREAKPOINT = 1024;
+  readonly availableCategories = SURVEY_CATEGORIES;
 
   private formBuilder = inject(FormBuilder);
   private supaBase = inject(Supabase);

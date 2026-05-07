@@ -3,7 +3,8 @@
 <main class="survey-detail" aria-labelledby="survey-title">
   <div class="container">
 
-   <app-survey-form [survey]="survey()" [questions]="questions()" [answers]="answers()" (voted)="onVoted()" />
+    <app-survey-form [survey]="survey()" [questions]="questions()" [answers]="answers()" (voted)="onVoted()"
+      (selectionChanged)="onSelectionChanged($event)" />
 
     <div class="survey-detail__toggle">
       <button class="results-toggle" [attr.aria-expanded]="resultsOpen()" aria-controls="results-panel"
@@ -16,7 +17,8 @@
     </div>
 
     <!--    Blendet results ein -->
-   <app-survey-results id="results-panel" [isOpen]="resultsVisible()" [questions]="questions()" [answers]="answers()" aria-live="polite" />
+    <app-survey-results id="results-panel" [isOpen]="resultsVisible()" [questions]="questions()" [answers]="answers()"
+      [pendingSelections]="pendingSelections()" aria-live="polite" />
 
     <!--   //Zeigt Results an -->
     <!--   <app-survey-results id="results-panel" [isOpen]="resultsVisible()" aria-live="polite" /> -->
