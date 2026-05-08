@@ -10,7 +10,7 @@
   &__header {
     @include flex(row, center, space-between, 0);
     margin-bottom: 8px;
-    max-width: 400px;
+    max-width: 430px;
   }
 
   &__label {
@@ -31,7 +31,7 @@
 
   &__input {
     width: 100%;
-    max-width: 400px;
+    max-width: 430px;
     box-sizing: border-box;
     background-color: $color-white;
     border: none;
