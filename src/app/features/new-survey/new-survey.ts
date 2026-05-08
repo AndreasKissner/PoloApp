@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Supabase } from '../../services/supabase.service';
 import { Header } from '../../shared/header/header';
@@ -20,8 +20,8 @@ import { SURVEY_CATEGORIES } from '../../utils/survey-utils';
 })
 export class NewSurvey implements OnInit {
 
-  showConfirmation: boolean = false;
-  createdSurveyId: string | null = null;
+  showConfirmation = signal<boolean>(false);
+  createdSurveyId = signal<string | null>(null);
 
   private readonly TITLE_MAX_LENGTH = 100;
   private readonly DESCRIPTION_MAX_LENGTH = 500;
@@ -57,8 +57,8 @@ export class NewSurvey implements OnInit {
   }
 
   onCategorySelected(category: string | null): void {
-  this.surveyForm.get('category')?.setValue(category);
-}
+    this.surveyForm.get('category')?.setValue(category);
+  }
 
   /** Returns the answers FormArray of a specific question. */
   getAnswers(questionIndex: number): FormArray {
@@ -96,7 +96,11 @@ export class NewSurvey implements OnInit {
 
   /** Submits the survey: validates, saves to DB, navigates to detail view. */
   async onSubmit(): Promise<void> {
-    if (this.showConfirmation) {
+    console.log('onSubmit called');
+    console.log('invalid:', this.surveyForm.invalid);
+    console.log('form value:', this.surveyForm.value);
+    console.log('showConfirmation:', this.showConfirmation());
+    if (this.showConfirmation()) {
       return;
     }
     if (this.surveyForm.invalid) {
@@ -116,8 +120,8 @@ export class NewSurvey implements OnInit {
   /** Shows confirmation overlay on laptop, navigates directly on mobile. */
   private handleSuccess(surveyId: string): void {
     if (window.innerWidth >= this.LAPTOP_BREAKPOINT) {
-      this.createdSurveyId = surveyId;
-      this.showConfirmation = true;
+      this.createdSurveyId.set(surveyId);
+      this.showConfirmation.set(true);
       return;
     }
     this.router.navigate(['/survey', surveyId]);
@@ -125,9 +129,10 @@ export class NewSurvey implements OnInit {
 
   /** Closes the confirmation overlay and navigates to the new survey. */
   closeConfirmation(): void {
-    this.showConfirmation = false;
-    if (this.createdSurveyId) {
-      this.router.navigate(['/survey', this.createdSurveyId]);
+    this.showConfirmation.set(false);
+    const id = this.createdSurveyId();
+    if (id) {
+      this.router.navigate(['/survey', id]);
     }
   }
 

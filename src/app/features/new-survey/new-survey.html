@@ -21,7 +21,7 @@
             </h1>
 
 
-           <form class="new-survey__form" [class.new-survey__form--locked]="showConfirmation" [formGroup]="surveyForm" aria-label="Survey form">
+           <form class="new-survey__form" [class.new-survey__form--locked]="showConfirmation()" [formGroup]="surveyForm" aria-label="Survey form">
 
                 <div class="new-survey__fields">
 
@@ -30,7 +30,7 @@
                         <div class="new-survey__field">
                             <label class="new-survey__label new-survey__label--wide" for="survey-name">
                                 Survey name
-                                <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
+                               <!--  <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" /> -->
                             </label>
 
                             <div class="new-survey__input-wrapper">
@@ -65,7 +65,7 @@
                     <div class="new-survey__field">
                         <label class="new-survey__label" for="survey-description">
                             Describing text <span class="new-survey__optional">(optional)</span>
-                            <app-delete-btn (click)="clearField('description')" aria-label="Clear description" />
+                           <!--  <app-delete-btn (click)="clearField('description')" aria-label="Clear description" /> -->
                         </label>
 
                         <div class="new-survey__textarea-wrapper">
@@ -103,12 +103,12 @@
 
             </form>
 
-           <div class="new-survey__actions" [class.new-survey__actions--locked]="showConfirmation">
+           <div class="new-survey__actions" [class.new-survey__actions--locked]="showConfirmation()">
                 <app-ui-button variant="publish" label="Publish" icon="assets/images/checkmark.svg"
-                    [disabled]="surveyForm.invalid" (click)="onSubmit()" />
+                   (click)="onSubmit()" />
             </div>
 
-            @if (showConfirmation) {
+            @if (this.showConfirmation()) {
             <div class="new-survey__confirmation" role="dialog" aria-labelledby="confirmation-title">
                 <p class="new-survey__confirmation-text" id="confirmation-title">
                     Your survey is now published
