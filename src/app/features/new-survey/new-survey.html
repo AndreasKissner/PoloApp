@@ -39,11 +39,11 @@
                                     formControlName="title" placeholder="Survey name" aria-required="true">
                                 <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
                             </div>
-                         <span class="new-survey__field-error">
-  @if (surveyForm.get('title')?.touched && surveyForm.get('title')?.invalid) {
-    Survey name is required
-  }
-</span>
+                            <span class="new-survey__field-error">
+                                @if (surveyForm.get('title')?.touched && surveyForm.get('title')?.invalid) {
+                                Survey name is required
+                                }
+                            </span>
                         </div>
 
                         <div class="new-survey__field">
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <app-survey-sort label="Choose category" [categories]="availableCategories"
-                                    (categorySelected)="onCategorySelected($event)" />
+                                    [showAllOption]="false" (categorySelected)="onCategorySelected($event)" />
 
                             </div>
                         </div>

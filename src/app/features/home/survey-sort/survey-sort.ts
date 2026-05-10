@@ -14,6 +14,7 @@ export class SurveySortComponent {
 
   label = input<string>('Sort by categories');
   categories = input<string[]>([]);
+  showAllOption = input<boolean>(true);
 
   isOpen = signal(false);
   selected = signal<string | null>(null);
@@ -33,6 +34,9 @@ export class SurveySortComponent {
 
   /** Returns the list with "All categories" option prepended. */
   getDisplayCategories(): string[] {
-    return [this.ALL_CATEGORIES_LABEL, ...this.categories()];
+    if (this.showAllOption()) {
+      return [this.ALL_CATEGORIES_LABEL, ...this.categories()];
+    }
+    return this.categories();
   }
 }
