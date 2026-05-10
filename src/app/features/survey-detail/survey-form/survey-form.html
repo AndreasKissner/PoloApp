@@ -40,10 +40,21 @@
       <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
         @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
         <label class="answer">
+
+
+
           <input class="answer__input" [type]="question.allow_multiple ? 'checkbox' : 'radio'" [name]="'q' + (qi + 1)"
             [value]="answer.id" [checked]="isSelected(question.id, answer.id)"
             (change)="toggleAnswer(question.id, answer.id, question.allow_multiple)">
-          <span class="answer__custom" aria-hidden="true"></span>
+          <span class="answer__custom" aria-hidden="true">
+            @if (isSelected(question.id, answer.id)) {
+            <img class="answer__check" src="assets/images/check-box/check-3.svg" alt="">
+            }
+          </span>
+
+
+
+
           <span class="answer__label">
             <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
           </span>

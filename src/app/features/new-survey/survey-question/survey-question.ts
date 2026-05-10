@@ -26,8 +26,8 @@ export class SurveyQuestion {
   }
 
   get canAddAnswer(): boolean {
-  return this.answers.length < this.MAX_ANSWERS;
-}
+    return this.answers.length < this.MAX_ANSWERS;
+  }
 
   /** Returns the letter (A, B, C...) for an answer based on its index. */
   getAnswerLetter(index: number): string {
@@ -44,5 +44,10 @@ export class SurveyQuestion {
 
   onRemoveAnswer(answerIndex: number): void {
     this.removeAnswer.emit(answerIndex);
+  }
+
+  /** Checks if "allow multiple" is enabled in the form. */
+  isMultipleChecked(): boolean {
+    return this.questionForm().get('allow_multiple')?.value === true;
   }
 }

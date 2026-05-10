@@ -49,7 +49,6 @@ export class SurveyDetail implements OnInit {
     if (!surveyId) {
       return;
     }
-
     try {
       await this.fetchAllData(surveyId);
     } catch (error) {

@@ -7,61 +7,52 @@
     <app-delete-btn (click)="onDelete()" [attr.aria-label]="'Delete question ' + (questionIndex() + 1)" />
   </div>
 
-  <input
-    class="question__input"
-    type="text"
-    formControlName="text"
-    [id]="'question-' + questionIndex()"
-    placeholder="Which date would work best for you?"
-    [attr.aria-labelledby]="'question-label-' + questionIndex()">
+  <input class="question__input" type="text" formControlName="text" [id]="'question-' + questionIndex()"
+    placeholder="Which date would work best for you?" [attr.aria-labelledby]="'question-label-' + questionIndex()">
+  @if (questionForm().get('text')?.touched && questionForm().get('text')?.invalid) {
+  <span class="question__error">Question text is required</span>
+  }
 
   <div class="question__answers-header">
     <span class="question__answers-label">Answers</span>
     <label class="question__multiple">
-      <input
-        class="question__multiple-input"
-        type="checkbox"
-        formControlName="allow_multiple"
+      <input class="question__multiple-input" type="checkbox" formControlName="allow_multiple"
         [attr.aria-label]="'Allow multiple answers for question ' + (questionIndex() + 1)">
+      <span class="question__multiple-custom" aria-hidden="true">
+        @if (isMultipleChecked()) {
+        <img class="question__multiple-check" src="assets/images/check-box/check-3.svg" alt="">
+        }
+      </span>
       <span class="question__multiple-label">Allow multiple answers</span>
     </label>
   </div>
 
   <div class="question__answers" formArrayName="answers" aria-label="Answers">
     @for (answer of answers.controls; track $index; let i = $index) {
-      <div class="question__answer" [formGroupName]="i">
-        <div class="question__answer-top">
-          <span class="question__answer-letter">{{ getAnswerLetter(i) }}.</span>
-          <app-delete-btn
-            class="question__answer-delete--mobile"
-            (click)="onRemoveAnswer(i)"
-            [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
-        </div>
-        <div class="question__answer-row">
-          <input
-            class="question__answer-input"
-            type="text"
-            formControlName="text"
-            [placeholder]="'Answer ' + getAnswerLetter(i)"
-            [attr.aria-label]="'Answer ' + getAnswerLetter(i)">
-          <app-delete-btn
-            class="question__answer-delete--laptop"
-            (click)="onRemoveAnswer(i)"
-            [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
-        </div>
+    <div class="question__answer" [formGroupName]="i">
+      <div class="question__answer-top">
+        <span class="question__answer-letter">{{ getAnswerLetter(i) }}.</span>
+        <app-delete-btn class="question__answer-delete--mobile" (click)="onRemoveAnswer(i)"
+          [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
       </div>
+      <div class="question__answer-row">
+        <input class="question__answer-input" type="text" formControlName="text"
+          [placeholder]="'Answer ' + getAnswerLetter(i)" [attr.aria-label]="'Answer ' + getAnswerLetter(i)">
+        @if (answers.at(i).get('text')?.touched && answers.at(i).get('text')?.invalid) {
+        <span class="question__error">Answer is required</span>
+        }
+        <app-delete-btn class="question__answer-delete--laptop" (click)="onRemoveAnswer(i)"
+          [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
+      </div>
+    </div>
     }
   </div>
 
   <div class="question__add-answer">
-  <app-ui-button
-    variant="add-answer"
-    label="Add answer"
-    icon="assets/images/add-circle-white.svg"
-    [disabled]="!canAddAnswer"
-    (click)="onAddAnswer()" />
-  @if (!canAddAnswer) {
+    <app-ui-button variant="add-answer" label="Add answer" icon="assets/images/add-circle-white.svg"
+      [disabled]="!canAddAnswer" (click)="onAddAnswer()" />
+    @if (!canAddAnswer) {
     <span class="question__add-answer-hint">Maximum 4 answers</span>
-  }
-</div>
+    }
+  </div>
 </article>

@@ -23,7 +23,7 @@
 
             <form class="new-survey__form" [class.new-survey__form--locked]="showConfirmation()"
                 [formGroup]="surveyForm" aria-label="Survey form">
-               
+
                 <div class="new-survey__fields">
 
                     <div class="new-survey__fields-top">
@@ -39,6 +39,9 @@
                                     formControlName="title" placeholder="Survey name" aria-required="true">
                                 <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
                             </div>
+                            @if (surveyForm.get('title')?.touched && surveyForm.get('title')?.invalid) {
+                            <span class="new-survey__field-error">Survey name is required</span>
+                            }
                         </div>
 
                         <div class="new-survey__field">
@@ -91,11 +94,11 @@
                         (delete)="removeQuestion(i)" (addAnswer)="addAnswer(i)"
                         (removeAnswer)="removeAnswer(i, $event)" />
                     }
-                     @if (showError()) {
-                <p class="new-survey__error" role="alert">
-                    Please fill in all required fields.
-                </p>
-                }
+                    @if (showError()) {
+                    <p class="new-survey__error" role="alert">
+                        Please fill in all required fields.
+                    </p>
+                    }
                 </div>
 
                 <app-ui-button class="new-survey__add-question" variant="add-question" label="Add next question"
