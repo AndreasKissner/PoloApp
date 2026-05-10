@@ -38,3 +38,8 @@
   font-weight: $weight;
   color: $color;
 }
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}

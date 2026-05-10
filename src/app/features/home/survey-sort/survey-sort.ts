@@ -21,10 +21,12 @@ export class SurveySortComponent {
 
   categorySelected = output<string | null>();
 
+  /** Toggles the dropdown open or closed. */
   toggle(): void {
     this.isOpen.update(value => !value);
   }
 
+  /** Selects a category, closes the dropdown, and emits the selection. */
   select(category: string): void {
     const isAllOption = category === this.ALL_CATEGORIES_LABEL;
     this.selected.set(isAllOption ? null : category);

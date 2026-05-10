@@ -44,19 +44,22 @@ export class NewSurvey implements OnInit {
     questions: this.formBuilder.array([])
   });
 
+  /** Returns the questions FormArray of the survey form. */
   get questions(): FormArray {
     return this.surveyForm.get('questions') as FormArray;
   }
 
+  /** Returns true if more questions can be added (limit not yet reached). */
   get canAddQuestion(): boolean {
     return this.questions.length < this.MAX_QUESTIONS;
   }
 
-
+  /** Initializes the form with one empty question on component load. */
   ngOnInit(): void {
     this.questions.push(this.buildQuestion());
   }
 
+  /** Updates the form's category field when a category is selected. */
   onCategorySelected(category: string | null): void {
     this.surveyForm.get('category')?.setValue(category);
   }

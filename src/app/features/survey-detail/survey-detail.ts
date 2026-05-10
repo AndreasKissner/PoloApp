@@ -29,7 +29,8 @@ export class SurveyDetail implements OnInit {
   pendingSelections = signal<Set<string>>(new Set());
   isPastSurvey = computed(() => {
     const s = this.survey();
-    return s ? isPast(s) : false;
+    const result = s ? isPast(s) : false;
+    return result;
   });
 
   resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());

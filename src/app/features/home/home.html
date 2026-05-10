@@ -32,17 +32,17 @@
       <h2 class="surveys__title" id="surveys-title">Your surveys</h2>
 
       @if (endingSoonSurveys().length > 0) {
-        <div class="surveys__ending">
-          <h3 class="surveys__ending-title">Ending soon surveys</h3>
-          <div class="surveys__ending-list" role="list">
-            @for (survey of endingSoonSurveys(); track survey.id) {
-              <div role="listitem"><app-survey-card-small [survey]="survey" /></div>
-            }
-          </div>
+      <div class="surveys__ending">
+        <h3 class="surveys__ending-title">Ending soon surveys</h3>
+        <div class="surveys__ending-list" role="list">
+          @for (survey of endingSoonSurveys(); track survey.id) {
+          <div role="listitem"><app-survey-card-small [survey]="survey" /></div>
+          }
         </div>
+      </div>
       }
 
-    <!--   <div class="surveys__tabs">
+      <!--   <div class="surveys__tabs">
         <button class="surveys__tab" [class.surveys__tab--active]="activeTab() === 'active'" (click)="setTab('active')">
           Active surveys
         </button>
@@ -52,15 +52,15 @@
       </div> -->
 
       <div class="surveys__controls">
-  <app-survey-filter (filterChanged)="setTab($event)" />
- <app-survey-sort [categories]="availableCategories()" (categorySelected)="onCategorySelected($event)" />
-</div>
+        <app-survey-filter (filterChanged)="setTab($event)" />
+        <app-survey-sort [categories]="availableCategories()" (categorySelected)="onCategorySelected($event)" />
+      </div>
 
       <div class="surveys__list" role="list">
         @for (survey of currentSurveys(); track survey.id) {
-          <div role="listitem"><app-survey-card-large [survey]="survey" /></div>
+        <div role="listitem"><app-survey-card-large [survey]="survey" /></div>
         } @empty {
-          <p class="surveys__empty">No surveys to show.</p>
+        <p class="surveys__empty">No surveys to show.</p>
         }
       </div>
 

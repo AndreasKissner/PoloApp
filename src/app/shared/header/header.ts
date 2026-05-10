@@ -17,6 +17,7 @@ export class Header {
   @Input() theme: 'dark' | 'light' = 'dark';
   @Input() showCreateBtn: boolean = false;
 
+  /** Returns the logo path based on the current theme (dark or light). */
   get logoSrc(): string {
     return this.theme === 'dark'
       ? 'assets/images/logo-orange.svg'

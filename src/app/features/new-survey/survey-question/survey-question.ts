@@ -21,10 +21,12 @@ export class SurveyQuestion {
   addAnswer = output<void>();
   removeAnswer = output<number>();
 
+  /** Returns the answers FormArray of the current question. */
   get answers(): FormArray {
     return this.questionForm().get('answers') as FormArray;
   }
 
+  /** Returns true if more answers can be added (limit not yet reached). */
   get canAddAnswer(): boolean {
     return this.answers.length < this.MAX_ANSWERS;
   }
@@ -32,20 +34,20 @@ export class SurveyQuestion {
   /** Returns the letter (A, B, C...) for an answer based on its index. */
   getAnswerLetter(index: number): string {
     return String.fromCharCode(this.LETTER_A_CHAR_CODE + index);
-  }
-
+  }/** Emits the delete event to the parent. */
   onDelete(): void {
     this.delete.emit();
   }
 
+  /** Emits the add answer event to the parent. */
   onAddAnswer(): void {
     this.addAnswer.emit();
   }
 
+  /** Emits the remove answer event with the answer index to the parent. */
   onRemoveAnswer(answerIndex: number): void {
     this.removeAnswer.emit(answerIndex);
   }
-
   /** Checks if "allow multiple" is enabled in the form. */
   isMultipleChecked(): boolean {
     return this.questionForm().get('allow_multiple')?.value === true;

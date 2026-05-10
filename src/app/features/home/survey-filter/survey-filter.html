@@ -1,13 +1,7 @@
 <div class="survey-filter" role="group" aria-label="Survey filter">
-  <app-ui-button
-    variant="filter"
-    label="Active survey"
-    [active]="activeFilter() === 'active'"
+  <app-ui-button variant="filter" label="Active survey" [active]="activeFilter() === 'active'"
     (click)="setFilter('active')" />
 
-  <app-ui-button
-    variant="filter"
-    label="Past survey"
-    [active]="activeFilter() === 'past'"
+  <app-ui-button variant="filter" label="Past survey" [active]="activeFilter() === 'past'"
     (click)="setFilter('past')" />
 </div>

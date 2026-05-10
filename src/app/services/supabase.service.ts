@@ -125,5 +125,4 @@ export class Supabase {
       throw new Error(error.message);
     }
   }
-
 }

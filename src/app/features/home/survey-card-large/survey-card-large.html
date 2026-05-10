@@ -1,4 +1,5 @@
-<article class="card-large" [routerLink]="['/survey', survey().id]" role="link" [attr.aria-label]="'Open survey: ' + survey().title">
+<article class="card-large" [routerLink]="['/survey', survey().id]" role="link"
+  [attr.aria-label]="'Open survey: ' + survey().title">
   <span class="card-large__category">{{ survey().category || 'No category' }}</span>
   <h3 class="card-large__title">{{ survey().title }}</h3>
   <span class="card-large__badge">{{ getDeadlineText() }}</span>

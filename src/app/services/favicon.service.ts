@@ -8,7 +8,7 @@ import { interval, Subscription } from 'rxjs';
 })
 export class FaviconService {
   private intervalSub?: Subscription;
-  
+
   // Icons aus deinem public-Ordner
   private readonly ICON_1 = 'favicon.ico';
   private readonly ICON_2 = 'favicon2.ico';
@@ -21,14 +21,13 @@ export class FaviconService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private titleService: Title // Angular Service für den Browsertitel
-  ) {}
+  ) { }
 
   /**
    * Startet den Wechsel von Icon und Titel alle X Sekunden
    */
   startCycling(seconds: number = 2) {
     if (this.intervalSub) return;
-
     this.intervalSub = interval(seconds * 1000).subscribe(() => {
       // 1. Icon wechseln
       this.isAltIcon = !this.isAltIcon;
@@ -40,7 +39,8 @@ export class FaviconService {
     });
   }
 
-  private updateFavicon(fileName: string) {
+  /** Updates the favicon link in the document head to the given filename. */
+  private updateFavicon(fileName: string): void {
     let link: HTMLLinkElement | null = this.document.querySelector("link[rel*='icon']");
 
     if (!link) {
@@ -52,7 +52,8 @@ export class FaviconService {
     link.href = fileName;
   }
 
-  stopCycling() {
+  /** Stops the favicon cycling interval if active. */
+  stopCycling(): void {
     this.intervalSub?.unsubscribe();
     this.intervalSub = undefined;
   }

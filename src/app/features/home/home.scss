@@ -97,10 +97,7 @@ app-ui-button {
   padding: 32px 0;
 
   @include laptop {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    @include flex(column, center, center, 0);
 
     &__empty {
       color: $color-white;
@@ -137,9 +134,7 @@ app-ui-button {
     @include laptop {
       width: 100%;
       max-width: 992px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex(row, center, space-between, 0);
     }
   }
 

@@ -15,9 +15,7 @@ app-header {
 
 .container {
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(row, center, center, 0);
     width: 100%;
 
     @include laptop {
@@ -26,7 +24,6 @@ app-header {
 }
 
 .new-survey {
-    /*  padding: 0 0 24px 0; */
     background-color: #f5f5f5;
 
     &__card {

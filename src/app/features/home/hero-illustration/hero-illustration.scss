@@ -2,30 +2,32 @@
 
 .hero-illustration {
   position: relative;
-  width: 420px;
-  height: 420px;
+  @include square(420px);
 
   &__base {
-    width: 420px;
-    height: 420px;
+    @include square(420px);
     opacity: 1;
     transition: opacity 500ms ease;
   }
 
   &__hover {
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
-    width: 420px;
-    height: 420px;
+    @include square(420px);
     opacity: 0;
     transition: opacity 500ms ease;
   }
 
   @include laptop {
     &:hover {
-      .hero-illustration__base  { opacity: 0; }
-      .hero-illustration__hover { opacity: 1; }
+      .hero-illustration__base {
+        opacity: 0;
+      }
+
+      .hero-illustration__hover {
+        opacity: 1;
+      }
     }
   }
 }

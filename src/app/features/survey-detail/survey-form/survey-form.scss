@@ -117,13 +117,6 @@
     display: none;
   }
 
-
-  /*   &__input:checked+.answer__custom {
-    background-image:url('/assets/images/check-box/check-3.svg');
-    background-size: cover;
-    border: none;
-  } */
-
   &__custom {
     width: 18px;
     height: 18px;
@@ -131,9 +124,7 @@
     border: 2px solid $color-text-two;
     border-radius: 4px;
     background-color: $color-white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex(row, center, center, 0);
     overflow: hidden;
   }
 
@@ -142,8 +133,6 @@
     height: 100%;
     display: block;
   }
-
-
 
   &__label {
     @include font($font-base, 16px, 400, $color-primary);

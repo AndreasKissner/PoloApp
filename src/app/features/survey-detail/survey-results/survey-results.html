@@ -5,34 +5,36 @@
   </h2>
 
   @if (isOpen()) {
-    <div class="survey-results__questions">
+  <div class="survey-results__questions">
 
-      @for (question of questions(); track question.id; let qi = $index) {
-        <article class="result-question" [attr.aria-labelledby]="'result-q' + (qi + 1)">
-          <p class="result-question__text" [id]="'result-q' + (qi + 1)">
-            {{ qi + 1 }}. {{ question.text }}
-          </p>
-          <div class="result-question__bars">
+    @for (question of questions(); track question.id; let qi = $index) {
+    <article class="result-question" [attr.aria-labelledby]="'result-q' + (qi + 1)">
+      <p class="result-question__text" [id]="'result-q' + (qi + 1)">
+        {{ qi + 1 }}. {{ question.text }}
+      </p>
+      <div class="result-question__bars">
 
-            @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
-              <div class="result-bar" role="img" [attr.aria-label]="answer.text + ': ' + getPercentage(answer, getAnswersForQuestion(question.id)) + '%'">
-        <span class="result-bar__letter">{{ getAnswerLetter(ai) }}</span>
-                <div class="result-bar__track" aria-hidden="true">
-                  <div class="result-bar__fill" [style.width.%]="getPercentage(answer, getAnswersForQuestion(question.id))"></div>
-                </div>
-                <span class="result-bar__percent">{{ getPercentage(answer, getAnswersForQuestion(question.id)) }}%</span>
-              </div>
-            }
-
+        @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
+        <div class="result-bar" role="img"
+          [attr.aria-label]="answer.text + ': ' + getPercentage(answer, getAnswersForQuestion(question.id)) + '%'">
+          <span class="result-bar__letter">{{ getAnswerLetter(ai) }}</span>
+          <div class="result-bar__track" aria-hidden="true">
+            <div class="result-bar__fill" [style.width.%]="getPercentage(answer, getAnswersForQuestion(question.id))">
+            </div>
           </div>
-        </article>
-      }
+          <span class="result-bar__percent">{{ getPercentage(answer, getAnswersForQuestion(question.id)) }}%</span>
+        </div>
+        }
 
-    </div>
+      </div>
+    </article>
+    }
+
+  </div>
   } @else {
-    <p class="survey-results__empty">
-      Results will be shown here after participants complete the survey.
-    </p>
+  <p class="survey-results__empty">
+    Results will be shown here after participants complete the survey.
+  </p>
   }
 
 </section>

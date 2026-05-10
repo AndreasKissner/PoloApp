@@ -31,6 +31,7 @@ export class Home {
   pastSurveys = computed(() => this.surveys().filter(s => isPast(s)));
   endingSoonSurveys = computed(() => this.getEndingSoon());
 
+  /** Returns surveys filtered by current tab (active/past) and selected category. */
   currentSurveys = computed(() => {
     const base = this.activeTab() === 'active' ? this.activeSurveys() : this.pastSurveys();
     const category = this.selectedCategory();
@@ -40,6 +41,7 @@ export class Home {
     return base.filter(s => s.category === category);
   });
 
+  /** Returns unique non-null categories from all loaded surveys. */
   availableCategories = computed(() => {
     const cats = this.surveys()
       .map(s => s.category)
@@ -47,6 +49,7 @@ export class Home {
     return [...new Set(cats)];
   });
 
+  /** Loads all surveys when the component initializes. */
   async ngOnInit(): Promise<void> {
     await this.getSurveys();
   }

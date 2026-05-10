@@ -1,33 +1,26 @@
 <div class="sort" [class.sort--open]="isOpen()">
 
-<button class="sort__trigger" 
-  type="button"
-  [attr.aria-expanded]="isOpen()"
-  aria-haspopup="listbox"
-  (click)="toggle()">
-  <span class="sort__label">{{ label() }}</span>
-  <span class="sort__arrow" aria-hidden="true">
-    <img class="sort__arrow--closed" src="assets/images/sort-arrow-white.svg" alt="">
-    <img class="sort__arrow--open" src="assets/images/sort-arrow-orange.svg" alt="">
-  </span>
-</button>
+  <button class="sort__trigger" type="button" [attr.aria-expanded]="isOpen()" aria-haspopup="listbox"
+    (click)="toggle()">
+    <span class="sort__label">{{ label() }}</span>
+    <span class="sort__arrow" aria-hidden="true">
+      <img class="sort__arrow--closed" src="assets/images/sort-arrow-white.svg" alt="">
+      <img class="sort__arrow--open" src="assets/images/sort-arrow-orange.svg" alt="">
+    </span>
+  </button>
 
   @if (selected()) {
-    <span class="sort__selected">{{ selected() }}</span>
+  <span class="sort__selected">{{ selected() }}</span>
   }
 
   @if (isOpen()) {
-    <ul class="sort__list" role="listbox" aria-label="Categories">
-      @for (cat of getDisplayCategories(); track cat) {
-        <li 
-          class="sort__item"
-          role="option"
-          [attr.aria-selected]="selected() === cat"
-          (click)="select(cat)">
-          {{ cat }}
-        </li>
-      }
-    </ul>
+  <ul class="sort__list" role="listbox" aria-label="Categories">
+    @for (cat of getDisplayCategories(); track cat) {
+    <li class="sort__item" role="option" [attr.aria-selected]="selected() === cat" (click)="select(cat)">
+      {{ cat }}
+    </li>
+    }
+  </ul>
   }
 
 </div>
