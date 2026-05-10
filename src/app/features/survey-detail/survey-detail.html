@@ -3,8 +3,8 @@
 <main class="survey-detail" aria-labelledby="survey-title">
   <div class="container">
 
-    <app-survey-form [survey]="survey()" [questions]="questions()" [answers]="answers()" (voted)="onVoted()"
-      (selectionChanged)="onSelectionChanged($event)" />
+    <app-survey-form [survey]="survey()" [questions]="questions()" [answers]="answers()" [isPast]="isPastSurvey()"
+      (voted)="onVoted()" (selectionChanged)="onSelectionChanged($event)" />
 
     <div class="survey-detail__toggle">
       <button class="results-toggle" [attr.aria-expanded]="resultsOpen()" aria-controls="results-panel"

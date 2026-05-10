@@ -40,20 +40,14 @@
       <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
         @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
         <label class="answer">
-
-
-
           <input class="answer__input" [type]="question.allow_multiple ? 'checkbox' : 'radio'" [name]="'q' + (qi + 1)"
-            [value]="answer.id" [checked]="isSelected(question.id, answer.id)"
+            [value]="answer.id" [checked]="isSelected(question.id, answer.id)" [disabled]="isPast()"
             (change)="toggleAnswer(question.id, answer.id, question.allow_multiple)">
           <span class="answer__custom" aria-hidden="true">
             @if (isSelected(question.id, answer.id)) {
             <img class="answer__check" src="assets/images/check-box/check-3.svg" alt="">
             }
           </span>
-
-
-
 
           <span class="answer__label">
             <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
@@ -66,10 +60,18 @@
 
   </div>
 
+  @if (!isPast()) {
   <div class="survey-form__action">
     <app-ui-button class="survey-form__btn--mobile" variant="complete" label="Complete"
       icon="assets/images/checkmark.svg" (click)="onComplete()" />
     <app-ui-button class="survey-form__btn--laptop" variant="complete" label="Complete survey" (click)="onComplete()" />
   </div>
+  } @else {
+  <div class="survey-form__action">
+    <a routerLink="/" aria-label="Back to home">
+      <app-ui-button variant="publish" label="Back to home" icon="assets/images/x.svg" />
+    </a>
+  </div>
+  }
 
 </section>

@@ -3,7 +3,7 @@
 :host {
   display: block;
   min-height: 100vh;
-  background-color:$color-primary;
+  background-color: $color-primary;
   margin-top: -1px;
 }
 
@@ -12,14 +12,15 @@
   @include flex(column, flex-start, flex-start, 16px);
 
   @include laptop {
-       padding: 32px 0;
-      }
+    padding: 32px 0;
+  }
 
   &__content {
     @include flex(column, center, flex-start, 10px);
-     @include laptop {
-        align-items: flex-start;
-      }
+
+    @include laptop {
+      align-items: flex-start;
+    }
   }
 
   &__illustration {
@@ -100,6 +101,10 @@ app-ui-button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    &__empty {
+      color: $color-white;
+    }
   }
 
 
@@ -128,8 +133,8 @@ app-ui-button {
     overflow-x: auto;
   }
 
-  &__controls{
-     @include laptop {
+  &__controls {
+    @include laptop {
       width: 100%;
       max-width: 992px;
       display: flex;
@@ -138,14 +143,14 @@ app-ui-button {
     }
   }
 
-&__list {
-  @include flex(column, stretch, flex-start, 16px);
+  &__list {
+    @include flex(column, stretch, flex-start, 16px);
 
-  @include laptop {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 992px;
+    @include laptop {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 992px;
+    }
   }
-}
 }

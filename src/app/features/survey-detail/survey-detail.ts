@@ -5,6 +5,7 @@ import { SurveyForm } from './survey-form/survey-form';
 import { SurveyResults } from './survey-results/survey-results';
 import { Supabase } from '../../services/supabase.service';
 import { Survey, Question, Answer } from '../../models/survey.model';
+import { isPast } from '../../utils/survey-utils';
 
 @Component({
   selector: 'app-survey-detail',
@@ -26,6 +27,10 @@ export class SurveyDetail implements OnInit {
   arrowOrange = signal(false);
   isRotating = signal(false);
   pendingSelections = signal<Set<string>>(new Set());
+  isPastSurvey = computed(() => {
+    const s = this.survey();
+    return s ? isPast(s) : false;
+  });
 
   resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());
 
@@ -72,7 +77,7 @@ export class SurveyDetail implements OnInit {
   onVoted(): void {
     this.loadSurveyData();
   }
-  
+
   /** Receives current selections from survey-form. */
   onSelectionChanged(selections: Set<string>): void {
     this.pendingSelections.set(selections);

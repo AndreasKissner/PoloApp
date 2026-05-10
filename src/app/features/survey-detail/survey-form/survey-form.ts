@@ -20,6 +20,7 @@ export class SurveyForm {
   survey = input<Survey | null>(null);
   questions = input<Question[]>([]);
   answers = input<Answer[]>([]);
+  isPast = input<boolean>(false);
 
   voted = output<void>();
   selectionChanged = output<Set<string>>();
@@ -62,6 +63,9 @@ export class SurveyForm {
 
   /** Submits all selected answers, increments votes, emits voted event. */
   async onComplete(): Promise<void> {
+    if (this.isPast()) {
+      return;
+    }
     try {
       await this.submitVotes();
       this.selectedAnswers.set(new Map());
