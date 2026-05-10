@@ -39,9 +39,11 @@
                                     formControlName="title" placeholder="Survey name" aria-required="true">
                                 <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
                             </div>
-                            @if (surveyForm.get('title')?.touched && surveyForm.get('title')?.invalid) {
-                            <span class="new-survey__field-error">Survey name is required</span>
-                            }
+                         <span class="new-survey__field-error">
+  @if (surveyForm.get('title')?.touched && surveyForm.get('title')?.invalid) {
+    Survey name is required
+  }
+</span>
                         </div>
 
                         <div class="new-survey__field">

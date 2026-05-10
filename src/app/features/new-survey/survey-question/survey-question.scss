@@ -39,7 +39,7 @@
     padding: 8px;
     @include font($font-base, 14px, 400, $color-text-two);
     outline: none;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
   }
 
   &__answers-header {
@@ -175,10 +175,11 @@
     opacity: 0.7;
   }
 
-  &__error {
+&__error {
   display: block;
-  margin-top: 4px;
-  margin-bottom: 8px;
-  @include font($font-base, 12px, 600, $color-text-one);
+  width: 100%;
+  min-height: 20px;
+  margin: 4px 0 8px 10px;
+  @include font($font-base, 8px, 600, $color-text-one);
 }
 }

@@ -337,11 +337,14 @@ app-header {
         }
     }
 
-    &__field-error {
-        display: block;
-        margin-top: 4px;
-        @include font($font-base, 12px, 600, $color-text-one);
-    }
+  &__field-error {
+  display: block;
+  min-height: 12px;
+  margin-top: 4px;
+  margin-left: 10px;
+  margin:4px 0 0 10px;
+  @include font($font-base, 8px, 600, $color-text-one);
+}
 
     &__form--locked {
         pointer-events: none;
