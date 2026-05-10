@@ -152,6 +152,7 @@
 
   &--add-question {
     background-color: $color-brown;
+    padding: 11px 9px;
     border: none;
     border-radius: 10px;
     @include font($font-alt, 16px, 600, $color-white);
@@ -177,6 +178,7 @@
     border-bottom: 1px solid $color-white;
     border-radius: 0;
     padding: 4px 0;
+    margin-left: 15px;
     @include font($font-base, 13px, 600, $color-white);
 
     .btn__icon {

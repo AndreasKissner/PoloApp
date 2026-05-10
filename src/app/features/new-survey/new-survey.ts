@@ -22,6 +22,7 @@ export class NewSurvey implements OnInit {
 
   showConfirmation = signal<boolean>(false);
   createdSurveyId = signal<string | null>(null);
+  showError = signal<boolean>(false);
 
   private readonly TITLE_MAX_LENGTH = 100;
   private readonly DESCRIPTION_MAX_LENGTH = 500;
@@ -96,18 +97,16 @@ export class NewSurvey implements OnInit {
 
   /** Submits the survey: validates, saves to DB, navigates to detail view. */
   async onSubmit(): Promise<void> {
-    console.log('onSubmit called');
-    console.log('invalid:', this.surveyForm.invalid);
-    console.log('form value:', this.surveyForm.value);
-    console.log('showConfirmation:', this.showConfirmation());
     if (this.showConfirmation()) {
       return;
     }
     if (this.surveyForm.invalid) {
       this.surveyForm.markAllAsTouched();
+      this.showError.set(true);
       return;
     }
     try {
+      this.showError.set(false);
       const surveyId = await this.saveSurvey();
       const questionIds = await this.saveQuestions(surveyId);
       await this.saveAnswers(questionIds);

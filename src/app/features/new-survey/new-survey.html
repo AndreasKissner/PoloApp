@@ -21,8 +21,9 @@
             </h1>
 
 
-           <form class="new-survey__form" [class.new-survey__form--locked]="showConfirmation()" [formGroup]="surveyForm" aria-label="Survey form">
-
+            <form class="new-survey__form" [class.new-survey__form--locked]="showConfirmation()"
+                [formGroup]="surveyForm" aria-label="Survey form">
+               
                 <div class="new-survey__fields">
 
                     <div class="new-survey__fields-top">
@@ -30,7 +31,7 @@
                         <div class="new-survey__field">
                             <label class="new-survey__label new-survey__label--wide" for="survey-name">
                                 Survey name
-                               <!--  <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" /> -->
+                                <!--  <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" /> -->
                             </label>
 
                             <div class="new-survey__input-wrapper">
@@ -46,7 +47,6 @@
                                 <div class="new-survey__date-category-top">
                                     <label class="new-survey__label" for="survey-date">
                                         Set end date <span class="new-survey__optional">(optional)</span>
-                                        <app-delete-btn (click)="clearField('deadline')" aria-label="Clear end date" />
                                     </label>
                                     <div class="new-survey__input-wrapper">
                                         <input class="new-survey__input new-survey__input--narrow" id="survey-date"
@@ -55,7 +55,8 @@
                                     </div>
                                 </div>
 
-                               <app-survey-sort label="Choose category" [categories]="availableCategories" (categorySelected)="onCategorySelected($event)" />
+                                <app-survey-sort label="Choose category" [categories]="availableCategories"
+                                    (categorySelected)="onCategorySelected($event)" />
 
                             </div>
                         </div>
@@ -65,7 +66,6 @@
                     <div class="new-survey__field">
                         <label class="new-survey__label" for="survey-description">
                             Describing text <span class="new-survey__optional">(optional)</span>
-                           <!--  <app-delete-btn (click)="clearField('description')" aria-label="Clear description" /> -->
                         </label>
 
                         <div class="new-survey__textarea-wrapper">
@@ -91,6 +91,11 @@
                         (delete)="removeQuestion(i)" (addAnswer)="addAnswer(i)"
                         (removeAnswer)="removeAnswer(i, $event)" />
                     }
+                     @if (showError()) {
+                <p class="new-survey__error" role="alert">
+                    Please fill in all required fields.
+                </p>
+                }
                 </div>
 
                 <app-ui-button class="new-survey__add-question" variant="add-question" label="Add next question"
@@ -103,9 +108,9 @@
 
             </form>
 
-           <div class="new-survey__actions" [class.new-survey__actions--locked]="showConfirmation()">
+            <div class="new-survey__actions" [class.new-survey__actions--locked]="showConfirmation()">
                 <app-ui-button variant="publish" label="Publish" icon="assets/images/checkmark.svg"
-                   (click)="onSubmit()" />
+                    (click)="onSubmit()" />
             </div>
 
             @if (this.showConfirmation()) {

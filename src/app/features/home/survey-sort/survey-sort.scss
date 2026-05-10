@@ -7,7 +7,7 @@
     &__trigger {
   @include flex(row, center, space-between, 8px);
   width: 200px;
-  background-color: $color-primary;
+/*   background-color: $color-primary; */
   border-radius: 10px;
   padding: 6px 8px;
   cursor: pointer;
