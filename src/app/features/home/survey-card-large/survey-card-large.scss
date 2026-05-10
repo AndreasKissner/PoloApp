@@ -7,6 +7,7 @@
   padding: 16px;
   min-height: 120px;
   width: 100%;
+ 
   cursor: pointer;
 
   @include laptop {
@@ -15,7 +16,7 @@
     transition: 500ms ease;
 
     &:hover {
-      background-color:#4f4454;
+      background-color: #4f4454;
     }
   }
 
