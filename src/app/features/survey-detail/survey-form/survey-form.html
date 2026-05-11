@@ -7,71 +7,90 @@
     </a>
   </div>
 
-  <div class="survey-form__meta">
-    @if (survey()?.deadline) {
-    <span class="survey-form__date">Ends on {{ survey()?.deadline | date:'dd.MM.yyyy' }}</span>
-    }
-    @if (survey()?.category) {
-    <span class="survey-form__category">Category: {{ survey()?.category }}</span>
-    }
-  </div>
-
-  <h1 class="survey-form__title" id="survey-form-title">
-    {{ survey()?.title }}
-  </h1>
-
-  @if (survey()?.description) {
-  <p class="survey-form__description">
-    {{ survey()?.description }}
-  </p>
-  }
-
-  <div class="survey-form__questions">
-
-    @for (question of questions(); track question.id; let qi = $index) {
-    <article class="question" [attr.aria-labelledby]="'question-' + (qi + 1)">
-      <p class="question__text" [id]="'question-' + (qi + 1)">
-        <span class="question__number">{{ qi + 1 }}.</span>
-        {{ question.text }}
+  @if (alreadyVoted()) {
+    <div class="survey-form__already-voted" role="alert">
+      <h2 class="survey-form__already-voted-title">You've already voted</h2>
+      <p class="survey-form__already-voted-text">
+        You can only participate in this survey once. Check the results on the right.
       </p>
-      <p class="question__hint">
-        {{ question.allow_multiple ? 'More than one answer are possible.' : 'One answer possible.' }}
-      </p>
-      <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
-        @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
-        <label class="answer">
-          <input class="answer__input" [type]="question.allow_multiple ? 'checkbox' : 'radio'" [name]="'q' + (qi + 1)"
-            [value]="answer.id" [checked]="isSelected(question.id, answer.id)" [disabled]="isPast()"
-            (change)="toggleAnswer(question.id, answer.id, question.allow_multiple)">
-          <span class="answer__custom" aria-hidden="true">
-            @if (isSelected(question.id, answer.id)) {
-            <img class="answer__check" src="assets/images/check-box/check-3.svg" alt="">
-            }
-          </span>
-
-          <span class="answer__label">
-            <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
-          </span>
-        </label>
-        }
-      </div>
-    </article>
-    }
-
-  </div>
-
-  @if (!isPast()) {
-  <div class="survey-form__action">
-    <app-ui-button class="survey-form__btn--mobile" variant="complete" label="Complete"
-      icon="assets/images/checkmark.svg" (click)="onComplete()" />
-    <app-ui-button class="survey-form__btn--laptop" variant="complete" label="Complete survey" (click)="onComplete()" />
-  </div>
+      <a routerLink="/" aria-label="Back to home">
+        <app-ui-button variant="publish" label="Back to home" icon="assets/images/x.svg" />
+      </a>
+    </div>
   } @else {
-  <div class="survey-form__action">
-    <a routerLink="/" aria-label="Back to home">
-      <app-ui-button variant="publish" label="Back to home" icon="assets/images/x.svg" />
-    </a>
-  </div>
+
+    <div class="survey-form__meta">
+      @if (survey()?.deadline) {
+      <span class="survey-form__date">Ends on {{ survey()?.deadline | date:'dd.MM.yyyy' }}</span>
+      }
+      @if (survey()?.category) {
+      <span class="survey-form__category">Category: {{ survey()?.category }}</span>
+      }
+    </div>
+
+    <h1 class="survey-form__title" id="survey-form-title">
+      {{ survey()?.title }}
+    </h1>
+
+    @if (survey()?.description) {
+    <p class="survey-form__description">
+      {{ survey()?.description }}
+    </p>
+    }
+
+    <div class="survey-form__questions">
+
+      @for (question of questions(); track question.id; let qi = $index) {
+      <article class="question" [attr.aria-labelledby]="'question-' + (qi + 1)">
+        <p class="question__text" [id]="'question-' + (qi + 1)">
+          <span class="question__number">{{ qi + 1 }}.</span>
+          {{ question.text }}
+        </p>
+        <p class="question__hint">
+          {{ question.allow_multiple ? 'More than one answer are possible.' : 'One answer possible.' }}
+        </p>
+        <div class="question__answers" role="group" [attr.aria-labelledby]="'question-' + (qi + 1)">
+          @for (answer of getAnswersForQuestion(question.id); track answer.id; let ai = $index) {
+          <label class="answer">
+            <input class="answer__input" [type]="question.allow_multiple ? 'checkbox' : 'radio'" [name]="'q' + (qi + 1)"
+              [value]="answer.id" [checked]="isSelected(question.id, answer.id)" [disabled]="isPast()"
+              (change)="toggleAnswer(question.id, answer.id, question.allow_multiple)">
+            <span class="answer__custom" aria-hidden="true">
+              @if (isSelected(question.id, answer.id)) {
+              <img class="answer__check" src="assets/images/check-box/check-3.svg" alt="">
+              }
+            </span>
+
+            <span class="answer__label">
+              <span class="answer__letter">{{ getAnswerLetter(ai) }}.</span> {{ answer.text }}
+            </span>
+          </label>
+          }
+        </div>
+      </article>
+      }
+
+    </div>
+
+    @if (!isPast()) {
+    <div class="survey-form__action">
+      @if (showError()) {
+      <p class="survey-form__error" role="alert">
+        All question Please&nbsp;&nbsp;
+      </p>
+      }
+      <app-ui-button class="survey-form__btn--mobile" variant="complete" label="Complete"
+        icon="assets/images/checkmark.svg" (click)="onComplete()" />
+      <app-ui-button class="survey-form__btn--laptop" variant="complete" label="Complete survey" (click)="onComplete()" />
+    </div>
+    } @else {
+    <div class="survey-form__action">
+      <a routerLink="/" aria-label="Back to home">
+        <app-ui-button variant="publish" label="Back to home" icon="assets/images/x.svg" />
+      </a>
+    </div>
+    }
+
   }
 
 </section>

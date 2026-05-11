@@ -36,6 +36,11 @@
     background-color: $color-bg-create-survey-titel;
     padding: 12px 16px;
     @include font($font-alt, 18px, 700, $color-result-live);
+     display: none;
+
+    @include laptop {
+      display: block;
+    }
   }
 
   // Filter
@@ -43,8 +48,8 @@
     background-color: #FEE9D4;
     border: none;
     transition: background-color 200ms ease;
-    padding: 2px 10px;
-    @include font($font-alt, 14px, 400, $color-primary);
+    padding: 4px 10px;
+    @include font($font-alt, 16px, 400, $color-primary);
 
     @include laptop {
       font-size: 16px;
@@ -128,7 +133,7 @@
       width: 0;
       opacity: 0;
       transition: width 500ms ease, opacity 500ms ease;
-     /*  pointer-events: none; */
+      /*  pointer-events: none; */
     }
 
     img {

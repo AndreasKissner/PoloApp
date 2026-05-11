@@ -1,9 +1,11 @@
-import { Component, input, output, signal, inject } from '@angular/core';
+import { Component, input, output, signal, inject, effect } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { UiButtonComponent } from '../../../shared/ui-button/ui-button';
 import { Survey, Question, Answer } from '../../../models/survey.model';
 import { Supabase } from '../../../services/supabase.service';
+import { hasVoted, markAsVoted } from '../../../utils/survey-utils';
+
 
 @Component({
   selector: 'app-survey-form',
@@ -26,6 +28,17 @@ export class SurveyForm {
   selectionChanged = output<Set<string>>();
 
   selectedAnswers = signal<Map<string, Set<string>>>(new Map());
+  showError = signal<boolean>(false);
+  alreadyVoted = signal<boolean>(false);
+
+  constructor() {
+    effect(() => {
+      const survey = this.survey();
+      if (survey && hasVoted(survey.id)) {
+        this.alreadyVoted.set(true);
+      }
+    });
+  }
 
   /** Returns all answers belonging to a specific question. */
   getAnswersForQuestion(questionId: string): Answer[] {
@@ -63,16 +76,28 @@ export class SurveyForm {
 
   /** Submits all selected answers, increments votes, emits voted event. */
   async onComplete(): Promise<void> {
-    if (this.isPast()) {
+    if (this.isPast()) return;
+    if (!this.allQuestionsAnswered()) {
+      this.showError.set(true);
       return;
     }
+    this.showError.set(false);
     try {
       await this.submitVotes();
+      this.markCurrentAsVoted();
       this.selectedAnswers.set(new Map());
       this.voted.emit();
       this.router.navigate(['/']);
     } catch (error) {
       console.error('Failed to submit votes:', error);
+    }
+  }
+
+  /** Marks the current survey as voted in localStorage. */
+  private markCurrentAsVoted(): void {
+    const survey = this.survey();
+    if (survey) {
+      markAsVoted(survey.id);
     }
   }
 
@@ -94,5 +119,13 @@ export class SurveyForm {
       }
     }
     this.selectionChanged.emit(allIds);
+  }
+
+  /** Checks if every question has at least one selected answer. */
+  private allQuestionsAnswered(): boolean {
+    return this.questions().every(question => {
+      const set = this.selectedAnswers().get(question.id);
+      return set !== undefined && set.size > 0;
+    });
   }
 }

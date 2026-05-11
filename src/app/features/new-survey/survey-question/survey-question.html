@@ -8,10 +8,13 @@
   </div>
 
   <input class="question__input" type="text" formControlName="text" [id]="'question-' + questionIndex()"
-    placeholder="Which date would work best for you?" [attr.aria-labelledby]="'question-label-' + questionIndex()">
+    [maxlength]="questionMaxLength" placeholder="Which date would work best for you?"
+    [attr.aria-labelledby]="'question-label-' + questionIndex()">
 
   <span class="question__error">
-    @if (questionForm().get('text')?.touched && questionForm().get('text')?.invalid) {
+    @if (questionTextControl?.value && questionTextControl?.value.length >= questionMaxLength) {
+    Maximum 200 characters reached
+    } @else if (questionTextControl?.touched && questionTextControl?.invalid) {
     Question text is required
     }
   </span>
@@ -39,13 +42,15 @@
           [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
       </div>
       <div class="question__answer-row">
-        <input class="question__answer-input" type="text" formControlName="text"
+        <input class="question__answer-input" type="text" formControlName="text" [maxlength]="answerMaxLength"
           [placeholder]="'Answer ' + getAnswerLetter(i)" [attr.aria-label]="'Answer ' + getAnswerLetter(i)">
         <app-delete-btn class="question__answer-delete--laptop" (click)="onRemoveAnswer(i)"
           [attr.aria-label]="'Delete answer ' + getAnswerLetter(i)" />
       </div>
       <span class="question__error">
-        @if (answers.at(i).get('text')?.touched && answers.at(i).get('text')?.invalid) {
+        @if (answers.at(i).get('text')?.value && answers.at(i).get('text')?.value.length >= answerMaxLength) {
+        Maximum 100 characters reached
+        } @else if (answers.at(i).get('text')?.touched && answers.at(i).get('text')?.invalid) {
         Answer is required
         }
       </span>

@@ -6,13 +6,15 @@
   border-radius: 5px 50px 5px 5px;
   padding: 16px;
   min-height: 120px;
+  max-height: 150px;
   width: 100%;
- 
+
   cursor: pointer;
 
   @include laptop {
-    min-width: 488px;
-    min-height: 127px;
+  width: 488px;
+    min-height: 150px;
+    max-height: 150px;
     transition: 500ms ease;
 
     &:hover {
@@ -27,7 +29,12 @@
 
   &__title {
     @include font($font-base, 18px, 700, $color-white);
+    @include custom-scrollbar;
+    @include text-break;
     flex: 1;
+    overflow-y: auto;
+
+
   }
 
   &__badge {

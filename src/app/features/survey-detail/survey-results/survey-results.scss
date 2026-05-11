@@ -27,6 +27,7 @@
   &__text {
     @include font($font-base, 18px, 700, $color-text-two);
     margin-bottom: 12px;
+    @include text-break;
   }
 
   &__bars {

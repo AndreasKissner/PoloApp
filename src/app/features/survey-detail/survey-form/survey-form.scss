@@ -47,19 +47,21 @@
 
   &__date,
   &__category {
-    @include font($font-base, 12px, 500, $color-result-live);
+    @include font($font-base, 16px, 500, $color-result-live);
   }
 
   &__title {
     @include font($font-title, 44px, 400, $color-text-one);
     line-height: 1;
     margin-bottom: 16px;
+    @include text-break;
   }
 
   &__description {
     @include font($font-base, 16px, 500, $color-text-two);
     line-height: 1.6;
     margin-bottom: 24px;
+    @include text-break;
   }
 
   &__questions {
@@ -71,6 +73,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
+  }
+
+  &__error {
+    @include font($font-base, 16px, 600, $color-error);
+    margin: 0;
   }
 
   &__action {
@@ -91,16 +98,32 @@
       display: flex;
     }
   }
+
+  &__already-voted {
+    @include flex(column, flex-start, flex-start, 16px);
+    padding: 24px 0;
+  }
+
+  &__already-voted-title {
+    @include font($font-title, 32px, 400, $color-text-one);
+    margin: 0;
+  }
+
+  &__already-voted-text {
+    @include font($font-base, 16px, 500, $color-text-two);
+    margin: 0;
+  }
 }
 
 .question {
   &__text {
     @include font($font-base, 16px, 700, $color-primary);
     margin-bottom: 4px;
+    @include text-break;
   }
 
   &__hint {
-    @include font($font-base, 12px, 400, $color-primary);
+    @include font($font-base, 16px, 400, $color-primary);
     margin-bottom: 12px;
   }
 
@@ -136,6 +159,9 @@
 
   &__label {
     @include font($font-base, 16px, 400, $color-primary);
+    @include text-break;
+    min-width: 0;
+    flex: 1;
   }
 
   &__letter {

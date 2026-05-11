@@ -2,18 +2,21 @@
 
 :host {
     display: block;
-    min-height: 100vh;
     background-color: $color-primary;
     margin-top: -1px;
 }
 
 app-header {
+    /*   width: 100%;
+    max-width: 1440px; */
+    background-color: #f5f5f5;
+
     @include laptop {
         display: none;
     }
 }
 
-.container {
+/* .container {
     padding: 0;
     @include flex(row, center, center, 0);
     width: 100%;
@@ -21,21 +24,22 @@ app-header {
     @include laptop {
         padding: 65px;
     }
-}
+} */
 
 .new-survey {
     background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 64px 0;
 
     &__card {
         background-color: $color-primary;
         border-radius: 0 60px 0 0;
         padding: 24px 16px;
-        width: 100%;
         position: relative;
         overflow-x: hidden;
 
         @include laptop {
-            max-width: 1218px;
+            border-radius: 0 100px 0 0;
             padding: 24px 64px;
         }
     }
@@ -81,7 +85,7 @@ app-header {
 
         @include laptop {
             display: flex;
-            margin-right: 30px;
+            margin-right: 68px;
         }
     }
 
@@ -225,6 +229,7 @@ app-header {
         border: 1px solid $color-white;
         border-radius: 5px 20px 5px 5px;
         padding: 8px;
+        @include custom-scrollbar;
 
         @include laptop {
             max-width: 432px;
@@ -243,8 +248,6 @@ app-header {
     }
 
     &__add-question {
-        /*  @include flex(row, center, center, 8px); */
-        /*   background-color: #FFB7704D; */
         border: none;
         border-radius: 10px;
         cursor: pointer;
@@ -382,7 +385,6 @@ app-header {
             height: 18px;
         }
     }
-
 }
 
 @keyframes slide-in-right {

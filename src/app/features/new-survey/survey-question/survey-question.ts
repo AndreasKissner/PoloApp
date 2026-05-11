@@ -2,6 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { DeleteBtn } from '../../../shared/delete-btn/delete-btn';
 import { UiButtonComponent } from '../../../shared/ui-button/ui-button';
+import { QUESTION_MAX_LENGTH, ANSWER_MAX_LENGTH } from '../../../utils/survey-utils';
 
 @Component({
   selector: 'app-survey-question',
@@ -20,6 +21,13 @@ export class SurveyQuestion {
   delete = output<void>();
   addAnswer = output<void>();
   removeAnswer = output<number>();
+  readonly questionMaxLength = QUESTION_MAX_LENGTH;
+  readonly answerMaxLength = ANSWER_MAX_LENGTH;
+
+  /** Returns the length of question max length */
+  get questionTextControl() {
+    return this.questionForm().get('text');
+  }
 
   /** Returns the answers FormArray of the current question. */
   get answers(): FormArray {

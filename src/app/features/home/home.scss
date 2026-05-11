@@ -123,12 +123,30 @@ app-ui-button {
     }
   }
 
-  &__ending-list {
-    margin-top: 20px;
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
+ &__ending-list {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+
+  &::-webkit-scrollbar {
+    height: 6px;
   }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-bg-puplished-titel;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $color-text-one;
+  }
+}
 
   &__controls {
     @include laptop {

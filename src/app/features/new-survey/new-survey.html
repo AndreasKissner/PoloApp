@@ -1,4 +1,4 @@
-<app-header theme="light" />
+<!-- <app-header theme="light" />  -->
 
 <main class="new-survey" aria-labelledby="new-survey-title">
     <div class="container">
@@ -36,11 +36,15 @@
 
                             <div class="new-survey__input-wrapper">
                                 <input class="new-survey__input new-survey__input--wide" id="survey-name" type="text"
-                                    formControlName="title" placeholder="Survey name" aria-required="true">
+                                    formControlName="title" [maxlength]="titleMaxLength" placeholder="Survey name"
+                                    aria-required="true">
                                 <app-delete-btn (click)="clearField('title')" aria-label="Clear survey name" />
                             </div>
                             <span class="new-survey__field-error">
-                                @if (surveyForm.get('title')?.touched && surveyForm.get('title')?.invalid) {
+                                @if (titleControl?.value && titleControl?.value.length >= titleMaxLength) {
+                                Maximum 120 characters reached
+
+                                } @else if (titleControl?.touched && titleControl?.invalid) {
                                 Survey name is required
                                 }
                             </span>
@@ -63,6 +67,12 @@
                                 <app-survey-sort label="Choose category" [categories]="availableCategories"
                                     [showAllOption]="false" (categorySelected)="onCategorySelected($event)" />
 
+                                <span class="new-survey__field-error">
+                                    @if (surveyForm.get('category')?.touched && surveyForm.get('category')?.invalid) {
+                                    Category is required
+                                    }
+                                </span>
+
                             </div>
                         </div>
 
@@ -75,9 +85,15 @@
 
                         <div class="new-survey__textarea-wrapper">
                             <textarea class="new-survey__input new-survey__input--textarea" id="survey-description"
-                                formControlName="description" rows="4"></textarea>
+                                formControlName="description" [maxlength]="descriptionMaxLength" rows="4"></textarea>
                             <app-delete-btn (click)="clearField('description')" aria-label="Clear description" />
                         </div>
+                        <span class="new-survey__field-error">
+                            @if (descriptionControl?.value && descriptionControl?.value.length >= descriptionMaxLength)
+                            {
+                            Maximum 500 characters reached
+                            }
+                        </span>
 
                         <app-ui-button class="new-survey__add-question-two" variant="add-question"
                             label="Add next question" icon="assets/images/add-circle-white.svg"

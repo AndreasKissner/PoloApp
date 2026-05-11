@@ -7,10 +7,12 @@
     padding: 16px;
     min-width: 220px;
     min-height: 180px;
+    max-height: 180px;
 
     @include laptop {
-        min-width: 320px;
+        max-width: 320px;
         min-height: 310px;
+        max-height: 310px;
         padding: 40px 28px;
     }
 
@@ -19,11 +21,14 @@
     }
 
     &__category {
-        @include font($font-base, 14px, 600,$color-text-two);
+        @include font($font-base, 14px, 600, $color-text-two);
     }
 
     &__title {
         @include font($font-base, 24px, 700, $color-result-live);
+        @include text-break;
+        @include custom-scrollbar;
+        overflow-y: auto;
         flex: 1;
 
         @include laptop {
@@ -32,12 +37,12 @@
     }
 
     &__badge {
-        @include font($font-base, 12px, 500, $color-result-live);
+        @include font($font-base, 16px, 500, $color-result-live);
         background-color: $color-bg-puplished-titel;
         padding: 3px 6px;
         border-radius: 0 14px 0 0;
         align-self: flex-start;
     }
 
-    
+
 }

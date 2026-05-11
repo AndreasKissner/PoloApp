@@ -7,14 +7,21 @@ import { UiButtonComponent } from '../../shared/ui-button/ui-button';
 import { SurveyQuestion } from './survey-question/survey-question';
 import { SurveySortComponent } from '../home/survey-sort/survey-sort';
 import { DeleteBtn } from '../../shared/delete-btn/delete-btn';
-
+import {
+  SURVEY_CATEGORIES,
+  requiredNoWhitespace,
+  TITLE_MAX_LENGTH,
+  DESCRIPTION_MAX_LENGTH,
+  QUESTION_MAX_LENGTH,
+  ANSWER_MAX_LENGTH
+} from '../../utils/survey-utils';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AnswerInput, QuestionInput, SurveyInput } from '../../models/survey.model';
-import { SURVEY_CATEGORIES } from '../../utils/survey-utils';
+
 
 @Component({
   selector: 'app-new-survey',
-  imports: [Header, RouterLink, UiButtonComponent, SurveyQuestion, SurveySortComponent, DeleteBtn, ReactiveFormsModule],
+  imports: [RouterLink, UiButtonComponent, SurveyQuestion, SurveySortComponent, DeleteBtn, ReactiveFormsModule],
   templateUrl: './new-survey.html',
   styleUrl: './new-survey.scss',
 })
@@ -24,10 +31,8 @@ export class NewSurvey implements OnInit {
   createdSurveyId = signal<string | null>(null);
   showError = signal<boolean>(false);
 
-  private readonly TITLE_MAX_LENGTH = 100;
-  private readonly DESCRIPTION_MAX_LENGTH = 500;
-  private readonly QUESTION_MAX_LENGTH = 200;
-  private readonly ANSWER_MAX_LENGTH = 100;
+  readonly titleMaxLength = TITLE_MAX_LENGTH;
+  readonly descriptionMaxLength = DESCRIPTION_MAX_LENGTH;
   private readonly MAX_QUESTIONS = 4;
   private readonly LAPTOP_BREAKPOINT = 1024;
   readonly availableCategories = SURVEY_CATEGORIES;
@@ -37,9 +42,9 @@ export class NewSurvey implements OnInit {
   private router = inject(Router);
 
   surveyForm: FormGroup = this.formBuilder.group({
-    title: ['', [Validators.required, Validators.maxLength(this.TITLE_MAX_LENGTH)]],
-    description: ['', [Validators.maxLength(this.DESCRIPTION_MAX_LENGTH)]],
-    category: [''],
+    title: ['', [requiredNoWhitespace, Validators.maxLength(TITLE_MAX_LENGTH)]],
+    description: ['', [Validators.maxLength(DESCRIPTION_MAX_LENGTH)]],
+    category: ['', requiredNoWhitespace],
     deadline: [''],
     questions: this.formBuilder.array([])
   });
@@ -52,6 +57,16 @@ export class NewSurvey implements OnInit {
   /** Returns true if more questions can be added (limit not yet reached). */
   get canAddQuestion(): boolean {
     return this.questions.length < this.MAX_QUESTIONS;
+  }
+
+  /** Returns length of title */
+  get titleControl() {
+    return this.surveyForm.get('title');
+  }
+  
+  /** Returns length of description */
+  get descriptionControl() {
+    return this.surveyForm.get('description');
   }
 
   /** Initializes the form with one empty question on component load. */
@@ -159,14 +174,14 @@ export class NewSurvey implements OnInit {
   /** Builds a FormGroup for a single answer. */
   private buildAnswer(): FormGroup {
     return this.formBuilder.group({
-      text: ['', [Validators.required, Validators.maxLength(this.ANSWER_MAX_LENGTH)]]
+      text: ['', [requiredNoWhitespace, Validators.maxLength(ANSWER_MAX_LENGTH)]]
     });
   }
 
   /** Builds a FormGroup for a single question with two empty answers. */
   private buildQuestion(): FormGroup {
     return this.formBuilder.group({
-      text: ['', [Validators.required, Validators.maxLength(this.QUESTION_MAX_LENGTH)]],
+      text: ['', [requiredNoWhitespace, Validators.maxLength(QUESTION_MAX_LENGTH)]],
       allow_multiple: [false],
       answers: this.formBuilder.array([
         this.buildAnswer(),
@@ -174,6 +189,7 @@ export class NewSurvey implements OnInit {
       ])
     });
   }
+
 
   /** Resets all values of the first question without removing it. */
   private clearFirstQuestion(): void {
@@ -189,7 +205,7 @@ export class NewSurvey implements OnInit {
     return {
       title: formValue.title,
       description: formValue.description || null,
-      category: formValue.category || null,
+      category: formValue.category,
       deadline: formValue.deadline || null
     };
   }

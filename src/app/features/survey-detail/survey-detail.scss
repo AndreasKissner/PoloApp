@@ -1,7 +1,10 @@
 @use '../../../styles/abstracts' as *;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   min-height: 100vh;
   background-color: $color-white;
   margin-top: -1px;
@@ -56,6 +59,9 @@ app-survey-results {
 }
 
 .container {
+    width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   @include laptop {
     @include flex(row, flex-start, flex-start, 32px);
 
