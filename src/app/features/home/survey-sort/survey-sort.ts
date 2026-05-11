@@ -1,4 +1,4 @@
-import { Component, signal, input, output } from '@angular/core';
+import { Component, signal, input, output, HostListener, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './survey-sort.scss'
 })
 export class SurveySortComponent {
-
+  private elementRef = inject(ElementRef);
   private readonly ALL_CATEGORIES_LABEL = 'All categories';
 
   label = input<string>('Sort by categories');
@@ -40,5 +40,14 @@ export class SurveySortComponent {
       return [this.ALL_CATEGORIES_LABEL, ...this.categories()];
     }
     return this.categories();
+  }
+
+  /** Closes the dropdown when clicking outside the component. */
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside && this.isOpen()) {
+      this.isOpen.set(false);
+    }
   }
 }

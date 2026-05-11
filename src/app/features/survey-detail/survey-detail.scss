@@ -16,7 +16,7 @@
   margin-left: 30px;
   padding: 24px 0;
 
-  @include laptop {
+  @media (min-width: 1100px) {
     display: none;
   }
 }
@@ -59,11 +59,13 @@ app-survey-results {
 }
 
 .container {
-    width: 100%;
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  @include laptop {
+
+  @media (min-width: 1100px) {
     @include flex(row, flex-start, flex-start, 32px);
+    padding: 0;
 
     app-survey-form {
       width: 702px;
