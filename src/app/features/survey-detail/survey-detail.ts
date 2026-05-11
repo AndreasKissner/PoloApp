@@ -35,6 +35,7 @@ export class SurveyDetail implements OnInit {
 
   resultsVisible = computed(() => this.isDesktop() || this.resultsOpen());
 
+  /** Toggles the results panel with a 600ms rotating arrow animation. */
   toggleResults(): void {
     this.isRotating.set(true);
     this.arrowOrange.set(false);
@@ -45,6 +46,7 @@ export class SurveyDetail implements OnInit {
     }, 600);
   }
 
+  /** Loads survey data when the component initializes. */
   ngOnInit(): void {
     this.loadSurveyData();
   }
@@ -68,7 +70,6 @@ export class SurveyDetail implements OnInit {
     const questions = await this.supabase.getQuestionsBySurveyId(surveyId);
     const questionIds = questions.map(q => q.id);
     const answers = await this.supabase.getAnswersByQuestionIds(questionIds);
-
     this.survey.set(survey);
     this.questions.set(questions);
     this.answers.set(answers);

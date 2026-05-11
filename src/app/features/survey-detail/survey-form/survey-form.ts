@@ -31,6 +31,7 @@ export class SurveyForm {
   showError = signal<boolean>(false);
   alreadyVoted = signal<boolean>(false);
 
+  /** Sets alreadyVoted to true if the user has already voted on this survey. */
   constructor() {
     effect(() => {
       const survey = this.survey();

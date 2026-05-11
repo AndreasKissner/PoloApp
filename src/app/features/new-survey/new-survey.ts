@@ -63,10 +63,14 @@ export class NewSurvey implements OnInit {
   get titleControl() {
     return this.surveyForm.get('title');
   }
-  
+
   /** Returns length of description */
   get descriptionControl() {
     return this.surveyForm.get('description');
+  }
+
+  get todayString(): string {
+    return new Date().toISOString().split('T')[0];
   }
 
   /** Initializes the form with one empty question on component load. */
@@ -115,14 +119,17 @@ export class NewSurvey implements OnInit {
 
   /** Submits the survey: validates, saves to DB, navigates to detail view. */
   async onSubmit(): Promise<void> {
-    if (this.showConfirmation()) {
-      return;
-    }
+    if (this.showConfirmation()) return;
     if (this.surveyForm.invalid) {
       this.surveyForm.markAllAsTouched();
       this.showError.set(true);
       return;
     }
+    await this.persistSurvey();
+  }
+
+  /** Saves survey, questions, and answers to DB and handles the success flow. */
+  private async persistSurvey(): Promise<void> {
     try {
       this.showError.set(false);
       const surveyId = await this.saveSurvey();

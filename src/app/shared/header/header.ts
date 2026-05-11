@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
     '[class.header--light]': 'theme === "light"'
   }
 })
+
 export class Header {
   @Input() theme: 'dark' | 'light' = 'dark';
   @Input() showCreateBtn: boolean = false;

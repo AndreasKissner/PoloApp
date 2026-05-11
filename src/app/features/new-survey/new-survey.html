@@ -59,7 +59,7 @@
                                     </label>
                                     <div class="new-survey__input-wrapper">
                                         <input class="new-survey__input new-survey__input--narrow" id="survey-date"
-                                            type="date" formControlName="deadline">
+                                            type="date" formControlName="deadline" [min]="todayString">
                                         <app-delete-btn (click)="clearField('deadline')" aria-label="Clear end date" />
                                     </div>
                                 </div>

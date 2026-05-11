@@ -94,7 +94,7 @@ app-ui-button {
 }
 
 .surveys {
-  padding: 32px 0;
+  padding: 32px 0 118px;
 
   @include laptop {
     @include flex(column, center, center, 0);
