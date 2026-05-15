@@ -1,35 +1,83 @@
-## PollApp
+# PollApp
 
-## Security
- All database IDs use UUID (universally unique identifier) instead of sequential integers
-to prevent ID enumeration attacks.
- Supabase Row Level Security (RLS) is enabled on all tables.
- No authentication is required for this project — all policies are set to public read and
-write.
+Eine Angular-Applikation zum Erstellen und Verwalten von Umfragen.
 
-Getting Started
-Prerequisites
-Ensure you have Node.js (https://nodejs.org/) and the Angular CLI
-(https://angular.dev/tools/cli) installed.
-Installation
-1. 1. Clone the repository.
-2. 2. Open your terminal and navigate to the project directory:
-cd PollApp
-3. 3. Install the dependencies:
+---
+
+## Starten
+
+```bash
 npm install
+npm run dev
+```
 
-## Development Server
-To start the local development server, run:
-ng serve
-Once the server is running, navigate to http://localhost:4200/. The application will reload
-automatically if you change any source files.
+Die App läuft dann unter `http://localhost:4200`.
+
+---
+
+## Features
+
+- Umfragen erstellen, ansehen und löschen
+- Umfragen filtern und sortieren
+- Umfragen ausfüllen und Ergebnisse einsehen
+- Zwei Darstellungsmodi für Umfragekarten (groß / klein)
+
+---
+
+## Projektstruktur
+
+```
+src/
+├── app/
+│   ├── features/
+│   │   ├── home/                     # Startseite mit Umfrageübersicht
+│   │   │   ├── hero-illustration/    # Hero-Bereich (Illustration + CTA)
+│   │   │   ├── survey-card-large/    # Große Umfragekarte
+│   │   │   ├── survey-card-small/    # Kleine Umfragekarte
+│   │   │   ├── survey-filter/        # Filterkomponente
+│   │   │   └── survey-sort/          # Sortierkomponente
+│   │   ├── new-survey/               # Neue Umfrage erstellen
+│   │   │   └── survey-question/      # Einzelne Frage innerhalb der Erstellungsmaske
+│   │   └── survey-detail/            # Detailansicht einer Umfrage
+│   │       ├── survey-form/          # Umfrage ausfüllen
+│   │       └── survey-results/       # Ergebnisse einer Umfrage
+│   ├── models/
+│   │   └── survey.model.ts           # TypeScript-Interfaces für Umfragen
+│   ├── services/
+│   │   ├── supabase.service.ts       # Datenbankzugriff via Supabase
+│   │   └── favicon.service.ts        # Dynamisches Favicon-Management
+│   ├── shared/
+│   │   ├── header/                   # App-weiter Header
+│   │   ├── ui-button/                # Wiederverwendbarer Button
+│   │   └── delete-btn/               # Lösch-Button
+│   ├── utils/
+│   │   └── survey-utils.ts           # Hilfsfunktionen für Umfragen
+│   ├── app.routes.ts                 # Routing-Konfiguration
+│   └── app.config.ts                 # App-Konfiguration
+├── styles/
+│   ├── abstracts/                    # SCSS-Variablen, Mixins, Funktionen, Farben, Typografie
+│   └── base/                         # Reset und globale Styles
+└── styles.scss                       # Globaler SCSS-Einstiegspunkt
+```
+
+---
+
+## Technologien
+
+| Technologie | Verwendung |
+|---|---|
+| Angular 21 | Framework |
+| TypeScript | Sprache |
+| SCSS + BEM | Styling |
+| Supabase | Backend / Datenbank |
+| WCAG | Barrierefreiheitsstandard |
+
+---
 
 ## Build
 
 ```bash
-ng build
+npm run build
 ```
 
-## Additional Resources
-
-[Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)
+Output landet im `dist/`-Ordner.
